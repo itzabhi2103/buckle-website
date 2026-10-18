@@ -127,7 +127,7 @@ input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 
           <div class="field"><label for="f-name">Name (English)</label><input id="f-name" type="text" autocomplete="off" placeholder="e.g. Flower ring buckle"></div>
           <div class="field"><label for="f-name-hi">Name (Hindi) <small>(optional)</small></label><input id="f-name-hi" type="text" lang="hi" autocomplete="off" placeholder="जैसे: फूल वाला रिंग बकल"></div>
           <div class="field"><label for="f-size">Size (mm)</label><input id="f-size" type="number" inputmode="numeric" min="1" max="199" value="20"></div>
-          <div class="field"><label for="f-finish">Finish</label><select id="f-finish"></select></div>
+          <div class="field"><label for="f-finish">Finish / colour</label><select id="f-finish"></select></div>
           <div class="field"><label for="f-price">Price per piece (₹) <small>(empty = "Price on request")</small></label><input id="f-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 2.50"></div>
           <div class="field" style="align-content:end"><label class="check" for="f-stock"><input id="f-stock" type="checkbox" checked>In stock</label></div>
         </div>
@@ -183,8 +183,10 @@ input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 
 
 <script>
 (function(){
-  const GROUPS={shoe:["Shoe buckles","SBM"],sandal:["Sandal buckles","SDB"],plastic:["Plastic buckles","PB"],deco:["Decorative buckles","DB"],ring:["Ring & loop buckles","RB"],special:["Special design buckles","SPB"]};
-  const METAL={gold:"Gold",silver:"Silver",black:"Black",rose:"Rose Gold"}, PLASTIC={black:"Black",clear:"Clear",white:"White"};
+  const GROUPS={shoe:["Shoe buckles","SBM"],sandal:["Sandal buckles","SDB"],plastic:["Plastic buckles","PB"],deco:["Decorative buckles","DB"],ring:["Ring & loop buckles","RB"],special:["Special design buckles","SPB"],velcro:["Velcro","VL"],chain:["Shoe chains","SC"],coloured:["Coloured buckles","CB"]};
+  const FIN={gold:"Gold",silver:"Silver",black:"Black",rose:"Rose Gold",clear:"Clear",white:"White",red:"Red",blue:"Blue",green:"Green",pink:"Pink",brown:"Brown",beige:"Beige",multi:"Multicolour"};
+  const GROUP_FINS={plastic:["black","clear","white"],velcro:["black","white","beige","brown"],coloured:["red","blue","green","pink","brown","black","white","multi"]};
+  const finsFor=g=>GROUP_FINS[g]||["gold","silver","black","rose"];
   const DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
   const $=id=>document.getElementById(id);
   const esc=v=>String(v==null?"":v).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -231,9 +233,9 @@ input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 
   // ---- Add / edit form ----
   $("f-group").innerHTML=Object.entries(GROUPS).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join("");
   function fillFinish(keep){
-    const opts=$("f-group").value==="plastic"?PLASTIC:METAL;
-    $("f-finish").innerHTML=Object.entries(opts).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
-    if(keep&&opts[keep]) $("f-finish").value=keep;
+    const opts=finsFor($("f-group").value);
+    $("f-finish").innerHTML=opts.map(k=>`<option value="${k}">${FIN[k]}</option>`).join("");
+    if(keep&&opts.includes(keep)) $("f-finish").value=keep;
   }
   function suggestCode(){
     if(editingId) return;
@@ -306,7 +308,7 @@ input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 
       return `<div class="row${quick[p.id]?" changed":""}" data-id="${esc(p.id)}">
         <img src="${esc(p.image)}" alt="" loading="lazy">
         <div class="info">
-          <div><b>${esc(p.code)}</b>${p.inStock===false?'<span class="out-badge">OUT OF STOCK</span>':""}<br><span>${esc(p.name)} · ${esc(p.size)} mm · ${esc(METAL[p.finish]||PLASTIC[p.finish]||p.finish)}</span></div>
+          <div><b>${esc(p.code)}</b>${p.inStock===false?'<span class="out-badge">OUT OF STOCK</span>':""}<br><span>${esc(p.name)} · ${esc(p.size)} mm · ${esc(FIN[p.finish]||p.finish)}</span></div>
           <div class="quick">
             <label class="price">₹<input type="number" inputmode="decimal" min="0" step="0.01" value="${esc(price)}" placeholder="on request" data-k="price" aria-label="Price for ${esc(p.code)}"><small>/pc</small></label>
             <label class="check"><input type="checkbox" data-k="inStock" ${stock?"checked":""}>In stock</label>

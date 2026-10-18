@@ -2,7 +2,7 @@
 
 A one-page website for a manufacturer and wholesaler of **buckles for shoes and sandals**. It works on phones and laptops and switches between English and Hindi.
 
-- **Catalogue:** 24 real product photos in 6 groups (shoe, sandal, plastic, decorative, ring & loop, special design), each with its code (e.g. SBM-001), size and finish. Photos are in `images/`, cropped from the OKSHOE catalogue.
+- **Catalogue:** 9 sections (shoe, sandal, plastic, decorative, ring & loop, special design, velcro, shoe chains, coloured buckles), each with its code (e.g. SBM-001), size and finish. Photos are in `images/`, cropped from the OKSHOE catalogue.
 - **Finishes:** gold, silver, black, rose gold (plastic: black, clear, white).
 - **Application:** men's formal shoes, women's sandals, casual & sports footwear.
 - **Order calculator:** pairs of footwear × buckles per shoe + wastage, rounded up to full gross (144 pcs), with an approximate cost.

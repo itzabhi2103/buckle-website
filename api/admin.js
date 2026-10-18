@@ -1,8 +1,8 @@
 // Admin actions for the owner. Every request carries the admin password.
 const { readCatalog, writeCatalog, saveImage, deleteImage, checkPassword, setPassword } = require("./_store");
 
-const GROUPS = ["shoe", "sandal", "plastic", "deco", "ring", "special"];
-const FINISHES = ["gold", "silver", "black", "rose", "clear", "white"];
+const GROUPS = ["shoe", "sandal", "plastic", "deco", "ring", "special", "velcro", "chain", "coloured"];
+const FINISHES = ["gold", "silver", "black", "rose", "clear", "white", "red", "blue", "green", "pink", "brown", "beige", "multi"];
 const fail = (res, status, error) => res.status(status).json({ error });
 const text = (v, max) => String(v == null ? "" : v).trim().slice(0, max);
 const isPhoto = s => typeof s === "string" && s.length > 100 && s.length < 3_000_000 && /^[A-Za-z0-9+/]+=*$/.test(s);
