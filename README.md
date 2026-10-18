@@ -11,7 +11,7 @@ A one-page website for a manufacturer and wholesaler of **buckles for shoes and 
 
 ## Adding or removing buckles (no coding)
 
-Open **`admin.html`** on the live site (e.g. `https://itzabhi2103.github.io/buckle-website/admin.html`).
+Open **`admin.html`** on the live site (`https://itzabhi2103.github.io/buckle-website/admin.html`).
 
 1. **One-time setup on each phone or computer:** create a GitHub *fine-grained token* limited to this repository with **Contents: Read and write**, and paste it into the admin page. The page explains each step.
 2. **Add a buckle:** choose a photo, category, name, size and finish. The design code is suggested automatically (e.g. `SBM-005`). Tap **Add buckle to website**.
@@ -31,6 +31,8 @@ Buckles are listed in `products.json`. Everything else is in `index.html`. Near 
 The address, phone and email are written in the HTML.
 
 > The address, phone/WhatsApp, email and opening hours are still placeholders. Replace them before going live.
+
+**Live site:** https://itzabhi2103.github.io/buckle-website/
 
 ## Publishing
 
