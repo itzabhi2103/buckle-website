@@ -3,30 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Shubh Buckle Industries: manufacturer and wholesaler of buckles for shoes and sandals. Pin, roller, slider, D-ring and fancy buckles in 8 finishes.">
-<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Shubh Buckle Industries</title>
+<meta name="description" content="OKSHOE Material: premium shoe and sandal buckles. Metal, plastic, decorative, ring and special design buckles in gold, silver, black and rose gold.">
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>OKSHOE Material</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Hind:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Libre+Caslon+Display&family=Hind:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: hardware trade catalogue. Steel-grey ground, graphite bands, brass accent; condensed display face like stamped part numbers. Hindi uses Hind. */
+/* Layout: follows the OKSHOE catalogue: navy section bars with a gold corner, product photos on warm cream tiles, gold accent. Hindi uses Hind. */
 :root{
-  --bg:#EDEFF0; --surface:#FFFFFF; --ink:#171C21; --muted:#56616B; --line:#D3D8DC;
-  --steel:#26323D; --steel-ink:#EEF1F3; --brass:#9A6B14; --brass-bright:#D9A441;
+  --bg:#F4F2EE; --surface:#FFFFFF; --ink:#16202E; --muted:#5A6271; --line:#DAD6CE;
+  --navy:#1B2B45; --navy-ink:#F2EEE6; --gold:#9A7428; --gold-bright:#D2A84E; --tile:#F1ECE4;
   --display:"Barlow Condensed","Hind",ui-sans-serif,system-ui,sans-serif;
+  --serif:"Libre Caslon Display",Georgia,"Hind",serif;
   --body:"Barlow","Hind",ui-sans-serif,system-ui,sans-serif;
   --mono:"IBM Plex Mono","Hind",ui-monospace,Menlo,Consolas,monospace;
-  --wrap:1160px;
+  --wrap:1180px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#101418; --surface:#171D22; --ink:#E6EAED; --muted:#98A3AC; --line:#2A333B;
-  --steel:#1C262E; --steel-ink:#EEF1F3; --brass:#E0AE4E; --brass-bright:#E5B556; color-scheme:dark}}
+  --bg:#0F1520; --surface:#161E2B; --ink:#E8EAEE; --muted:#9CA4B2; --line:#283244;
+  --navy:#1A2A44; --navy-ink:#F2EEE6; --gold:#DDB45E; --gold-bright:#DDB45E; --tile:#EFEAE2; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#101418; --surface:#171D22; --ink:#E6EAED; --muted:#98A3AC; --line:#2A333B;
-  --steel:#1C262E; --steel-ink:#EEF1F3; --brass:#E0AE4E; --brass-bright:#E5B556; color-scheme:dark}
+  --bg:#0F1520; --surface:#161E2B; --ink:#E8EAEE; --muted:#9CA4B2; --line:#283244;
+  --navy:#1A2A44; --navy-ink:#F2EEE6; --gold:#DDB45E; --gold-bright:#DDB45E; --tile:#EFEAE2; color-scheme:dark}
 :root:lang(hi){
   --display:"Hind","Barlow Condensed",ui-sans-serif,system-ui,sans-serif;
+  --serif:"Hind",Georgia,serif;
   --body:"Hind","Barlow",ui-sans-serif,system-ui,sans-serif;
 }
 
@@ -34,41 +36,40 @@
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 body{background:var(--bg);color:var(--ink);font:400 1.02rem/1.6 var(--body)}
+img{max-width:100%;display:block}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--brass-bright);outline-offset:3px;border-radius:4px}
+:focus-visible{outline:3px solid var(--gold-bright);outline-offset:3px;border-radius:4px}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
-h1,h2,h3{font-family:var(--display);line-height:1.02;margin:0;text-wrap:balance;font-weight:700}
-:lang(hi) h1,:lang(hi) h2,:lang(hi) h3{line-height:1.25}
-h2{font-size:clamp(2rem,4.4vw,3rem);text-transform:uppercase;letter-spacing:.01em}
-:lang(hi) h2{text-transform:none;font-size:clamp(1.7rem,3.8vw,2.5rem)}
-.eyebrow{font:500 .75rem/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin:0}
+h1,h2,h3{margin:0;text-wrap:balance}
+section{padding-block:72px}
+.eyebrow{font:500 .75rem/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0}
 :lang(hi) .eyebrow{letter-spacing:.02em;font-size:.88rem}
-section{padding-block:76px}
-.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px 40px;margin-bottom:36px}
-.sec-head h2{margin-top:10px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px 40px;margin-bottom:32px}
+.sec-head h2{margin-top:10px;font:700 clamp(2rem,4.4vw,3rem)/1.02 var(--display);text-transform:uppercase;letter-spacing:.01em}
+:lang(hi) .sec-head h2{text-transform:none;line-height:1.25;font-size:clamp(1.7rem,3.8vw,2.5rem)}
 .sec-head p{max-width:48ch;color:var(--muted);margin:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:6px;font:600 1rem/1.1 var(--body);text-decoration:none;border:2px solid transparent;cursor:pointer}
-.btn-brass{background:var(--brass-bright);color:#171C21}
-.btn-brass:hover{filter:brightness(1.07)}
+.btn-gold{background:var(--gold-bright);color:#16202E}
+.btn-gold:hover{filter:brightness(1.07)}
 .btn-ghost{border-color:currentColor;color:inherit;background:transparent}
 .btn-ghost:hover{background:color-mix(in srgb,currentColor 10%,transparent)}
 .btn-wa{background:#1F7A4D;color:#fff}
 .btn-wa:hover{filter:brightness(1.1)}
 
 /* Strip + header */
-.strip{background:var(--brass-bright);color:#171C21;font-weight:600;font-size:.9rem;text-align:center;padding:8px 16px}
+.strip{background:var(--navy);color:var(--navy-ink);font-weight:500;font-size:.9rem;text-align:center;padding:8px 16px;border-bottom:3px solid var(--gold-bright)}
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px;position:relative}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;line-height:1}
-.logo svg{width:40px;height:28px;flex:none}
-.logo b{font:800 1.3rem/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.02em;display:block}
-.logo small{font:500 .62rem/1 "IBM Plex Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px;position:relative}
+.logo{display:grid;text-decoration:none;line-height:1}
+.logo b{font:900 1.65rem/1 "Barlow",sans-serif;letter-spacing:-.01em;color:var(--ink)}
+.logo b span{color:var(--gold)}
+.logo small{font:600 .6rem/1 "Barlow",sans-serif;letter-spacing:.62em;text-transform:uppercase;color:var(--muted);margin-top:3px;padding-left:2.2em}
 .nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-weight:500;font-size:.98rem}
 .nav ul a{text-decoration:none;color:var(--muted)}
 .nav ul a:hover{color:var(--ink)}
 .nav-right{display:flex;align-items:center;gap:10px}
 .lang{height:40px;padding:0 14px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .92rem/1 "Hind","Barlow",sans-serif;cursor:pointer;white-space:nowrap}
-.lang:hover{border-color:var(--brass)}
+.lang:hover{border-color:var(--gold)}
 .menu-btn{display:none;width:44px;height:44px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;place-items:center}
 .menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:18px;height:2px;background:currentColor;border-radius:2px;position:relative;transition:transform .2s}
 .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
@@ -86,104 +87,100 @@ header.open .menu-btn span::after{transform:translateY(-6px) rotate(-45deg)}
 }
 
 /* Hero */
-.hero{background:var(--steel);color:var(--steel-ink);padding-block:64px 0;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.hero .eyebrow{color:var(--brass-bright)}
-.hero h1{font-size:clamp(2.6rem,6.4vw,5rem);font-weight:800;text-transform:uppercase;letter-spacing:.005em;margin-top:14px}
-:lang(hi) .hero h1{text-transform:none;font-weight:700;font-size:clamp(2.1rem,5vw,3.8rem)}
-.hero h1 em{font-style:normal;color:var(--brass-bright)}
-.hero p.lede{font-size:1.15rem;max-width:48ch;opacity:.86;margin:20px 0 30px}
+.hero{background:var(--navy);color:var(--navy-ink);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:56px}
+.hero .eyebrow{color:var(--gold-bright)}
+.hero h1{font:400 clamp(2.5rem,5.6vw,4.4rem)/1.04 var(--serif);margin-top:16px}
+:lang(hi) .hero h1{font-weight:700;line-height:1.2;font-size:clamp(2.1rem,4.8vw,3.6rem)}
+.hero h1 em{font-style:normal;color:var(--gold-bright)}
+.hero .tagline{font:600 .9rem/1.4 var(--body);letter-spacing:.28em;text-transform:uppercase;margin:18px 0 0;opacity:.9}
+:lang(hi) .hero .tagline{letter-spacing:.04em;font-size:1rem}
+.hero p.lede{font-size:1.12rem;max-width:46ch;opacity:.86;margin:18px 0 28px}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
-.hero-art svg{width:100%;height:auto;display:block}
-.specs{display:grid;grid-template-columns:repeat(4,1fr);margin-top:48px;border-top:1px solid color-mix(in srgb,var(--steel-ink) 22%,transparent)}
-.specs div{padding:20px 16px 34px 0;font:500 .75rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.92}
-:lang(hi) .specs div{letter-spacing:0;font-size:.85rem}
-.specs b{display:block;font:700 2rem/1.05 "Barlow Condensed",sans-serif;letter-spacing:0;color:var(--brass-bright);margin-bottom:4px}
-@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-art{max-width:440px}.specs{grid-template-columns:repeat(2,1fr)}}
+.hero-photo{position:relative;border-radius:10px;overflow:hidden;max-width:400px;justify-self:end;width:100%;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.hero-photo img{width:100%;aspect-ratio:248/346;object-fit:cover}
+.hero-photo::after{content:"";position:absolute;inset:auto 0 0 auto;width:38%;height:6px;background:var(--gold-bright)}
+.features{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid color-mix(in srgb,var(--navy-ink) 20%,transparent)}
+.features div{padding:18px 16px 26px 0;display:grid;gap:4px}
+.features b{font:700 1.15rem/1.15 var(--display);text-transform:uppercase;color:var(--gold-bright);letter-spacing:.02em}
+:lang(hi) .features b{text-transform:none;font-size:1.05rem}
+.features span{font-size:.9rem;opacity:.85}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-photo{justify-self:start;max-width:340px}.features{grid-template-columns:repeat(2,1fr)}}
 
 /* Catalogue */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
 .chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:9px 16px;font:500 .92rem/1 var(--body);cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.catalogue{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-@media (max-width:1040px){.catalogue{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:780px){.catalogue{grid-template-columns:repeat(2,1fr)}}
-.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;overflow:hidden}
-.item-art{aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;background:color-mix(in srgb,var(--bg) 70%,var(--surface));border-bottom:1px solid var(--line);position:relative}
-.item-art svg{width:62%;height:auto}
-.item-art .code{position:absolute;top:10px;left:10px;font:600 .72rem/1 var(--mono);letter-spacing:.08em;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:5px 7px}
-.item-body{padding:16px;display:flex;flex-direction:column;gap:10px;flex:1}
-.item h3{font-size:1.35rem;text-transform:uppercase;letter-spacing:.01em}
-:lang(hi) .item h3{text-transform:none;font-size:1.15rem}
-.item .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:500 .72rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-:lang(hi) .item .row{letter-spacing:0;font-size:.8rem}
-.item .price{font:700 1.35rem/1 "Barlow Condensed",sans-serif;color:var(--ink);letter-spacing:0;text-transform:none;white-space:nowrap;font-variant-numeric:tabular-nums}
-.item .price small{font:500 .72rem var(--mono);color:var(--muted)}
-.widths{display:flex;flex-wrap:wrap;gap:5px}
-.widths button{font:500 .78rem/1 var(--mono);border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:4px;padding:6px 7px;cursor:pointer;font-variant-numeric:tabular-nums}
-.widths button:hover{border-color:var(--brass)}
-.swatches{display:flex;gap:6px;flex-wrap:wrap}
-.sw{width:20px;height:20px;border-radius:50%;border:1px solid color-mix(in srgb,var(--ink) 25%,transparent);background:var(--g)}
-.item .ask{margin-top:auto;background:var(--steel);color:var(--steel-ink);padding:11px 14px;font-size:.92rem}
+.chip[aria-pressed="true"]{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+.group{margin-bottom:40px}
+.group:last-child{margin-bottom:0}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--navy);color:var(--navy-ink);padding:12px 18px;border-radius:4px;margin-bottom:16px;position:relative;overflow:hidden}
+.bar::after{content:"";position:absolute;right:0;top:0;bottom:0;width:70px;background:linear-gradient(115deg,transparent 0 40%,var(--gold-bright) 40%)}
+.bar h3{font:700 1.35rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase}
+:lang(hi) .bar h3{text-transform:none;letter-spacing:0;font-size:1.25rem}
+.bar span{font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;opacity:.8;margin-right:64px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:900px){.grid4{grid-template-columns:repeat(2,1fr)}}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;overflow:hidden}
+.item-img{background:var(--tile);aspect-ratio:1;display:grid;place-items:center;border-bottom:1px solid var(--line);overflow:hidden}
+.item-img img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.item-body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.item .code{font:600 1.05rem/1 var(--mono);letter-spacing:.02em}
+.item h4{margin:0;font-weight:500;font-size:.95rem;color:var(--muted);line-height:1.3}
+.item .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.item .meta span{font:500 .78rem/1 var(--mono);border:1px solid var(--line);border-radius:4px;padding:6px 7px;font-variant-numeric:tabular-nums}
+.item .meta .fin{display:inline-flex;align-items:center;gap:6px}
+.item .meta .fin i{width:12px;height:12px;border-radius:50%;background:var(--sw);border:1px solid rgba(0,0,0,.2)}
+.item .ask{margin-top:auto;background:var(--navy);color:var(--navy-ink);padding:11px 12px;font-size:.92rem}
 :root:not([data-theme="light"]) .item .ask{border-color:var(--line)}
-.item .ask:hover{filter:brightness(1.2)}
+.item .ask:hover{filter:brightness(1.25)}
+.item .meta{margin-bottom:10px}
 
 /* Finishes */
-.fin-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:start}
-@media (max-width:860px){.fin-wrap{grid-template-columns:1fr}}
-.finishes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-@media (max-width:560px){.finishes{grid-template-columns:repeat(2,1fr)}}
-.fin{display:grid;gap:8px}
-.fin i{display:block;aspect-ratio:1.6;max-width:100%;border-radius:8px;background:var(--g);border:1px solid color-mix(in srgb,var(--ink) 15%,transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
-.fin b{font-weight:600;font-size:.95rem;line-height:1.2}
-.fin span{font:500 .7rem/1.2 var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
-.table-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
-table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
-th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-th{font:500 .72rem/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-td:first-child{font-weight:600;white-space:nowrap}
-td{color:var(--muted)}
-tr:last-child td{border-bottom:0}
+.finishes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:700px){.finishes{grid-template-columns:repeat(2,1fr)}}
+.finish{display:grid;gap:8px}
+.finish i{display:block;aspect-ratio:1.8;max-width:100%;border-radius:8px;background:var(--sw);border:1px solid color-mix(in srgb,var(--ink) 15%,transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.finish b{font-weight:600}
+.finish span{font-size:.9rem;color:var(--muted)}
+
+/* Application */
+.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:700px){.apps{grid-template-columns:1fr}}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.app img{width:100%;aspect-ratio:174/176;object-fit:cover}
+.app div{padding:14px 16px;display:grid;gap:2px}
+.app b{font:700 1.2rem/1.2 var(--display);text-transform:uppercase;letter-spacing:.02em}
+:lang(hi) .app b{text-transform:none}
+.app span{color:var(--muted);font-size:.92rem}
+@media (max-width:700px){.app{display:grid;grid-template-columns:120px 1fr;align-items:center}.app img{height:100%;aspect-ratio:auto}}
 
 /* Calculator */
-.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--steel);color:var(--steel-ink);border-radius:12px;overflow:hidden}
+.calc{display:grid;grid-template-columns:1fr 1fr;background:var(--navy);color:var(--navy-ink);border-radius:10px;overflow:hidden}
 @media (max-width:820px){.calc{grid-template-columns:1fr}}
 .calc-in{padding:28px;display:grid;gap:16px;align-content:start}
-.calc-out{padding:28px;background:color-mix(in srgb,#000 22%,var(--steel));display:grid;gap:18px;align-content:start}
+.calc-out{padding:28px;background:color-mix(in srgb,#000 25%,var(--navy));display:grid;gap:18px;align-content:start}
 .cfield{display:grid;gap:6px}
 .cfield label{font-weight:600}
 .cfield label small{font-weight:400;opacity:.75}
-.cfield input,.cfield select{font:600 1.15rem/1 "IBM Plex Mono",monospace;padding:12px 14px;border-radius:8px;border:2px solid transparent;background:#F7F8F9;color:#171C21;width:100%;min-width:0}
+.cfield input,.cfield select{font:600 1.15rem/1 "IBM Plex Mono",monospace;padding:12px 14px;border-radius:8px;border:2px solid transparent;background:#F7F6F3;color:#16202E;width:100%;min-width:0}
 .cfield select{font:500 1rem var(--body)}
-.cfield input:focus,.cfield select:focus{outline:none;border-color:var(--brass-bright)}
+.cfield input:focus,.cfield select:focus{outline:none;border-color:var(--gold-bright)}
 .crow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .big{display:grid;gap:2px}
 .big span{font:500 .72rem/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;opacity:.8}
 :lang(hi) .big span{letter-spacing:0;font-size:.85rem}
-.big b{font:800 2.6rem/1 "Barlow Condensed",sans-serif;color:var(--brass-bright);font-variant-numeric:tabular-nums}
-.big.small b{font-size:1.7rem;color:var(--steel-ink)}
-.calc-out .formula{font:400 .82rem/1.5 var(--mono);opacity:.75;overflow-wrap:anywhere}
-
-/* Custom / process */
-.process{display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:p;list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
-.process li{padding:22px 18px 8px 0;display:grid;gap:8px;align-content:start}
-.process li::before{counter-increment:p;content:"Step " counter(p);font:500 .72rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--brass)}
-:lang(hi) .process li::before{content:"चरण " counter(p);letter-spacing:0;font-size:.85rem}
-.process b{font:700 1.2rem/1.15 var(--display);text-transform:uppercase}
-:lang(hi) .process b{text-transform:none}
-.process span{color:var(--muted);font-size:.95rem}
-@media (max-width:900px){.process{grid-template-columns:1fr}.process li{border-bottom:1px solid var(--line);padding-bottom:18px}}
-.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
-@media (max-width:760px){.offers{grid-template-columns:1fr}}
-.offer{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:grid;gap:6px}
-.offer b{font:700 1.15rem/1.2 var(--display);text-transform:uppercase}
-:lang(hi) .offer b{text-transform:none}
-.offer span{color:var(--muted);font-size:.95rem}
+.big b{font:800 2.6rem/1 "Barlow Condensed",sans-serif;color:var(--gold-bright);font-variant-numeric:tabular-nums}
+.big.small b{font-size:1.7rem;color:var(--navy-ink)}
+.calc-out .formula{font:400 .82rem/1.5 var(--mono);opacity:.75;overflow-wrap:anywhere;margin:0}
 
 /* Enquiry */
 .enq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start}
 @media (max-width:900px){.enq-grid{grid-template-columns:1fr}}
-.enq{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px;display:grid;gap:18px}
+.enq{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;display:grid;gap:18px}
+.picked{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px}
+.picked img{width:72px;height:72px;object-fit:contain;background:var(--tile);border-radius:6px;mix-blend-mode:multiply}
+.picked b{display:block;font:600 1rem/1.2 var(--mono)}
+.picked span{color:var(--muted);font-size:.9rem}
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .field{display:grid;gap:6px;min-width:0}
 .field.full{grid-column:1/-1}
@@ -191,22 +188,24 @@ tr:last-child td{border-bottom:0}
 .field label small{font-weight:400;color:var(--muted)}
 .field input,.field select,.field textarea{font:400 1rem var(--body);padding:12px 14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%;min-width:0}
 .field textarea{resize:vertical;min-height:80px}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--brass);box-shadow:0 0 0 3px color-mix(in srgb,var(--brass-bright) 30%,transparent)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold-bright) 30%,transparent)}
 .qty{display:grid;grid-template-columns:1fr auto;gap:8px}
 .check{display:flex;gap:10px;align-items:center;font-weight:500}
-.check input{width:20px;height:20px;accent-color:var(--brass)}
+.check input{width:20px;height:20px;accent-color:var(--gold)}
 .preview{background:var(--bg);border:1px dashed var(--line);border-radius:8px;padding:14px 16px;font:400 .92rem/1.6 var(--body);white-space:pre-wrap;color:var(--muted);overflow-wrap:anywhere}
 .enq-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .enq-actions .note{font-size:.88rem;color:var(--muted);flex-basis:100%}
 .why{display:grid;gap:14px;margin:24px 0 0;padding:0;list-style:none}
 .why li{display:grid;grid-template-columns:22px 1fr;gap:10px;color:var(--muted)}
-.why li::before{content:"";width:14px;height:14px;margin-top:5px;border:3px solid var(--brass);border-radius:3px}
+.why li::before{content:"";width:14px;height:14px;margin-top:5px;border:3px solid var(--gold);border-radius:3px}
 .why b{color:var(--ink)}
 
 /* Contact */
 .contact{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 @media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
+.contact h2{font:700 clamp(2rem,4.4vw,3rem)/1.02 var(--display);text-transform:uppercase;margin-top:10px}
+:lang(hi) .contact h2{text-transform:none;line-height:1.25}
 .clist{display:grid;gap:18px;margin-top:24px}
 .ci{display:grid;gap:4px}
 .ci .k{font:500 .72rem/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
@@ -214,10 +213,12 @@ tr:last-child td{border-bottom:0}
 .ci .v{font-size:1.1rem;font-weight:500;user-select:all}
 .ci .sub{font-size:.92rem;color:var(--muted)}
 .copy{font:600 .8rem/1 var(--body);border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:7px 11px;border-radius:999px;cursor:pointer;margin-left:8px;vertical-align:middle}
-.hours th,.hours td{padding:10px 0}
+table.hours{border-collapse:collapse;width:100%}
+.hours th,.hours td{padding:10px 0;text-align:left;border-bottom:1px solid var(--line)}
+.hours th{font:500 .72rem/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .hours td:last-child,.hours th:last-child{text-align:right}
-.hours td{color:var(--ink);font-weight:400}
 .hours tr.today td{font-weight:700}
+.hours tr:last-child td{border-bottom:0}
 .open-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font:600 .88rem/1.2 var(--body);background:color-mix(in srgb,currentColor 12%,transparent)}
 .open-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
 .open-pill.is-open{color:#2E8B57}.open-pill.is-closed{color:#C0503A}
@@ -232,20 +233,23 @@ tr:last-child td{border-bottom:0}
   body{padding-bottom:76px}
 }
 @media (max-width:560px){
-  section{padding-block:54px}
+  section{padding-block:52px}
   .wrap{padding-inline:16px}
   .nav ul{left:-16px;right:-16px;padding-inline:16px}
-  .logo small{display:none}
   .lang{padding:0 10px}
+  .logo b{font-size:1.4rem}
   .strip{font-size:.82rem}
-  .hero{padding-top:40px}
+  .hero-grid{padding-block:40px;gap:32px}
   .hero .ctas .btn{flex:1 1 100%}
-  .hero-art{max-width:320px;margin-inline:auto}
-  .specs b{font-size:1.6rem}
-  .catalogue{grid-template-columns:1fr}
-  .item-art{aspect-ratio:16/7}
-  .item-art svg{width:40%}
-  .widths button{min-width:40px;min-height:38px}
+  .hero-photo{max-width:100%;justify-self:stretch}
+  .hero-photo img{aspect-ratio:4/3;object-position:center 40%}
+  .grid4{gap:10px}
+  .item-body{padding:10px}
+  .item .code{font-size:.92rem}
+  .item h4{font-size:.85rem}
+  .item .meta span{font-size:.72rem;padding:5px 6px}
+  .item .ask{font-size:.82rem;padding:10px 8px}
+  .bar span{display:none}
   .calc-in,.calc-out,.enq{padding:20px}
   .fields{grid-template-columns:1fr}
   .enq-actions .btn{flex:1 1 100%}
@@ -258,105 +262,51 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="g-nickel" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="80"><stop offset="0" stop-color="#F4F6F7"/><stop offset=".5" stop-color="#A3ACB3"/><stop offset="1" stop-color="#E3E7EA"/></linearGradient>
-    <linearGradient id="g-blacknickel" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="80"><stop offset="0" stop-color="#7A8187"/><stop offset=".5" stop-color="#2A2F33"/><stop offset="1" stop-color="#5A6167"/></linearGradient>
-    <linearGradient id="g-antique" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="80"><stop offset="0" stop-color="#D0AA60"/><stop offset=".5" stop-color="#7A5A24"/><stop offset="1" stop-color="#AD8740"/></linearGradient>
-    <linearGradient id="g-gold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="80"><stop offset="0" stop-color="#FBE7A1"/><stop offset=".5" stop-color="#C9962E"/><stop offset="1" stop-color="#F2D27A"/></linearGradient>
-    <linearGradient id="g-rose" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="80"><stop offset="0" stop-color="#F6D3C4"/><stop offset=".5" stop-color="#B97A68"/><stop offset="1" stop-color="#E9B7A4"/></linearGradient>
-    <linearGradient id="g-gunmetal" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="80"><stop offset="0" stop-color="#959DA3"/><stop offset=".5" stop-color="#3E4549"/><stop offset="1" stop-color="#737B81"/></linearGradient>
-    <linearGradient id="g-black" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="80"><stop offset="0" stop-color="#444"/><stop offset=".5" stop-color="#181818"/><stop offset="1" stop-color="#333"/></linearGradient>
-    <linearGradient id="g-copper" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="80"><stop offset="0" stop-color="#E0A07A"/><stop offset=".5" stop-color="#7E4529"/><stop offset="1" stop-color="#B9744C"/></linearGradient>
-
-    <symbol id="b-pin" viewBox="0 0 120 80">
-      <rect x="18" y="12" width="84" height="56" rx="10" fill="none" style="stroke:var(--m)" stroke-width="9"/>
-      <path d="M18 40 H96" style="stroke:var(--m)" stroke-width="6" stroke-linecap="round"/>
-      <circle cx="18" cy="40" r="6" style="fill:var(--m)"/>
-    </symbol>
-    <symbol id="b-roller" viewBox="0 0 120 80">
-      <rect x="18" y="12" width="84" height="56" rx="6" fill="none" style="stroke:var(--m)" stroke-width="8"/>
-      <rect x="92" y="8" width="18" height="64" rx="9" style="fill:var(--m)"/>
-      <path d="M18 40 H98" style="stroke:var(--m)" stroke-width="6" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="b-slider" viewBox="0 0 120 80">
-      <rect x="14" y="14" width="92" height="52" rx="8" fill="none" style="stroke:var(--m)" stroke-width="9"/>
-      <path d="M48 14 V66 M72 14 V66" style="stroke:var(--m)" stroke-width="8"/>
-    </symbol>
-    <symbol id="b-dring" viewBox="0 0 120 80">
-      <path d="M34 12 H70 A28 28 0 0 1 70 68 H34 Z" fill="none" style="stroke:var(--m)" stroke-width="9" stroke-linejoin="round"/>
-    </symbol>
-    <symbol id="b-oval" viewBox="0 0 120 80">
-      <ellipse cx="60" cy="40" rx="46" ry="30" fill="none" style="stroke:var(--m)" stroke-width="11"/>
-      <ellipse cx="60" cy="40" rx="46" ry="30" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="2" stroke-dasharray="2 5"/>
-      <path d="M14 40 H96" style="stroke:var(--m)" stroke-width="6" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="b-stone" viewBox="0 0 120 80">
-      <rect x="18" y="14" width="84" height="52" rx="22" fill="none" style="stroke:var(--m)" stroke-width="10"/>
-      <g fill="#FFFFFF" stroke="rgba(0,0,0,.25)" stroke-width="1"><circle cx="40" cy="14" r="4"/><circle cx="60" cy="14" r="4"/><circle cx="80" cy="14" r="4"/><circle cx="40" cy="66" r="4"/><circle cx="60" cy="66" r="4"/><circle cx="80" cy="66" r="4"/></g>
-      <path d="M18 40 H94" style="stroke:var(--m)" stroke-width="5" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="b-square" viewBox="0 0 120 80">
-      <rect x="16" y="8" width="88" height="64" rx="3" fill="none" style="stroke:var(--m)" stroke-width="12"/>
-      <path d="M16 40 H98" style="stroke:var(--m)" stroke-width="7" stroke-linecap="round"/>
-    </symbol>
-  </defs>
-</svg>
-
-<div class="strip" data-t="strip">Factory rates for footwear manufacturers · Samples dispatched within 48 hours</div>
+<div class="strip" data-t="strip">Bulk supply available · Gold, Silver, Black &amp; Rose Gold finishes</div>
 
 <header class="top">
   <div class="wrap nav">
-    <a class="logo" href="#home" aria-label="Shubh Buckle Industries home">
-      <svg viewBox="0 0 120 80" style="--m:url(#g-gold)"><use href="#b-pin"/></svg>
-      <span><b>Shubh Buckle</b><small>Industries</small></span>
-    </a>
+    <a class="logo" href="#home" aria-label="OKSHOE Material home"><b>OK<span>SHOE</span></b><small>Material</small></a>
     <ul id="menu">
       <li><a href="#catalogue" data-t="navCat">Catalogue</a></li>
       <li><a href="#finishes" data-t="navFin">Finishes</a></li>
+      <li><a href="#application" data-t="navApp">Application</a></li>
       <li><a href="#calculator" data-t="navCalc">Order Calculator</a></li>
-      <li><a href="#custom" data-t="navCustom">Custom Designs</a></li>
       <li><a href="#contact" data-t="navContact">Contact</a></li>
     </ul>
     <div class="nav-right">
       <button class="lang" id="lang" type="button" lang="hi">हिंदी</button>
-      <a class="btn btn-brass nav-cta" href="#enquire" style="padding:10px 16px" data-t="navCta">Get a quote</a>
+      <a class="btn btn-gold nav-cta" href="#enquire" style="padding:10px 16px" data-t="navCta">Get a quote</a>
       <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span></button>
     </div>
   </div>
 </header>
 
 <nav class="mbar" aria-label="Quick actions">
-  <a class="btn btn-brass" href="#enquire" data-t="barQuote">Get a quote</a>
+  <a class="btn btn-gold" href="#enquire" data-t="barQuote">Get a quote</a>
   <a class="btn btn-ghost" href="tel:+919876543210" data-t="barCall">Call us</a>
 </nav>
 
-<section class="hero" id="home">
+<section class="hero" id="home" style="padding-block:0">
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <p class="eyebrow" data-t="heroEyebrow">Manufacturer &amp; wholesaler · Since 2009</p>
-        <h1 data-t="heroH1">Buckles for <em>shoes &amp; sandals</em>. Nothing else.</h1>
-        <p class="lede" data-t="heroLede">Pin buckles, roller buckles, sliders, D-rings and fancy ladies' buckles, made in our own factory. We supply footwear makers and traders across India, in stock designs or your own.</p>
+        <p class="eyebrow" data-t="heroEyebrow">Quality components for better footwear</p>
+        <h1 data-t="heroH1">Premium <em>shoe &amp; sandal</em> buckles</h1>
+        <p class="tagline" data-t="heroTag">Strong · Stylish · Long lasting</p>
+        <p class="lede" data-t="heroLede">Metal and plastic buckles, decorative buckles, rings and loops for men's shoes, women's sandals and sports footwear. Supplied in bulk to footwear makers and traders.</p>
         <div class="ctas">
-          <a class="btn btn-brass" href="#catalogue" data-t="heroCat">See the catalogue</a>
+          <a class="btn btn-gold" href="#catalogue" data-t="heroCat">See the catalogue</a>
           <a class="btn btn-ghost" href="#enquire" data-t="heroQuote">Ask for a price quote</a>
         </div>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 220 140">
-          <rect x="0" y="52" width="220" height="36" fill="#6B3F22"/>
-          <path d="M0 57 H220 M0 83 H220" stroke="#C8A27A" stroke-width="1.5" stroke-dasharray="5 4"/>
-          <g transform="translate(46 22) scale(1.1)"><svg width="120" height="80" viewBox="0 0 120 80" style="--m:url(#g-gold)"><use href="#b-pin"/></svg></g>
-          <rect x="158" y="52" width="62" height="36" fill="#5A341C"/>
-        </svg>
-      </div>
+      <div class="hero-photo"><img src="images/hero.jpg" alt="Gold buckle on a brown leather sandal strap" width="248" height="346"></div>
     </div>
-    <div class="specs">
-      <div><b>300+</b><span data-t="sp1">Stock designs</span></div>
-      <div><b>8–40 mm</b><span data-t="sp2">Strap widths</span></div>
-      <div><b>8</b><span data-t="sp3">Plating finishes</span></div>
-      <div><b>5 gross</b><span data-t="sp4">Minimum order (720 pcs)</span></div>
+    <div class="features">
+      <div><b data-t="f1">Durable</b><span data-t="f1s">High-strength metal that lasts</span></div>
+      <div><b data-t="f2">Stylish designs</b><span data-t="f2s">Classic to decorative</span></div>
+      <div><b data-t="f3">Wide range</b><span data-t="f3s">6 types, 15–30 mm</span></div>
+      <div><b data-t="f4">All footwear</b><span data-t="f4s">Shoes, sandals &amp; sports</span></div>
     </div>
   </div>
 </section>
@@ -364,42 +314,42 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 <section id="catalogue">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow" data-t="catEyebrow">Catalogue</p><h2 data-t="catH2">Stock designs</h2></div>
-      <p data-t="catP">Rates are per piece, ex-factory, before GST, for orders above 50 gross. Tap a strap width or "Ask price &amp; stock" to send us an enquiry.</p>
+      <div><p class="eyebrow" data-t="catEyebrow">Catalogue</p><h2 data-t="catH2">Our buckles</h2></div>
+      <p data-t="catP">Each design is shown in one finish and size. Ask us for other finishes and sizes. Tap "Ask price &amp; stock" to send an enquiry for that design.</p>
     </div>
     <div class="filters" id="filters" role="group" aria-label="Filter buckles"></div>
-    <div class="catalogue" id="items"></div>
+    <div id="groups"></div>
   </div>
 </section>
 
 <section id="finishes" style="background:var(--surface);border-block:1px solid var(--line)">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow" data-t="finEyebrow">Finishes &amp; materials</p><h2 data-t="finH2">Plated to match your footwear</h2></div>
-      <p data-t="finP">Every design comes in any finish below. Send us a sample of your strap or upper and we'll match the colour.</p>
+      <div><p class="eyebrow" data-t="finEyebrow">Finishes</p><h2 data-t="finH2">Multiple finishes</h2></div>
+      <p data-t="finP">Metal buckles come in four plating finishes. Plastic buckles come in black, clear and white.</p>
     </div>
-    <div class="fin-wrap">
-      <div class="finishes" id="finlist"></div>
-      <div class="table-scroll">
-        <table>
-          <thead><tr><th data-t="thMat">Material</th><th data-t="thUse">Best for</th></tr></thead>
-          <tbody>
-            <tr><td data-t="mat1">Zinc alloy (die-cast)</td><td data-t="use1">Fancy and ladies' buckles with fine detail</td></tr>
-            <tr><td data-t="mat2">Iron (pressed)</td><td data-t="use2">Everyday sandals and school shoes at the lowest cost</td></tr>
-            <tr><td data-t="mat3">Brass</td><td data-t="use3">Premium leather footwear, no rust</td></tr>
-            <tr><td data-t="mat4">Stainless steel</td><td data-t="use4">Sports and outdoor sandals that get wet</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="finishes" id="finlist"></div>
+  </div>
+</section>
+
+<section id="application">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow" data-t="appEyebrow">Application</p><h2 data-t="appH2">Made for every kind of footwear</h2></div>
+    </div>
+    <div class="apps">
+      <div class="app"><img src="images/use-formal.jpg" alt="Brown leather monk-strap shoe with a silver buckle" loading="lazy"><div><b data-t="a1">Men's formal shoes</b><span data-t="a1s">Pin and monk-strap buckles</span></div></div>
+      <div class="app"><img src="images/use-sandal.jpg" alt="Beige women's sandal with a decorative gold buckle" loading="lazy"><div><b data-t="a2">Women's sandals</b><span data-t="a2s">Decorative and special design buckles</span></div></div>
+      <div class="app"><img src="images/use-sports.jpg" alt="Black sports sandal with a plastic side-release buckle" loading="lazy"><div><b data-t="a3">Casual &amp; sports footwear</b><span data-t="a3s">Plastic buckles, sliders and loops</span></div></div>
     </div>
   </div>
 </section>
 
-<section id="calculator">
+<section id="calculator" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head">
       <div><p class="eyebrow" data-t="calcEyebrow">Order calculator</p><h2 data-t="calcH2">How many buckles do you need?</h2></div>
-      <p data-t="calcP">Enter your production run. We pack in gross (144 pieces), so the order is rounded up to full gross.</p>
+      <p data-t="calcP">Enter your production run. Buckles are counted in gross (144 pieces), so the total is rounded up to full gross.</p>
     </div>
     <form class="calc" id="calc" autocomplete="off">
       <div class="calc-in">
@@ -409,62 +359,42 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
             <select id="c-per"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option></select></div>
           <div class="cfield"><label for="c-extra" data-t="cExtra">Extra for wastage <small>(%)</small></label><input id="c-extra" type="number" inputmode="decimal" min="0" max="50" step="1" value="3"></div>
         </div>
-        <div class="cfield"><label for="c-rate" data-t="cRate">Rate per piece (₹) <small>(from catalogue)</small></label><input id="c-rate" type="number" inputmode="decimal" min="0" step="0.05" value="1.60"></div>
+        <div class="cfield"><label for="c-rate" data-t="cRate">Rate per piece (₹) <small>(optional, from our quote)</small></label><input id="c-rate" type="number" inputmode="decimal" min="0" step="0.05" placeholder="—"></div>
       </div>
       <div class="calc-out" aria-live="polite">
-        <div class="big"><span data-t="oGross">Order quantity</span><b id="o-gross">58 gross</b></div>
+        <div class="big"><span data-t="oGross">Order quantity</span><b id="o-gross"></b></div>
         <div class="crow">
-          <div class="big small"><span data-t="oPcs">Pieces</span><b id="o-pcs">8,352</b></div>
-          <div class="big small"><span data-t="oCost">Approx. cost + GST</span><b id="o-cost">₹13,363</b></div>
+          <div class="big small"><span data-t="oPcs">Pieces</span><b id="o-pcs"></b></div>
+          <div class="big small"><span data-t="oCost">Approx. cost + GST</span><b id="o-cost"></b></div>
         </div>
         <p class="formula" id="o-formula"></p>
-        <button class="btn btn-brass" type="button" id="o-use" data-t="oUse">Use this quantity in my enquiry</button>
+        <button class="btn btn-gold" type="button" id="o-use" data-t="oUse">Use this quantity in my enquiry</button>
       </div>
     </form>
   </div>
 </section>
 
-<section id="custom" style="background:var(--surface);border-block:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="eyebrow" data-t="cusEyebrow">Custom designs</p><h2 data-t="cusH2">Your design, your brand name</h2></div>
-      <p data-t="cusP">Send a photo, a drawing or a sample buckle. We make the die, plate it in your finish and can engrave your brand name on the buckle.</p>
-    </div>
-    <ol class="process">
-      <li><b data-t="p1">Send your design</b><span data-t="p1s">Photo, drawing or physical sample on WhatsApp or by courier.</span></li>
-      <li><b data-t="p2">Get a quote</b><span data-t="p2s">Rate per piece and one-time die cost, usually within a day.</span></li>
-      <li><b data-t="p3">Approve a sample</b><span data-t="p3s">We send finished samples in 5–7 working days.</span></li>
-      <li><b data-t="p4">Bulk production</b><span data-t="p4s">2–3 weeks for most orders, depending on quantity.</span></li>
-      <li><b data-t="p5">Dispatch</b><span data-t="p5s">Packed by the gross, sent by transport or courier anywhere in India.</span></li>
-    </ol>
-    <div class="offers">
-      <div class="offer"><b data-t="o1">Logo engraving</b><span data-t="o1s">Your brand name stamped or laser-marked on the buckle.</span></div>
-      <div class="offer"><b data-t="o2">Colour matching</b><span data-t="o2s">Plating and enamel matched to your strap or upper.</span></div>
-      <div class="offer"><b data-t="o3">Labelled packing</b><span data-t="o3s">Boxes marked with your design code, finish and size.</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="enquire">
+<section id="enquire" style="background:var(--surface);border-top:1px solid var(--line)">
   <div class="wrap enq-grid">
     <div>
       <p class="eyebrow" data-t="enqEyebrow">Price &amp; stock enquiry</p>
-      <h2 style="margin-top:10px" data-t="enqH2">Ask for a quote</h2>
+      <h2 style="margin-top:10px;font:700 clamp(2rem,4.4vw,3rem)/1.05 var(--display);text-transform:uppercase" data-t="enqH2">Ask for a quote</h2>
       <p style="color:var(--muted);max-width:44ch" data-t="enqP">You don't need an account and you don't need to sign up. Fill in what you know and your enquiry goes straight to us on WhatsApp.</p>
       <ul class="why">
-        <li><span data-t="w1"><b>Reply within working hours,</b> usually in an hour.</span></li>
-        <li><span data-t="w2"><b>Free samples</b> of stock designs for genuine buyers. You pay only the courier.</span></li>
-        <li><span data-t="w3"><b>GST invoice</b> with every order.</span></li>
+        <li><span data-t="w1"><b>Bulk supply</b> for footwear manufacturers and traders.</span></li>
+        <li><span data-t="w2"><b>Any finish</b>: gold, silver, black or rose gold.</span></li>
+        <li><span data-t="w3"><b>Quote on WhatsApp</b> with price and stock for your design.</span></li>
       </ul>
     </div>
     <form class="enq" id="enq" autocomplete="off" novalidate>
+      <div class="picked" id="e-picked"><img id="e-img" src="images/sbm-001.jpg" alt=""><div><b id="e-code"></b><span id="e-name"></span></div></div>
       <div class="fields">
         <div class="field full"><label for="e-item" data-t="fItem">Buckle</label><select id="e-item"></select></div>
-        <div class="field full" id="e-desc-wrap" hidden><label for="e-desc" data-t="fDesc">Describe your design</label><input id="e-desc" type="text"></div>
-        <div class="field"><label for="e-width" data-t="fWidth">Strap width</label><select id="e-width"></select></div>
+        <div class="field full" id="e-desc-wrap" hidden><label for="e-desc" data-t="fDesc">Describe the buckle you need</label><input id="e-desc" type="text"></div>
+        <div class="field"><label for="e-width" data-t="fWidth">Size (strap width)</label><select id="e-width"></select></div>
         <div class="field"><label for="e-finish" data-t="fFinish">Finish</label><select id="e-finish"></select></div>
         <div class="field full"><label for="e-qty" data-t="fQty">Quantity</label>
-          <div class="qty"><input id="e-qty" type="number" inputmode="numeric" min="1" step="1" value="10"><select id="e-unit" aria-label="Unit"><option value="gross">gross</option><option value="pcs">pcs</option></select></div></div>
+          <div class="qty"><input id="e-qty" type="number" inputmode="numeric" min="1" step="1" value="10"><select id="e-unit" aria-label="Unit"></select></div></div>
         <div class="field"><label for="e-biz" data-t="fBiz">Business name <small>(optional)</small></label><input id="e-biz" type="text"></div>
         <div class="field"><label for="e-city" data-t="fCity">City <small>(optional)</small></label><input id="e-city" type="text"></div>
         <div class="field full"><label class="check" for="e-sample"><input id="e-sample" type="checkbox"><span data-t="fSample">Send me samples first</span></label></div>
@@ -477,7 +407,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
       <div class="enq-actions">
         <a class="btn btn-wa" id="e-wa" href="#" target="_blank" rel="noopener" data-t="fSend">Send enquiry on WhatsApp</a>
         <button class="btn btn-ghost" type="button" id="e-copy" data-t="fCopy">Copy message</button>
-        <span class="note" data-t="fAlt">No WhatsApp? Call <span style="user-select:all">+91 98765 43210</span> or email the message to <span style="user-select:all">sales@shubhbuckle.in</span>.</span>
+        <span class="note" data-t="fAlt">No WhatsApp? Call <span style="user-select:all">+91 98765 43210</span> or email the message to <span style="user-select:all">sales@okshoe.in</span>.</span>
       </div>
     </form>
   </div>
@@ -486,33 +416,32 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 <section class="contact" id="contact">
   <div class="wrap contact-grid">
     <div>
-      <p class="eyebrow" data-t="conEyebrow">Factory &amp; office</p>
-      <h2 style="margin-top:10px" data-t="conH2">Visit or call us</h2>
+      <p class="eyebrow" data-t="conEyebrow">Contact</p>
+      <h2 data-t="conH2">Visit or call us</h2>
       <p style="margin-top:12px"><span class="open-pill" id="open-pill">…</span></p>
       <div class="clist">
         <div class="ci"><span class="k" data-t="kAddr">Address</span>
-          <span class="v">Plot No. 24, Industrial Area Phase 2, Your City – 282001</span>
-          <span class="sub" data-t="landmark">Landmark: behind the Industrial Area police chowki</span>
-          <a href="https://maps.google.com/?q=Industrial+Area+Phase+2" target="_blank" rel="noopener" style="font-size:.92rem;color:var(--muted)" data-t="maps">Get directions on Google Maps ↗</a></div>
+          <span class="v">Plot No. 24, Industrial Area, Your City – 000000</span>
+          <span class="sub" data-t="landmark">Landmark: add a well-known nearby place</span>
+          <a href="https://maps.google.com/" target="_blank" rel="noopener" style="font-size:.92rem;color:var(--muted)" data-t="maps">Get directions on Google Maps ↗</a></div>
         <div class="ci"><span class="k" data-t="kPhone">Phone / WhatsApp</span><span><span class="v" id="phone">+91 98765 43210</span><button class="copy" type="button" data-copy="phone" data-t="copy">Copy</button></span></div>
-        <div class="ci"><span class="k" data-t="kEmail">Email</span><span><span class="v" id="email">sales@shubhbuckle.in</span><button class="copy" type="button" data-copy="email" data-t="copy2">Copy</button></span></div>
-        <div class="ci"><span class="k">GSTIN</span><span class="v">00AAAAA0000A0Z0</span></div>
+        <div class="ci"><span class="k" data-t="kEmail">Email</span><span><span class="v" id="email">sales@okshoe.in</span><button class="copy" type="button" data-copy="email" data-t="copy2">Copy</button></span></div>
       </div>
     </div>
     <div>
       <table class="hours" id="hours"><thead><tr><th data-t="thDay">Day</th><th data-t="thHours">Hours</th></tr></thead><tbody></tbody></table>
       <p class="eyebrow" style="margin-top:28px" data-t="payH">Payment</p>
-      <div class="tags"><span>UPI</span><span>NEFT / RTGS</span><span data-t="payCheque">Cheque</span><span data-t="payAdv">50% advance on custom orders</span></div>
+      <div class="tags"><span>UPI</span><span>NEFT / RTGS</span><span data-t="payCheque">Cheque</span></div>
       <p class="eyebrow" style="margin-top:22px" data-t="shipH">Dispatch</p>
-      <div class="tags"><span data-t="ship1">Transport (bulk)</span><span data-t="ship2">Courier (samples &amp; small orders)</span><span data-t="ship3">Pan-India</span></div>
+      <div class="tags"><span data-t="ship1">Transport (bulk)</span><span data-t="ship2">Courier (samples &amp; small orders)</span></div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <span>© <span id="yr">2026</span> Shubh Buckle Industries</span>
-    <span data-t="footer">Buckles for shoes and sandals · Manufacturer &amp; wholesaler</span>
+    <span>© <span id="yr">2026</span> OKSHOE Material</span>
+    <span data-t="footer">Quality components for better footwear</span>
   </div>
 </footer>
 
@@ -520,53 +449,73 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 (function(){
   // ---- Business settings: edit these ----
   const WHATSAPP="919876543210"; // WhatsApp number: country code + number, no spaces
-  const BIZ="Shubh Buckle Industries";
-  const FIN={ // finish key: [English, Hindi, gradient id]
-    nickel:["Nickel","निकल","g-nickel"], blacknickel:["Black Nickel","ब्लैक निकल","g-blacknickel"],
-    antique:["Antique Brass","एंटीक ब्रास","g-antique"], gold:["Gold","गोल्ड","g-gold"],
-    rose:["Rose Gold","रोज़ गोल्ड","g-rose"], gunmetal:["Gunmetal","गनमेटल","g-gunmetal"],
-    black:["Matte Black","मैट ब्लैक","g-black"], copper:["Antique Copper","एंटीक कॉपर","g-copper"]
+  const BIZ="OKSHOE Material";
+  const FIN={ // finish key: [English, Hindi, swatch]
+    gold:["Gold","गोल्ड","linear-gradient(135deg,#FBE7A1,#C9962E 55%,#F2D27A)"],
+    silver:["Silver","सिल्वर","linear-gradient(135deg,#F4F6F7,#A3ACB3 55%,#E3E7EA)"],
+    black:["Black","ब्लैक","linear-gradient(135deg,#555,#161616 55%,#3a3a3a)"],
+    rose:["Rose Gold","रोज़ गोल्ड","linear-gradient(135deg,#F6D3C4,#B97A68 55%,#E9B7A4)"],
+    clear:["Clear","पारदर्शी","linear-gradient(135deg,#ffffff,#dfe4e8 55%,#f5f7f8)"],
+    white:["White","सफ़ेद","linear-gradient(135deg,#ffffff,#e9e9e9 55%,#fafafa)"]
   };
-  const TYPES={pin:["Pin","पिन"],roller:["Roller","रोलर"],slider:["Slider","स्लाइडर"],dring:["D-ring","डी-रिंग"],fancy:["Ladies' fancy","लेडीज़ फ़ैंसी"],kids:["Kids","बच्चों के"]};
+  const METAL=["gold","silver","black","rose"],PLASTIC=["black","clear","white"];
+  const GROUPS={ // key: [English, Hindi, material]
+    shoe:["Shoe buckles","शू बकल","metal"], sandal:["Sandal buckles","सैंडल बकल","metal"], plastic:["Plastic buckles","प्लास्टिक बकल","plastic"],
+    deco:["Decorative buckles","डेकोरेटिव बकल","metal"], ring:["Ring & loop buckles","रिंग और लूप बकल","metal"], special:["Special design buckles","स्पेशल डिज़ाइन बकल","metal"]
+  };
+  // code, group, name [en, hi], size (mm), finish shown in photo
   const items=[
-    {code:"BK-1101",name:["Classic Pin Buckle","क्लासिक पिन बकल"],type:"pin",shape:"pin",w:[10,12,15,18,20],f:["nickel","antique","gold","black"],rate:1.60},
-    {code:"BK-1204",name:["Roller Pin Buckle","रोलर पिन बकल"],type:"roller",shape:"roller",w:[15,18,20,25],f:["nickel","gunmetal","antique"],rate:2.40},
-    {code:"BK-2302",name:["Strap Slider","स्ट्रैप स्लाइडर"],type:"slider",shape:"slider",w:[10,12,15,20,25],f:["nickel","black","gold","rose"],rate:1.20},
-    {code:"BK-2410",name:["D-Ring","डी-रिंग"],type:"dring",shape:"dring",w:[10,12,15,20],f:["nickel","antique","gold","copper"],rate:0.90},
-    {code:"BK-3105",name:["Oval Engraved Buckle","ओवल नक्काशी बकल"],type:"fancy",shape:"oval",w:[12,15,18],f:["antique","copper","gold"],rate:3.50},
-    {code:"BK-3320",name:["Stone-set Ladies Buckle","स्टोन वाला लेडीज़ बकल"],type:"fancy",shape:"stone",w:[8,10,12],f:["gold","rose","nickel"],rate:4.80},
-    {code:"BK-1050",name:["Kids Mini Pin Buckle","बच्चों का मिनी पिन बकल"],type:"kids",shape:"pin",w:[8,10,12],f:["nickel","black","gold","rose"],rate:1.10},
-    {code:"BK-2550",name:["Square Heavy Buckle","स्क्वायर हैवी बकल"],type:"pin",shape:"square",w:[20,25,30,40],f:["gunmetal","black","antique","blacknickel"],rate:3.20}
-  ];
+    ["SBM-001","shoe",["Pin buckle","पिन बकल"],20,"silver"],
+    ["SBM-002","shoe",["Pin buckle","पिन बकल"],25,"gold"],
+    ["SBM-003","shoe",["Heavy pin buckle","हैवी पिन बकल"],30,"black"],
+    ["SBM-004","shoe",["D-shape pin buckle","डी-शेप पिन बकल"],25,"gold"],
+    ["SDB-001","sandal",["Pin buckle","पिन बकल"],15,"silver"],
+    ["SDB-002","sandal",["Rounded pin buckle","गोल पिन बकल"],18,"gold"],
+    ["SDB-003","sandal",["Pin buckle","पिन बकल"],20,"rose"],
+    ["SDB-004","sandal",["Slider buckle","स्लाइडर बकल"],22,"black"],
+    ["PB-001","plastic",["Side-release buckle","साइड-रिलीज़ बकल"],20,"black"],
+    ["PB-002","plastic",["Side-release buckle","साइड-रिलीज़ बकल"],25,"clear"],
+    ["PB-003","plastic",["Slider","स्लाइडर"],30,"black"],
+    ["PB-004","plastic",["Strap loop","स्ट्रैप लूप"],20,"white"],
+    ["DB-001","deco",["Rhinestone ring buckle","नग वाला रिंग बकल"],20,"gold"],
+    ["DB-002","deco",["Rhinestone square buckle","नग वाला चौकोर बकल"],25,"gold"],
+    ["DB-003","deco",["Butterfly buckle","तितली बकल"],22,"gold"],
+    ["DB-004","deco",["Pearl ring buckle","मोती वाला रिंग बकल"],25,"gold"],
+    ["RB-001","ring",["D-ring","डी-रिंग"],15,"silver"],
+    ["RB-002","ring",["D-ring","डी-रिंग"],20,"gold"],
+    ["RB-003","ring",["Rectangle loop","चौकोर लूप"],25,"silver"],
+    ["RB-004","ring",["Oval loop","ओवल लूप"],30,"silver"],
+    ["SPB-001","special",["Chain buckle","चेन बकल"],25,"gold"],
+    ["SPB-002","special",["Enamel frame buckle","मीनाकारी फ़्रेम बकल"],25,"black"],
+    ["SPB-003","special",["Double ring","डबल रिंग"],30,"gold"],
+    ["SPB-004","special",["Engraved square buckle","नक्काशी वाला चौकोर बकल"],25,"gold"]
+  ].map(([code,group,name,size,fin])=>({code,group,name,size,fin,img:"images/"+code.toLowerCase().replace(/-(\d+)$/,(m,n)=>"-"+n.padStart(3,"0"))+".jpg"}));
+  const SIZES=[10,12,15,18,20,22,25,30,35,40];
   const hours=[[9.5,19],[9.5,19],[9.5,19],[9.5,19],[9.5,19],[9.5,19],null]; // Mon..Sun, 24h; null = closed
 
   // ---- Hindi text (English is read from the page) ----
   const HI={
-    strip:"फ़ुटवियर निर्माताओं के लिए फ़ैक्ट्री रेट · सैंपल 48 घंटे में भेजे जाते हैं",
-    navCat:"कैटलॉग",navFin:"फ़िनिश",navCalc:"ऑर्डर कैलकुलेटर",navCustom:"कस्टम डिज़ाइन",navContact:"संपर्क",navCta:"रेट पूछें",barQuote:"रेट पूछें",barCall:"कॉल करें",
-    heroEyebrow:"निर्माता और थोक विक्रेता · 2009 से",
-    heroH1:"<em>जूते और सैंडल</em> के बकल। बस यही हमारा काम है।",
-    heroLede:"पिन बकल, रोलर बकल, स्लाइडर, डी-रिंग और लेडीज़ फ़ैंसी बकल, हमारी अपनी फ़ैक्ट्री में बने। हम पूरे भारत में फ़ुटवियर निर्माताओं और व्यापारियों को सप्लाई करते हैं, स्टॉक डिज़ाइन या आपका अपना डिज़ाइन।",
+    strip:"बल्क सप्लाई उपलब्ध · गोल्ड, सिल्वर, ब्लैक और रोज़ गोल्ड फ़िनिश",
+    navCat:"कैटलॉग",navFin:"फ़िनिश",navApp:"उपयोग",navCalc:"ऑर्डर कैलकुलेटर",navContact:"संपर्क",navCta:"रेट पूछें",barQuote:"रेट पूछें",barCall:"कॉल करें",
+    heroEyebrow:"बेहतर फ़ुटवियर के लिए क्वालिटी कंपोनेंट",heroH1:"प्रीमियम <em>जूते और सैंडल</em> के बकल",heroTag:"मज़बूत · स्टाइलिश · लंबे समय तक चलने वाले",
+    heroLede:"मेटल और प्लास्टिक बकल, डेकोरेटिव बकल, रिंग और लूप, पुरुषों के जूतों, महिलाओं के सैंडल और स्पोर्ट्स फ़ुटवियर के लिए। फ़ुटवियर निर्माताओं और व्यापारियों को बल्क में सप्लाई।",
     heroCat:"कैटलॉग देखें",heroQuote:"रेट पूछें",
-    sp1:"स्टॉक डिज़ाइन",sp2:"स्ट्रैप की चौड़ाई",sp3:"प्लेटिंग फ़िनिश",sp4:"न्यूनतम ऑर्डर (720 पीस)",
-    catEyebrow:"कैटलॉग",catH2:"स्टॉक डिज़ाइन",catP:"रेट प्रति पीस, फ़ैक्ट्री से, GST अलग, 50 ग्रोस से ज़्यादा के ऑर्डर पर। पूछताछ भेजने के लिए स्ट्रैप की चौड़ाई या \"रेट और स्टॉक पूछें\" दबाएँ।",
-    finEyebrow:"फ़िनिश और मटीरियल",finH2:"आपके फ़ुटवियर से मैच करती प्लेटिंग",finP:"हर डिज़ाइन नीचे दी गई किसी भी फ़िनिश में मिलता है। अपने स्ट्रैप या अपर का सैंपल भेजें, हम रंग मिला देंगे।",
-    thMat:"मटीरियल",thUse:"किसके लिए सही",mat1:"ज़िंक अलॉय (डाई-कास्ट)",use1:"बारीक डिज़ाइन वाले फ़ैंसी और लेडीज़ बकल",mat2:"लोहा (प्रेस्ड)",use2:"रोज़ाना के सैंडल और स्कूल शूज़, सबसे कम लागत",mat3:"पीतल",use3:"प्रीमियम लेदर फ़ुटवियर, ज़ंग नहीं लगता",mat4:"स्टेनलेस स्टील",use4:"स्पोर्ट्स और आउटडोर सैंडल जो भीगते हैं",
-    calcEyebrow:"ऑर्डर कैलकुलेटर",calcH2:"आपको कितने बकल चाहिए?",calcP:"अपना प्रोडक्शन डालें। हम ग्रोस (144 पीस) में पैक करते हैं, इसलिए ऑर्डर पूरे ग्रोस में ऊपर गिना जाता है।",
-    cPairs:"कितनी जोड़ी फ़ुटवियर बनानी है",cPer:"हर जूते पर बकल",cExtra:"वेस्टेज के लिए एक्स्ट्रा <small>(%)</small>",cRate:"प्रति पीस रेट (₹) <small>(कैटलॉग से)</small>",
+    f1:"टिकाऊ",f1s:"मज़बूत मेटल, लंबा चलता है",f2:"स्टाइलिश डिज़ाइन",f2s:"सादे से डेकोरेटिव तक",f3:"बड़ी रेंज",f3s:"6 प्रकार, 15–30 mm",f4:"हर फ़ुटवियर के लिए",f4s:"जूते, सैंडल और स्पोर्ट्स",
+    catEyebrow:"कैटलॉग",catH2:"हमारे बकल",catP:"हर डिज़ाइन एक फ़िनिश और साइज़ में दिखाया गया है। दूसरी फ़िनिश और साइज़ के लिए पूछें। उस डिज़ाइन की पूछताछ भेजने के लिए \"रेट और स्टॉक पूछें\" दबाएँ।",
+    finEyebrow:"फ़िनिश",finH2:"कई फ़िनिश",finP:"मेटल बकल चार प्लेटिंग फ़िनिश में आते हैं। प्लास्टिक बकल काले, पारदर्शी और सफ़ेद रंग में।",
+    appEyebrow:"उपयोग",appH2:"हर तरह के फ़ुटवियर के लिए",a1:"पुरुषों के फ़ॉर्मल जूते",a1s:"पिन और मॉन्क-स्ट्रैप बकल",a2:"महिलाओं के सैंडल",a2s:"डेकोरेटिव और स्पेशल डिज़ाइन बकल",a3:"कैज़ुअल और स्पोर्ट्स फ़ुटवियर",a3s:"प्लास्टिक बकल, स्लाइडर और लूप",
+    calcEyebrow:"ऑर्डर कैलकुलेटर",calcH2:"आपको कितने बकल चाहिए?",calcP:"अपना प्रोडक्शन डालें। बकल ग्रोस (144 पीस) में गिने जाते हैं, इसलिए कुल पूरे ग्रोस में ऊपर गिना जाता है।",
+    cPairs:"कितनी जोड़ी फ़ुटवियर बनानी है",cPer:"हर जूते पर बकल",cExtra:"वेस्टेज के लिए एक्स्ट्रा <small>(%)</small>",cRate:"प्रति पीस रेट (₹) <small>(ज़रूरी नहीं, हमारे कोटेशन से)</small>",
     oGross:"ऑर्डर मात्रा",oPcs:"पीस",oCost:"अनुमानित लागत + GST",oUse:"यह मात्रा पूछताछ में डालें",
-    cusEyebrow:"कस्टम डिज़ाइन",cusH2:"आपका डिज़ाइन, आपका ब्रांड नाम",cusP:"फ़ोटो, ड्रॉइंग या सैंपल बकल भेजें। हम डाई बनाते हैं, आपकी फ़िनिश में प्लेटिंग करते हैं और बकल पर आपका ब्रांड नाम भी लिख सकते हैं।",
-    p1:"डिज़ाइन भेजें",p1s:"WhatsApp पर फ़ोटो, ड्रॉइंग या कूरियर से सैंपल।",p2:"रेट पाएँ",p2s:"प्रति पीस रेट और एक बार का डाई ख़र्च, आमतौर पर एक दिन में।",p3:"सैंपल पास करें",p3s:"5–7 कार्य दिवस में तैयार सैंपल भेजते हैं।",p4:"बल्क प्रोडक्शन",p4s:"ज़्यादातर ऑर्डर 2–3 हफ़्ते में, मात्रा के हिसाब से।",p5:"डिस्पैच",p5s:"ग्रोस में पैक, ट्रांसपोर्ट या कूरियर से पूरे भारत में।",
-    o1:"लोगो लिखवाना",o1s:"बकल पर आपका ब्रांड नाम स्टैम्प या लेज़र से।",o2:"रंग मिलाना",o2s:"प्लेटिंग और मीनाकारी आपके स्ट्रैप या अपर से मैच।",o3:"लेबल वाली पैकिंग",o3s:"डिब्बों पर आपका डिज़ाइन कोड, फ़िनिश और साइज़।",
     enqEyebrow:"रेट और स्टॉक पूछताछ",enqH2:"रेट पूछें",enqP:"कोई अकाउंट या रजिस्ट्रेशन नहीं चाहिए। जो पता है वो भरें, आपकी पूछताछ सीधे WhatsApp पर हम तक पहुँचेगी।",
-    w1:"<b>काम के समय में जवाब,</b> आमतौर पर एक घंटे में।",w2:"<b>स्टॉक डिज़ाइन के मुफ़्त सैंपल</b> असली ख़रीदारों के लिए। सिर्फ़ कूरियर का ख़र्च आपका।",w3:"<b>हर ऑर्डर पर GST बिल।</b>",
-    fItem:"बकल",fDesc:"अपना डिज़ाइन बताएँ",fWidth:"स्ट्रैप की चौड़ाई",fFinish:"फ़िनिश",fQty:"मात्रा",fBiz:"फ़र्म का नाम <small>(ज़रूरी नहीं)</small>",fCity:"शहर <small>(ज़रूरी नहीं)</small>",
+    w1:"<b>बल्क सप्लाई</b> फ़ुटवियर निर्माताओं और व्यापारियों के लिए।",w2:"<b>कोई भी फ़िनिश</b>: गोल्ड, सिल्वर, ब्लैक या रोज़ गोल्ड।",w3:"<b>WhatsApp पर कोटेशन</b>, आपके डिज़ाइन का रेट और स्टॉक।",
+    fItem:"बकल",fDesc:"आपको कैसा बकल चाहिए, बताएँ",fWidth:"साइज़ (स्ट्रैप चौड़ाई)",fFinish:"फ़िनिश",fQty:"मात्रा",fBiz:"फ़र्म का नाम <small>(ज़रूरी नहीं)</small>",fCity:"शहर <small>(ज़रूरी नहीं)</small>",
     fSample:"पहले सैंपल भेजें",fNote:"और कुछ? <small>(ज़रूरी नहीं)</small>",fPrev:"आपका मैसेज",fSend:"WhatsApp पर पूछताछ भेजें",fCopy:"मैसेज कॉपी करें",
-    fAlt:"WhatsApp नहीं है? <span style=\"user-select:all\">+91 98765 43210</span> पर कॉल करें या मैसेज <span style=\"user-select:all\">sales@shubhbuckle.in</span> पर ईमेल करें।",
-    conEyebrow:"फ़ैक्ट्री और ऑफ़िस",conH2:"आइए या कॉल करें",kAddr:"पता",landmark:"पहचान: इंडस्ट्रियल एरिया पुलिस चौकी के पीछे",maps:"Google Maps पर रास्ता देखें ↗",
+    fAlt:"WhatsApp नहीं है? <span style=\"user-select:all\">+91 98765 43210</span> पर कॉल करें या मैसेज <span style=\"user-select:all\">sales@okshoe.in</span> पर ईमेल करें।",
+    conEyebrow:"संपर्क",conH2:"आइए या कॉल करें",kAddr:"पता",landmark:"पहचान: पास की कोई जानी-मानी जगह लिखें",maps:"Google Maps पर रास्ता देखें ↗",
     kPhone:"फ़ोन / WhatsApp",kEmail:"ईमेल",copy:"कॉपी",copy2:"कॉपी",thDay:"दिन",thHours:"समय",
-    payH:"भुगतान",payCheque:"चेक",payAdv:"कस्टम ऑर्डर पर 50% एडवांस",shipH:"डिस्पैच",ship1:"ट्रांसपोर्ट (बल्क)",ship2:"कूरियर (सैंपल और छोटे ऑर्डर)",ship3:"पूरे भारत में",
-    footer:"जूते और सैंडल के बकल · निर्माता और थोक विक्रेता"
+    payH:"भुगतान",payCheque:"चेक",shipH:"डिस्पैच",ship1:"ट्रांसपोर्ट (बल्क)",ship2:"कूरियर (सैंपल और छोटे ऑर्डर)",
+    footer:"बेहतर फ़ुटवियर के लिए क्वालिटी कंपोनेंट"
   };
   const EN={};
   document.querySelectorAll("[data-t]").forEach(el=>EN[el.dataset.t]=el.innerHTML);
@@ -575,36 +524,35 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
   const t=(en,hi)=>lang==="hi"?hi:en;
   const L=a=>lang==="hi"?a[1]:a[0];
   const num=n=>n.toLocaleString("en-IN");
-  const rupee=n=>"₹"+n.toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2});
   const $=id=>document.getElementById(id);
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
   // ---- Catalogue ----
   let filter="all";
   function renderFilters(){
-    const keys=["all",...Object.keys(TYPES)];
-    $("filters").innerHTML=keys.map(k=>`<button type="button" class="chip" data-f="${k}" aria-pressed="${k===filter}">${k==="all"?t("All","सभी"):L(TYPES[k])}</button>`).join("");
+    const keys=["all",...Object.keys(GROUPS)];
+    $("filters").innerHTML=keys.map(k=>`<button type="button" class="chip" data-f="${k}" aria-pressed="${k===filter}">${k==="all"?t("All","सभी"):L(GROUPS[k])}</button>`).join("");
   }
   $("filters").addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(!b)return;filter=b.dataset.f;renderFilters();renderItems()});
   function renderItems(){
-    $("items").innerHTML=items.map((it,i)=>filter!=="all"&&it.type!==filter?"":`
-      <article class="item">
-        <div class="item-art"><span class="code">${it.code}</span><svg viewBox="0 0 120 80" style="--m:url(#${FIN[it.f[0]][2]})" role="img" aria-label="${L(it.name)}"><use href="#b-${it.shape}"/></svg></div>
-        <div class="item-body">
-          <div class="row"><span>${L(TYPES[it.type])}</span><span class="price">${rupee(it.rate)} <small>/ ${t("pc","पीस")}</small></span></div>
-          <h3>${L(it.name)}</h3>
-          <div class="row"><span>${t("Strap width (mm)","स्ट्रैप चौड़ाई (mm)")}</span></div>
-          <div class="widths">${it.w.map(w=>`<button type="button" data-i="${i}" data-w="${w}" aria-label="${L(it.name)} ${w} mm">${w}</button>`).join("")}</div>
-          <div class="row"><span>${t("Finishes","फ़िनिश")}</span></div>
-          <div class="swatches">${it.f.map(f=>`<span class="sw" style="background:var(--sw-${f})" title="${L(FIN[f])}" role="img" aria-label="${L(FIN[f])}"></span>`).join("")}</div>
-          <a class="btn ask" href="#enquire" data-i="${i}">${t("Ask price & stock","रेट और स्टॉक पूछें")}</a>
-        </div>
-      </article>`).join("");
+    $("groups").innerHTML=Object.keys(GROUPS).filter(g=>filter==="all"||filter===g).map(g=>`
+      <div class="group">
+        <div class="bar"><h3>${L(GROUPS[g])}</h3><span>${GROUPS[g][2]==="metal"?t("Metal","मेटल"):t("Plastic","प्लास्टिक")}</span></div>
+        <div class="grid4">${items.map((it,i)=>it.group!==g?"":`
+          <article class="item">
+            <div class="item-img"><img src="${it.img}" alt="${esc(it.code+" "+L(it.name))}" loading="lazy"></div>
+            <div class="item-body">
+              <span class="code">${it.code}</span>
+              <h4>${L(it.name)}</h4>
+              <div class="meta"><span>${t("Size","साइज़")}: ${it.size} mm</span><span class="fin"><i style="--sw:${FIN[it.fin][2]}"></i>${L(FIN[it.fin])}</span></div>
+              <a class="btn ask" href="#enquire" data-i="${i}">${t("Ask price & stock","रेट और स्टॉक पूछें")}</a>
+            </div>
+          </article>`).join("")}</div>
+      </div>`).join("");
   }
-  // swatch backgrounds as CSS gradients (same colours as the SVG plating)
-  const GR={nickel:["#F4F6F7","#A3ACB3","#E3E7EA"],blacknickel:["#7A8187","#2A2F33","#5A6167"],antique:["#D0AA60","#7A5A24","#AD8740"],gold:["#FBE7A1","#C9962E","#F2D27A"],rose:["#F6D3C4","#B97A68","#E9B7A4"],gunmetal:["#959DA3","#3E4549","#737B81"],black:["#444444","#181818","#333333"],copper:["#E0A07A","#7E4529","#B9744C"]};
-  Object.entries(GR).forEach(([k,c])=>document.documentElement.style.setProperty("--sw-"+k,`linear-gradient(135deg,${c[0]},${c[1]} 55%,${c[2]})`));
   function renderFinishes(){
-    $("finlist").innerHTML=Object.keys(FIN).map(k=>`<div class="fin"><i style="background:var(--sw-${k})"></i><b>${L(FIN[k])}</b><span>${t("Plating","प्लेटिंग")}</span></div>`).join("");
+    const desc={gold:["Classic and decorative buckles","क्लासिक और डेकोरेटिव बकल"],silver:["Nickel-bright, for formal shoes","फ़ॉर्मल जूतों के लिए"],black:["Matte look for casual and sports","कैज़ुअल और स्पोर्ट्स के लिए"],rose:["Popular for women's sandals","महिलाओं के सैंडल में लोकप्रिय"]};
+    $("finlist").innerHTML=METAL.map(k=>`<div class="finish"><i style="--sw:${FIN[k][2]}"></i><b>${L(FIN[k])}</b><span>${L(desc[k])}</span></div>`).join("");
   }
 
   // ---- Enquiry (no account; opens WhatsApp with a ready message) ----
@@ -612,30 +560,31 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
         eB=$("e-biz"),eC=$("e-city"),eS=$("e-sample"),eN=$("e-note"),ePrev=$("e-preview"),eWa=$("e-wa");
   function fillItems(){
     const v=eI.value||"0";
-    eI.innerHTML=items.map((it,i)=>`<option value="${i}">${it.code} · ${L(it.name)} · ${rupee(it.rate)}/${t("pc","पीस")}</option>`).join("")+`<option value="custom">${t("Custom design (my own)","कस्टम डिज़ाइन (मेरा अपना)")}</option>`;
+    eI.innerHTML=Object.keys(GROUPS).map(g=>`<optgroup label="${esc(L(GROUPS[g]))}">${items.map((it,i)=>it.group!==g?"":`<option value="${i}">${it.code} · ${esc(L(it.name))} · ${it.size} mm</option>`).join("")}</optgroup>`).join("")+`<option value="other">${t("Other / my own design","कोई और / मेरा अपना डिज़ाइन")}</option>`;
     eI.value=v;
     const u=eU.value;eU.innerHTML=`<option value="gross">${t("gross","ग्रोस")}</option><option value="pcs">${t("pcs","पीस")}</option>`;eU.value=u||"gross";
-    eD.placeholder=t("e.g. Round buckle with flower design, 15 mm","जैसे: फूल वाला गोल बकल, 15 mm");
+    eD.placeholder=t("e.g. Gold round buckle with stones, 20 mm","जैसे: नग वाला गोल्ड गोल बकल, 20 mm");
     eB.placeholder=t("Firm name","फ़र्म का नाम");eC.placeholder=t("e.g. Agra","जैसे: आगरा");
-    eN.placeholder=t("Delivery date, packing, past order reference…","डिलीवरी की तारीख़, पैकिंग, पिछला ऑर्डर…");
+    eN.placeholder=t("Delivery date, packing, other sizes…","डिलीवरी की तारीख़, पैकिंग, दूसरे साइज़…");
   }
-  function fillOptions(keepW,keepF){
-    const it=items[eI.value];
-    const ws=it?it.w:[8,10,12,15,18,20,25,30,40], fs=it?it.f:Object.keys(FIN);
-    const cw=keepW!=null?String(keepW):eW.value, cf=keepF||eF.value;
-    eW.innerHTML=`<option value="">${t("Not sure","पता नहीं")}</option>`+ws.map(w=>`<option value="${w}">${w} mm</option>`).join("");
-    eF.innerHTML=`<option value="">${t("Not sure / suggest one","पता नहीं / सुझाएँ")}</option>`+fs.map(f=>`<option value="${f}">${L(FIN[f])}</option>`).join("");
-    if(ws.map(String).includes(cw)) eW.value=cw;
-    if(fs.includes(cf)) eF.value=cf;
+  function fillOptions(reset){
+    const it=items[eI.value],fins=it?(GROUPS[it.group][2]==="plastic"?PLASTIC:METAL):[...METAL,"clear","white"];
+    const cw=reset&&it?String(it.size):eW.value, cf=reset&&it?it.fin:eF.value;
+    eW.innerHTML=`<option value="">${t("Not sure","पता नहीं")}</option>`+SIZES.map(s=>`<option value="${s}">${s} mm</option>`).join("");
+    eF.innerHTML=`<option value="">${t("Not sure / suggest one","पता नहीं / सुझाएँ")}</option>`+fins.map(f=>`<option value="${f}">${L(FIN[f])}</option>`).join("");
+    if(SIZES.map(String).includes(cw)) eW.value=cw;
+    if(fins.includes(cf)) eF.value=cf;
   }
   function compose(){
-    const it=items[eI.value],custom=eI.value==="custom";
-    eDW.hidden=!custom;
+    const it=items[eI.value],other=eI.value==="other";
+    eDW.hidden=!other;
+    $("e-picked").hidden=other;
+    if(it){$("e-img").src=it.img;$("e-code").textContent=it.code;$("e-name").textContent=L(it.name)+" · "+L(GROUPS[it.group]);}
     const q=Math.max(0,Math.round(+eQ.value||0)),gross=eU.value==="gross";
     const qtyTxt=q?(gross?`${num(q)} ${t("gross","ग्रोस")} (${num(q*144)} ${t("pcs","पीस")})`:`${num(q)} ${t("pcs","पीस")} (${t("about","लगभग")} ${num(Math.ceil(q/144))} ${t("gross","ग्रोस")})`):t("To be decided","बाद में बताएँगे");
     const lines=[t(`Hello ${BIZ}, I'd like a price quote.`,`नमस्ते ${BIZ}, मुझे रेट चाहिए।`),""];
-    lines.push(t("Buckle: ","बकल: ")+(custom?t("Custom design – ","कस्टम डिज़ाइन – ")+(eD.value.trim()||t("(will send photo)","(फ़ोटो भेजूँगा)")):`${L(it.name)} (${it.code})`));
-    lines.push(t("Strap width: ","स्ट्रैप चौड़ाई: ")+(eW.value?eW.value+" mm":t("Not sure","पता नहीं")));
+    lines.push(t("Buckle: ","बकल: ")+(other?(eD.value.trim()||t("(will send photo)","(फ़ोटो भेजूँगा)")):`${it.code} – ${L(it.name)} (${L(GROUPS[it.group])})`));
+    lines.push(t("Size: ","साइज़: ")+(eW.value?eW.value+" mm":t("Not sure","पता नहीं")));
     lines.push(t("Finish: ","फ़िनिश: ")+(eF.value?L(FIN[eF.value]):t("Please suggest","सुझाएँ")));
     lines.push(t("Quantity: ","मात्रा: ")+qtyTxt);
     if(eS.checked) lines.push(t("Samples: Please send samples first","सैंपल: पहले सैंपल भेजें"));
@@ -647,16 +596,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     eWa.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(text);
     return text;
   }
-  eI.addEventListener("change",()=>{fillOptions();compose()});
+  eI.addEventListener("change",()=>{fillOptions(true);compose()});
   [eW,eF,eU,eS].forEach(el=>el.addEventListener("change",compose));
   [eQ,eD,eB,eC,eN].forEach(el=>el.addEventListener("input",compose));
   $("enq").addEventListener("submit",e=>e.preventDefault());
-  $("items").addEventListener("click",e=>{
+  $("groups").addEventListener("click",e=>{
     const b=e.target.closest("[data-i]");if(!b)return;
     e.preventDefault();
-    eI.value=b.dataset.i;fillOptions(b.dataset.w||"",null);compose();
+    eI.value=b.dataset.i;fillOptions(true);compose();
     $("enquire").scrollIntoView({behavior:"smooth"});
-    setTimeout(()=>(b.dataset.w?eF:eW).focus({preventScroll:true}),400);
+    setTimeout(()=>eQ.focus({preventScroll:true}),400);
   });
 
   // ---- Order calculator ----
@@ -668,7 +617,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     lastGross=gross;
     $("o-gross").textContent=num(gross)+" "+t("gross","ग्रोस");
     $("o-pcs").textContent=num(pcs);
-    $("o-cost").textContent="₹"+num(Math.round(pcs*rate));
+    $("o-cost").textContent=rate?"₹"+num(Math.round(pcs*rate)):t("Enter rate","रेट डालें");
     $("o-formula").textContent=`${num(pairs)} ${t("pairs","जोड़ी")} × 2 ${t("shoes","जूते")} × ${per} ${t("buckle(s)","बकल")} + ${extra}% = ${num(need)} ${t("pcs","पीस")} → ${num(gross)} × 144`;
   }
   [cP,cX,cR].forEach(el=>el.addEventListener("input",calc));cPer.addEventListener("change",calc);
@@ -701,7 +650,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     langBtn.textContent=lang==="hi"?"English":"हिंदी";
     langBtn.lang=lang==="hi"?"en":"hi";
     langBtn.setAttribute("aria-label",lang==="hi"?"View in English":"हिंदी में देखें");
-    renderFilters();renderItems();renderFinishes();fillItems();fillOptions();compose();calc();renderHours();
+    renderFilters();renderItems();renderFinishes();fillItems();fillOptions(false);compose();calc();renderHours();
   }
   langBtn.addEventListener("click",()=>{lang=lang==="hi"?"en":"hi";try{localStorage.setItem("lang",lang)}catch(e){}applyLang()});
 
@@ -721,7 +670,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
   document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",()=>{const el=$(b.dataset.copy);copyText(b,el.textContent,el)}));
   $("e-copy").addEventListener("click",function(){copyText(this,compose(),ePrev)});
 
+  eI.value="0";
   applyLang();
+  fillOptions(true);compose();
 })();
 </script>
 </body>

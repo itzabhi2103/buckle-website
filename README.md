@@ -1,11 +1,11 @@
-# Shubh Buckle Industries
+# OKSHOE Material
 
 A one-page website for a manufacturer and wholesaler of **buckles for shoes and sandals**. It works on phones and laptops and switches between English and Hindi.
 
-- **Catalogue:** pin, roller, slider, D-ring, ladies' fancy and kids' buckles, filterable by type. Each shows its design code, rate per piece, strap widths (mm) and available finishes.
-- **Finishes and materials:** 8 plating finishes, plus zinc alloy, iron, brass and stainless steel.
+- **Catalogue:** 24 real product photos in 6 groups (shoe, sandal, plastic, decorative, ring & loop, special design), each with its code (e.g. SBM-001), size and finish. Photos are in `images/`, cropped from the OKSHOE catalogue.
+- **Finishes:** gold, silver, black, rose gold (plastic: black, clear, white).
+- **Application:** men's formal shoes, women's sandals, casual & sports footwear.
 - **Order calculator:** pairs of footwear × buckles per shoe + wastage, rounded up to full gross (144 pcs), with an approximate cost.
-- **Custom designs:** the process from design to dispatch, logo engraving, colour matching and labelled packing.
 - **Quote enquiry with no sign-up:** buyers choose a buckle, width, finish and quantity (gross or pieces), and WhatsApp opens with the message already written.
 - **Contact:** factory address with a landmark, live open/closed hours, GSTIN, payment terms (UPI, NEFT/RTGS, cheque) and dispatch options.
 
@@ -14,14 +14,14 @@ A one-page website for a manufacturer and wholesaler of **buckles for shoes and 
 Everything is in `index.html`. Near the top of the `<script>` you'll find:
 
 - `WHATSAPP`: the WhatsApp number (country code + number, no spaces)
-- `items`: design code, name (English, Hindi), type, strap widths, finishes, rate per piece
-- `FIN`: finish names
+- `items`: code, group, name (English, Hindi), size in mm, finish. The photo file is `images/<code>.jpg`
+- `FIN` / `GROUPS`: finish and group names
 - `hours`: Monday to Sunday in 24-hour time (`null` = closed)
 - `HI`: the Hindi translations
 
-The business name, address, phone, email and GSTIN are written in the HTML.
+The address, phone and email are written in the HTML.
 
-> The business name, address, phone, GSTIN, designs, rates and minimum order are placeholders. Replace them before going live.
+> The address, phone/WhatsApp, email and opening hours are still placeholders. Replace them before going live.
 
 ## Publishing
 
