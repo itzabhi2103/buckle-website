@@ -11,13 +11,13 @@ A one-page website for a manufacturer and wholesaler of **buckles for shoes and 
 
 ## Adding or removing buckles (no coding)
 
-Open **`admin.html`** on the live site (`https://itzabhi2103.github.io/buckle-website/admin.html`).
+Open **`admin.html`** on the live site (`https://okshoe-material.vercel.app/admin.html`).
 
 1. **One-time setup on each phone or computer:** create a GitHub *fine-grained token* limited to this repository with **Contents: Read and write**, and paste it into the admin page. The page explains each step.
 2. **Add a buckle:** choose a photo, category, name, size and finish. The design code is suggested automatically (e.g. `SBM-005`). Tap **Add buckle to website**.
 3. **Remove a buckle:** tap **Remove** next to it, then tap again to confirm.
 
-The admin page saves the photo to `images/` and updates `products.json` in this repo. GitHub Pages republishes the site in about a minute. Visitors never see the admin page, and nobody can change anything without the access key.
+The admin page saves the photo to `images/` and updates `products.json` in this repo. Vercel redeploys the site within a minute. Visitors never see the admin page, and nobody can change anything without the access key.
 
 ## Editing by hand
 
@@ -32,7 +32,7 @@ The address, phone and email are written in the HTML.
 
 > The address, phone/WhatsApp, email and opening hours are still placeholders. Replace them before going live.
 
-**Live site:** https://itzabhi2103.github.io/buckle-website/
+**Live site:** https://okshoe-material.vercel.app (Vercel, deploys automatically on every push to `main`, including changes made through the admin page)
 
 ## Publishing
 
