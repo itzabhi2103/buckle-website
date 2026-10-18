@@ -214,5 +214,14 @@
     "size": 25,
     "finish": "gold",
     "image": "images/spb-004.jpg"
+  },
+  {
+    "code": "SDB-005",
+    "group": "sandal",
+    "name": "Flower stone buckle (demo)",
+    "name_hi": "फूल नग बकल (डेमो)",
+    "size": 22,
+    "finish": "gold",
+    "image": "images/sdb-005.jpg"
   }
 ]
