@@ -1,0 +1,8 @@
+{
+  "name": "okshoe-material",
+  "private": true,
+  "description": "OKSHOE Material buckle catalogue with a password-protected admin page",
+  "dependencies": {
+    "@vercel/blob": "2.8.0"
+  }
+}

@@ -134,6 +134,11 @@ header.open .menu-btn span::after{transform:translateY(-6px) rotate(-45deg)}
 :root:not([data-theme="light"]) .item .ask{border-color:var(--line)}
 .item .ask:hover{filter:brightness(1.25)}
 .item .meta{margin-bottom:10px}
+.priceline{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin-top:2px}
+.priceline b{font:700 1.3rem/1 "Barlow Condensed",sans-serif;font-variant-numeric:tabular-nums}
+.priceline small{color:var(--muted);font-size:.8rem}
+.priceline .req{color:var(--muted);font-size:.9rem;font-weight:500}
+.oos{font:600 .7rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#B4432F;border:1px solid currentColor;border-radius:4px;padding:4px 6px}
 
 /* Finishes */
 .finishes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -284,7 +289,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 
 <nav class="mbar" aria-label="Quick actions">
   <a class="btn btn-gold" href="#enquire" data-t="barQuote">Get a quote</a>
-  <a class="btn btn-ghost" href="tel:+91957271XXXX" data-t="barCall">Call us</a>
+  <a class="btn btn-ghost" href="tel:+91957271XXXX" id="tel-bar" data-t="barCall">Call us</a>
 </nav>
 
 <section class="hero" id="home" style="padding-block:0">
@@ -407,7 +412,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
       <div class="enq-actions">
         <a class="btn btn-wa" id="e-wa" href="#" target="_blank" rel="noopener" data-t="fSend">Send enquiry on WhatsApp</a>
         <button class="btn btn-ghost" type="button" id="e-copy" data-t="fCopy">Copy message</button>
-        <span class="note" data-t="fAlt">No WhatsApp? Call <span style="user-select:all">+91 95727 1XXXX</span> or email the message to <span style="user-select:all">sales@okshoe.in</span>.</span>
+        <span class="note" data-t="fAlt">No WhatsApp? Call <span class="js-phone" style="user-select:all">+91 95727 1XXXX</span> or email the message to <span class="js-email" style="user-select:all">sales@okshoe.in</span>.</span>
       </div>
     </form>
   </div>
@@ -421,9 +426,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
       <p style="margin-top:12px"><span class="open-pill" id="open-pill">…</span></p>
       <div class="clist">
         <div class="ci"><span class="k" data-t="kAddr">Address</span>
-          <span class="v">Plot No. 24, Industrial Area, Your City – 000000</span>
-          <span class="sub" data-t="landmark">Landmark: add a well-known nearby place</span>
-          <a href="https://maps.google.com/" target="_blank" rel="noopener" style="font-size:.92rem;color:var(--muted)" data-t="maps">Get directions on Google Maps ↗</a></div>
+          <span class="v" id="addr">Plot No. 24, Industrial Area, Your City – 000000</span>
+          <span class="sub" id="landmark" hidden></span>
+          <a href="https://maps.google.com/" id="maps-link" target="_blank" rel="noopener" style="font-size:.92rem;color:var(--muted)" data-t="maps">Get directions on Google Maps ↗</a></div>
         <div class="ci"><span class="k" data-t="kPhone">Phone / WhatsApp</span><span><span class="v" id="phone">+91 95727 1XXXX</span><button class="copy" type="button" data-copy="phone" data-t="copy">Copy</button></span></div>
         <div class="ci"><span class="k" data-t="kEmail">Email</span><span><span class="v" id="email">sales@okshoe.in</span><button class="copy" type="button" data-copy="email" data-t="copy2">Copy</button></span></div>
       </div>
@@ -448,7 +453,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 <script>
 (function(){
   // ---- Business settings: edit these ----
-  const WHATSAPP="91957271XXXX"; // WhatsApp number: country code + number, no spaces
+  let WHATSAPP="91957271XXXX"; // replaced by the shop details saved in the admin page
   const BIZ="OKSHOE Material";
   const FIN={ // finish key: [English, Hindi, swatch]
     gold:["Gold","गोल्ड","linear-gradient(135deg,#FBE7A1,#C9962E 55%,#F2D27A)"],
@@ -466,7 +471,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
   // Buckles are loaded from products.json (edited through admin.html)
   let items=[];
   const SIZES=[10,12,15,18,20,22,25,30,35,40];
-  const hours=[[9.5,19],[9.5,19],[9.5,19],[9.5,19],[9.5,19],[9.5,19],null]; // Mon..Sun, 24h; null = closed
+  let hours=[[9.5,19],[9.5,19],[9.5,19],[9.5,19],[9.5,19],[9.5,19],null]; // Mon..Sun, 24h; null = closed (replaced by admin settings)
+  let shop=null;
 
   // ---- Hindi text (English is read from the page) ----
   const HI={
@@ -486,7 +492,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     w1:"<b>बल्क सप्लाई</b> फ़ुटवियर निर्माताओं और व्यापारियों के लिए।",w2:"<b>कोई भी फ़िनिश</b>: गोल्ड, सिल्वर, ब्लैक या रोज़ गोल्ड।",w3:"<b>WhatsApp पर कोटेशन</b>, आपके डिज़ाइन का रेट और स्टॉक।",
     fItem:"बकल",fDesc:"आपको कैसा बकल चाहिए, बताएँ",fWidth:"साइज़ (स्ट्रैप चौड़ाई)",fFinish:"फ़िनिश",fQty:"मात्रा",fBiz:"फ़र्म का नाम <small>(ज़रूरी नहीं)</small>",fCity:"शहर <small>(ज़रूरी नहीं)</small>",
     fSample:"पहले सैंपल भेजें",fNote:"और कुछ? <small>(ज़रूरी नहीं)</small>",fPrev:"आपका मैसेज",fSend:"WhatsApp पर पूछताछ भेजें",fCopy:"मैसेज कॉपी करें",
-    fAlt:"WhatsApp नहीं है? <span style=\"user-select:all\">+91 95727 1XXXX</span> पर कॉल करें या मैसेज <span style=\"user-select:all\">sales@okshoe.in</span> पर ईमेल करें।",
+    fAlt:"WhatsApp नहीं है? <span class=\"js-phone\" style=\"user-select:all\">+91 95727 1XXXX</span> पर कॉल करें या मैसेज <span class=\"js-email\" style=\"user-select:all\">sales@okshoe.in</span> पर ईमेल करें।",
     conEyebrow:"संपर्क",conH2:"आइए या कॉल करें",kAddr:"पता",landmark:"पहचान: पास की कोई जानी-मानी जगह लिखें",maps:"Google Maps पर रास्ता देखें ↗",
     kPhone:"फ़ोन / WhatsApp",kEmail:"ईमेल",copy:"कॉपी",copy2:"कॉपी",thDay:"दिन",thHours:"समय",
     payH:"भुगतान",payCheque:"चेक",shipH:"डिस्पैच",ship1:"ट्रांसपोर्ट (बल्क)",ship2:"कूरियर (सैंपल और छोटे ऑर्डर)",
@@ -520,6 +526,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
               <span class="code">${it.code}</span>
               <h4>${L(it.name)}</h4>
               <div class="meta"><span>${t("Size","साइज़")}: ${it.size} mm</span><span class="fin"><i style="--sw:${FIN[it.fin][2]}"></i>${L(FIN[it.fin])}</span></div>
+              <div class="priceline">${it.price!=null?`<b>₹${it.price.toFixed(2)}</b><small>/ ${t("pc","पीस")}</small>`:`<span class="req">${t("Price on request","रेट पूछें")}</span>`}${it.inStock?"":`<span class="oos">${t("Out of stock","स्टॉक में नहीं")}</span>`}</div>
               <a class="btn ask" href="#enquire" data-i="${i}">${t("Ask price & stock","रेट और स्टॉक पूछें")}</a>
             </div>
           </article>`).join("")}</div>
@@ -535,7 +542,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
         eB=$("e-biz"),eC=$("e-city"),eS=$("e-sample"),eN=$("e-note"),ePrev=$("e-preview"),eWa=$("e-wa");
   function fillItems(){
     const v=eI.value||"0";
-    eI.innerHTML=Object.keys(GROUPS).map(g=>`<optgroup label="${esc(L(GROUPS[g]))}">${items.map((it,i)=>it.group!==g?"":`<option value="${i}">${it.code} · ${esc(L(it.name))} · ${it.size} mm</option>`).join("")}</optgroup>`).join("")+`<option value="other">${t("Other / my own design","कोई और / मेरा अपना डिज़ाइन")}</option>`;
+    eI.innerHTML=Object.keys(GROUPS).map(g=>`<optgroup label="${esc(L(GROUPS[g]))}">${items.map((it,i)=>it.group!==g?"":`<option value="${i}">${it.code} · ${esc(L(it.name))} · ${it.size} mm${it.price!=null?" · ₹"+it.price.toFixed(2):""}</option>`).join("")}</optgroup>`).join("")+`<option value="other">${t("Other / my own design","कोई और / मेरा अपना डिज़ाइन")}</option>`;
     eI.value=v;
     const u=eU.value;eU.innerHTML=`<option value="gross">${t("gross","ग्रोस")}</option><option value="pcs">${t("pcs","पीस")}</option>`;eU.value=u||"gross";
     eD.placeholder=t("e.g. Gold round buckle with stones, 20 mm","जैसे: नग वाला गोल्ड गोल बकल, 20 mm");
@@ -559,6 +566,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     const qtyTxt=q?(gross?`${num(q)} ${t("gross","ग्रोस")} (${num(q*144)} ${t("pcs","पीस")})`:`${num(q)} ${t("pcs","पीस")} (${t("about","लगभग")} ${num(Math.ceil(q/144))} ${t("gross","ग्रोस")})`):t("To be decided","बाद में बताएँगे");
     const lines=[t(`Hello ${BIZ}, I'd like a price quote.`,`नमस्ते ${BIZ}, मुझे रेट चाहिए।`),""];
     lines.push(t("Buckle: ","बकल: ")+(other?(eD.value.trim()||t("(will send photo)","(फ़ोटो भेजूँगा)")):`${it&&it.code} – ${it&&L(it.name)} (${L(GROUPS[it.group])})`));
+    if(it&&!other&&it.price!=null) lines.push(t("Listed price: ","लिस्ट रेट: ")+"₹"+it.price.toFixed(2)+t(" / pc"," / पीस"));
     lines.push(t("Size: ","साइज़: ")+(eW.value?eW.value+" mm":t("Not sure","पता नहीं")));
     lines.push(t("Finish: ","फ़िनिश: ")+(eF.value?L(FIN[eF.value]):t("Please suggest","सुझाएँ")));
     lines.push(t("Quantity: ","मात्रा: ")+qtyTxt);
@@ -617,6 +625,23 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     $("yr").textContent=now.getFullYear();
   }
 
+  // ---- Shop details from the admin page ----
+  function fillContact(){
+    if(!shop) return;
+    document.querySelectorAll("#phone,.js-phone").forEach(e=>e.textContent=shop.phone);
+    document.querySelectorAll("#email,.js-email").forEach(e=>e.textContent=shop.email);
+    $("tel-bar").href="tel:+"+(shop.phone.replace(/\D/g,"")||shop.whatsapp);
+    $("addr").textContent=shop.address;
+    $("landmark").hidden=!shop.landmark;$("landmark").textContent=t("Landmark: ","पहचान: ")+shop.landmark;
+    $("maps-link").href=shop.mapsUrl||"https://maps.google.com/";
+  }
+  function applyShop(s){
+    if(!s) return;
+    shop=s;WHATSAPP=String(s.whatsapp||WHATSAPP).replace(/\D/g,"");
+    const dec=v=>{const [h,m]=v.split(":").map(Number);return h+m/60};
+    if(Array.isArray(s.hours)&&s.hours.length===7) hours=s.hours.map(d=>d?[dec(d[0]),dec(d[1])]:null);
+  }
+
   // ---- Language ----
   const langBtn=$("lang");
   function applyLang(){
@@ -625,7 +650,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     langBtn.textContent=lang==="hi"?"English":"हिंदी";
     langBtn.lang=lang==="hi"?"en":"hi";
     langBtn.setAttribute("aria-label",lang==="hi"?"View in English":"हिंदी में देखें");
-    renderFilters();renderItems();renderFinishes();fillItems();fillOptions(false);compose();calc();renderHours();
+    renderFilters();renderItems();renderFinishes();fillItems();fillOptions(false);fillContact();compose();calc();renderHours();
   }
   langBtn.addEventListener("click",()=>{lang=lang==="hi"?"en":"hi";try{localStorage.setItem("lang",lang)}catch(e){}applyLang()});
 
@@ -647,8 +672,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 
   eI.value="0";
   applyLang();
-  fetch("products.json?v="+Date.now()).then(r=>{if(!r.ok)throw r;return r.json()}).then(list=>{
-    items=list.map(p=>({code:p.code,group:p.group,name:[p.name,p.name_hi||p.name],size:p.size,fin:p.finish,img:p.image}));
+  const getJSON=u=>fetch(u).then(r=>{if(!r.ok)throw r;return r.json()});
+  getJSON("/api/catalog").catch(()=>getJSON("products.json").then(products=>({products}))).then(data=>{
+    applyShop(data.settings);
+    items=data.products.map(p=>({code:p.code,group:p.group,name:[p.name,p.name_hi||p.name],size:p.size,fin:p.finish,img:p.image,price:typeof p.price==="number"?p.price:null,inStock:p.inStock!==false}));
     eI.value="0";applyLang();fillOptions(true);compose();
   }).catch(()=>{$("groups").innerHTML=`<p style="color:var(--muted)">${t("The catalogue didn't load. Check your internet connection and refresh the page.","कैटलॉग लोड नहीं हुआ। इंटरनेट जाँचें और पेज रीफ़्रेश करें।")}</p>`});
 })();

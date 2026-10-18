@@ -1,132 +1,134 @@
-// Admin API for the buckle catalogue. Runs as a Vercel serverless function.
-// The shopkeeper sends a password; the GitHub key stays here on the server.
-// Settings (Vercel → Project → Settings → Environment Variables):
-//   ADMIN_PASSWORD  the shopkeeper's password
-//   GITHUB_TOKEN    fine-grained token with Contents: Read and write on the repo
-//   GITHUB_OWNER / GITHUB_REPO / GITHUB_BRANCH  optional, for when the repo moves
-const crypto = require("crypto");
+// Admin actions for the owner. Every request carries the admin password.
+const { readCatalog, writeCatalog, saveImage, deleteImage, checkPassword, setPassword } = require("./_store");
 
-const OWNER = process.env.GITHUB_OWNER || "itzabhi2103";
-const REPO = process.env.GITHUB_REPO || "buckle-website";
-const BRANCH = process.env.GITHUB_BRANCH || "main";
-const DATA = "products.json";
 const GROUPS = ["shoe", "sandal", "plastic", "deco", "ring", "special"];
 const FINISHES = ["gold", "silver", "black", "rose", "clear", "white"];
-
-function passwordOk(given) {
-  const want = process.env.ADMIN_PASSWORD || "";
-  if (!want || typeof given !== "string") return false;
-  const h = s => crypto.createHash("sha256").update(s).digest();
-  return crypto.timingSafeEqual(h(given), h(want));
-}
-
-async function gh(path, opts = {}) {
-  const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}` + (opts.method ? "" : `?ref=${BRANCH}`);
-  const r = await fetch(url, {
-    ...opts,
-    headers: {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-      Accept: "application/vnd.github+json",
-      "X-GitHub-Api-Version": "2022-11-28",
-      "User-Agent": "okshoe-admin",
-      ...(opts.body ? { "Content-Type": "application/json" } : {}),
-    },
-  });
-  if (!r.ok) { const e = new Error(`GitHub ${r.status}`); e.status = r.status; throw e; }
-  return r.status === 204 ? null : r.json();
-}
-
-async function load() {
-  const f = await gh(DATA);
-  return { sha: f.sha, list: JSON.parse(Buffer.from(f.content, "base64").toString("utf8")) };
-}
-
-function save(list, sha, message) {
-  const content = Buffer.from(JSON.stringify(list, null, 2) + "\n", "utf8").toString("base64");
-  return gh(DATA, { method: "PUT", body: JSON.stringify({ message, content, sha, branch: BRANCH }) });
-}
-
-// Apply a change to products.json; retry once if another save landed in between
-async function update(change, message) {
-  for (let attempt = 0; ; attempt++) {
-    const { sha, list } = await load();
-    const next = change(list);
-    if (next === list) return list; // nothing to save
-    try { await save(next, sha, message); return next; }
-    catch (e) { if (e.status !== 409 || attempt) throw e; }
-  }
-}
-
 const fail = (res, status, error) => res.status(status).json({ error });
+const text = (v, max) => String(v == null ? "" : v).trim().slice(0, max);
+const isPhoto = s => typeof s === "string" && s.length > 100 && s.length < 3_000_000 && /^[A-Za-z0-9+/]+=*$/.test(s);
+const TIME = /^([01]\d|2[0-3]):[0-5]\d$/;
+
+// Check and tidy one product from the form; returns [product, error]
+function cleanProduct(p) {
+  const code = text(p.code, 12).toUpperCase();
+  const name = text(p.name, 80);
+  const size = parseInt(p.size, 10);
+  const price = p.price === "" || p.price == null ? null : Math.round(Number(p.price) * 100) / 100;
+  if (!/^[A-Z]{1,5}-\d{1,4}$/.test(code)) return [null, "Design code should look like SBM-005."];
+  if (!GROUPS.includes(p.group)) return [null, "Choose a category."];
+  if (!FINISHES.includes(p.finish)) return [null, "Choose a finish."];
+  if (!name) return [null, "Type a name for the buckle in English."];
+  if (!(size > 0 && size < 200)) return [null, "Enter the size in mm."];
+  if (price !== null && !(price >= 0 && price < 100000)) return [null, "Enter the price as a number, like 2.50, or leave it empty."];
+  return [{ code, group: p.group, name, name_hi: text(p.name_hi, 80) || name, size, finish: p.finish, price, inStock: p.inStock !== false }, null];
+}
 
 module.exports = async (req, res) => {
   res.setHeader("Cache-Control", "no-store");
   if (req.method !== "POST") return fail(res, 405, "Use POST.");
-  if (!process.env.GITHUB_TOKEN || !process.env.ADMIN_PASSWORD)
-    return fail(res, 500, "The admin page isn't set up yet. Add GITHUB_TOKEN and ADMIN_PASSWORD in Vercel.");
-  const body = req.body || {};
-  if (!passwordOk(body.password)) {
-    await new Promise(r => setTimeout(r, 1000)); // slow down password guessing
-    return fail(res, 401, "Wrong password.");
-  }
+  const b = req.body || {};
 
   try {
-    if (body.action === "list") {
-      const { list } = await load();
-      return res.json({ products: list });
+    if (!(await checkPassword(b.password))) {
+      await new Promise(r => setTimeout(r, 1000)); // slow down password guessing
+      return fail(res, 401, "Wrong password.");
     }
+    const cat = await readCatalog();
+    const done = async () => { await writeCatalog(cat); return res.json(cat); };
 
-    if (body.action === "add") {
-      const p = body.product || {};
-      const code = String(p.code || "").trim().toUpperCase();
-      const name = String(p.name || "").trim().slice(0, 80);
-      const nameHi = String(p.name_hi || "").trim().slice(0, 80) || name;
-      const size = parseInt(p.size, 10);
-      const image64 = String(body.image || "");
-      if (!/^[A-Z]{1,5}-\d{1,4}$/.test(code)) return fail(res, 400, "Design code should look like SBM-005.");
-      if (!GROUPS.includes(p.group)) return fail(res, 400, "Choose a category.");
-      if (!FINISHES.includes(p.finish)) return fail(res, 400, "Choose a finish.");
-      if (!name) return fail(res, 400, "Type a name for the buckle in English.");
-      if (!(size > 0 && size < 200)) return fail(res, 400, "Enter the size in mm.");
-      if (!image64 || image64.length > 3_000_000 || !/^[A-Za-z0-9+/]+=*$/.test(image64))
-        return fail(res, 400, "Choose a photo of the buckle (JPG or PNG, under 2 MB).");
+    switch (b.action) {
+      case "list":
+        return res.json(cat);
 
-      const { list } = await load();
-      if (list.some(x => x.code === code)) return fail(res, 409, `${code} is already on the website. Use a different code.`);
-
-      const image = `images/${code.toLowerCase()}.jpg`;
-      let existing;
-      try { existing = (await gh(image)).sha; } catch (e) { if (e.status !== 404) throw e; }
-      await gh(image, { method: "PUT", body: JSON.stringify({ message: `Add photo for ${code}`, content: image64, branch: BRANCH, ...(existing ? { sha: existing } : {}) }) });
-
-      const item = { code, group: p.group, name, name_hi: nameHi, size, finish: p.finish, image };
-      const next = await update(l => [...l.filter(x => x.code !== code), item], `Add buckle ${code}`);
-      return res.json({ products: next });
-    }
-
-    if (body.action === "remove") {
-      const code = String(body.code || "").trim().toUpperCase();
-      let image = null;
-      const next = await update(l => {
-        const it = l.find(x => x.code === code);
-        if (!it) return l;
-        image = it.image;
-        return l.filter(x => x.code !== code);
-      }, `Remove buckle ${code}`);
-      if (image) {
-        try {
-          const f = await gh(image);
-          await gh(image, { method: "DELETE", body: JSON.stringify({ message: `Remove photo for ${code}`, sha: f.sha, branch: BRANCH }) });
-        } catch (e) { /* the buckle is already off the list; a leftover photo does no harm */ }
+      case "add": {
+        const [p, err] = cleanProduct(b.product || {});
+        if (err) return fail(res, 400, err);
+        if (cat.products.some(x => x.code === p.code)) return fail(res, 409, `${p.code} is already on the website. Use a different code.`);
+        if (!isPhoto(b.image)) return fail(res, 400, "Choose a photo of the buckle.");
+        p.id = p.code + "-" + Date.now().toString(36);
+        p.image = await saveImage(p.code, b.image);
+        cat.products.push(p);
+        return done();
       }
-      return res.json({ products: next });
-    }
 
-    return fail(res, 400, "Unknown action.");
+      case "update": {
+        const i = cat.products.findIndex(x => x.id === b.id);
+        if (i < 0) return fail(res, 404, "That buckle isn't on the website any more. Reload the page.");
+        const [p, err] = cleanProduct(b.product || {});
+        if (err) return fail(res, 400, err);
+        if (cat.products.some((x, j) => j !== i && x.code === p.code)) return fail(res, 409, `${p.code} is already used by another buckle.`);
+        p.id = cat.products[i].id;
+        p.image = cat.products[i].image;
+        if (b.image) {
+          if (!isPhoto(b.image)) return fail(res, 400, "That photo couldn't be used. Choose a JPG or PNG.");
+          const old = p.image;
+          p.image = await saveImage(p.code, b.image);
+          await deleteImage(old);
+        }
+        cat.products[i] = p;
+        return done();
+      }
+
+      case "prices": { // quick edits from the list: [{id, price, inStock}]
+        for (const ch of Array.isArray(b.changes) ? b.changes : []) {
+          const p = cat.products.find(x => x.id === ch.id);
+          if (!p) continue;
+          if ("price" in ch) {
+            const v = ch.price === "" || ch.price == null ? null : Math.round(Number(ch.price) * 100) / 100;
+            if (v !== null && !(v >= 0 && v < 100000)) return fail(res, 400, `Price for ${p.code} should be a number, like 2.50.`);
+            p.price = v;
+          }
+          if ("inStock" in ch) p.inStock = !!ch.inStock;
+        }
+        return done();
+      }
+
+      case "remove": {
+        const p = cat.products.find(x => x.id === b.id);
+        if (!p) return res.json(cat);
+        cat.products = cat.products.filter(x => x.id !== b.id);
+        await writeCatalog(cat);
+        await deleteImage(p.image);
+        return res.json(cat);
+      }
+
+      case "move": { // reorder within the catalogue: dir -1 (up) or 1 (down)
+        const i = cat.products.findIndex(x => x.id === b.id), j = i + (b.dir < 0 ? -1 : 1);
+        if (i < 0 || j < 0 || j >= cat.products.length) return res.json(cat);
+        [cat.products[i], cat.products[j]] = [cat.products[j], cat.products[i]];
+        return done();
+      }
+
+      case "settings": {
+        const s = b.settings || {};
+        const whatsapp = text(s.whatsapp, 20).replace(/\D/g, "");
+        if (whatsapp.length < 10) return fail(res, 400, "WhatsApp number should have at least 10 digits, with 91 in front, like 919572712345.");
+        const hours = Array.isArray(s.hours) && s.hours.length === 7 ? s.hours.map(d => (Array.isArray(d) && TIME.test(d[0]) && TIME.test(d[1]) ? [d[0], d[1]] : null)) : cat.settings.hours;
+        const mapsUrl = text(s.mapsUrl, 500);
+        cat.settings = {
+          whatsapp,
+          phone: text(s.phone, 30),
+          email: text(s.email, 100),
+          address: text(s.address, 200),
+          landmark: text(s.landmark, 150),
+          mapsUrl: /^https:\/\//.test(mapsUrl) ? mapsUrl : "https://maps.google.com/",
+          hours,
+        };
+        return done();
+      }
+
+      case "password": {
+        const np = String(b.newPassword || "");
+        if (np.length < 6) return fail(res, 400, "The new password needs at least 6 characters.");
+        await setPassword(np);
+        return res.json({ ok: true });
+      }
+
+      default:
+        return fail(res, 400, "Unknown action.");
+    }
   } catch (e) {
-    const msg = e.status === 401 ? "The server's GitHub key is wrong or has expired. Update GITHUB_TOKEN in Vercel."
-      : e.status === 403 || e.status === 404 ? "The server's GitHub key can't change the website. It needs Contents: Read and write on the repo."
-      : "Saving failed. Try again in a minute.";
-    return fail(res, 502, msg);
+    console.error(e);
+    return fail(res, 502, "Saving failed. Check your internet and try again in a minute.");
   }
 };

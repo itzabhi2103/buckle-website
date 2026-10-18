@@ -9,30 +9,26 @@ A one-page website for a manufacturer and wholesaler of **buckles for shoes and 
 - **Quote enquiry with no sign-up:** buyers choose a buckle, width, finish and quantity (gross or pieces), and WhatsApp opens with the message already written.
 - **Contact:** factory address with a landmark, live open/closed hours, GSTIN, payment terms (UPI, NEFT/RTGS, cheque) and dispatch options.
 
-## Adding or removing buckles (no coding)
+## Admin page (no coding)
 
 Open **https://okshoe-material.vercel.app/admin.html** and log in with the admin password.
 
-- **Add a buckle:** choose a photo, category, name, size and finish. The design code is suggested automatically (e.g. `SBM-005`). Tap **Add buckle to website**.
-- **Remove a buckle:** tap **Remove**, then tap again to confirm.
+- **Buckles:** add a buckle with a photo, edit any buckle (name, size, finish, price, photo), change prices and stock straight from the list, reorder, or remove.
+- **Shop details:** WhatsApp number, phone, email, address, landmark, Google Maps link and opening hours.
+- **Password:** change the admin password.
 
-The website updates within a minute. Visitors never see the admin page.
+Changes show on the website within about a minute.
 
 ### How it works
 
-`admin.html` sends changes to `api/admin.js`, a Vercel serverless function. The function checks the password, then saves the photo to `images/` and updates `products.json` in this repo through the GitHub API. Vercel redeploys on every commit. The GitHub key lives only in Vercel's settings and never reaches the browser.
-
-Vercel → Project → Settings → **Environment Variables**:
-
-| Name | Value |
-|---|---|
-| `ADMIN_PASSWORD` | the shopkeeper's password (change it any time, then redeploy) |
-| `GITHUB_TOKEN` | fine-grained token, this repo only, **Contents: Read and write** |
-| `GITHUB_OWNER`, `GITHUB_REPO` | optional; set these if the repo is transferred to another account |
+- `admin.html` talks to `api/admin.js` (a Vercel serverless function) which checks the password.
+- The catalogue, shop details and uploaded photos are stored in **Vercel Blob** (store `okshoe-catalog`, connected to the project). No GitHub key or database setup is needed.
+- `api/catalog.js` serves the catalogue to the public site. Before the first save it falls back to `products.json`.
+- The first password is the `ADMIN_PASSWORD` environment variable in Vercel. Once the owner changes it in the admin page, the new one is stored (hashed) in Blob.
 
 ## Editing by hand
 
-Buckles are listed in `products.json`. Everything else is in `index.html`. Near the top of its `<script>` you'll find:
+`products.json` is only the starting catalogue; live data is edited through the admin page. The page itself is `index.html`. Near the top of its `<script>` you'll find:
 
 - `WHATSAPP`: the WhatsApp number (country code + number, no spaces)
 - `FIN` / `GROUPS`: finish and group names

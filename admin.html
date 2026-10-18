@@ -7,173 +7,241 @@
 <title>OKSHOE Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&family=Hind:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500;600;900&family=IBM+Plex+Mono:wght@500;600&family=Hind:wght@400;500;600&display=swap">
 <style>
-/* Admin: same navy/gold tokens as the public site; one-column working form. */
+/* Admin: same navy/gold tokens as the public site; tabs + list rows built for phones. */
 :root{
   --bg:#F4F2EE; --surface:#FFFFFF; --ink:#16202E; --muted:#5A6271; --line:#DAD6CE;
   --navy:#1B2B45; --navy-ink:#F2EEE6; --gold:#9A7428; --gold-bright:#D2A84E; --tile:#F1ECE4;
-  --ok:#1F7A4D; --err:#B4432F;
+  --ok:#1F7A4D; --err:#B4432F; --changed:#FFF4D6;
   --display:"Barlow Condensed",ui-sans-serif,system-ui,sans-serif;
   --body:"Barlow","Hind",ui-sans-serif,system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){:root{
   --bg:#0F1520; --surface:#161E2B; --ink:#E8EAEE; --muted:#9CA4B2; --line:#283244;
-  --navy:#1A2A44; --gold:#DDB45E; --ok:#3FAE77; --err:#E07A63; color-scheme:dark}}
+  --navy:#1A2A44; --gold:#DDB45E; --ok:#3FAE77; --err:#E07A63; --changed:#3A3220; color-scheme:dark}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 var(--body)}
 :focus-visible{outline:3px solid var(--gold-bright);outline-offset:2px;border-radius:4px}
-.top{background:var(--navy);color:var(--navy-ink);border-bottom:3px solid var(--gold-bright)}
-.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;height:60px}
-.top b{font:900 1.4rem/1 "Barlow",sans-serif}.top b span{color:var(--gold-bright)}
-.top a{color:var(--navy-ink);font-size:.92rem}
-.wrap{max-width:860px;margin-inline:auto;padding-inline:16px}
-main{padding-block:28px 60px;display:grid;gap:24px}
-h1{font:700 2.1rem/1 var(--display);text-transform:uppercase;margin:0}
-h2{font:700 1.4rem/1.1 var(--display);text-transform:uppercase;margin:0 0 4px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:16px}
+[hidden]{display:none!important}
+.top{background:var(--navy);color:var(--navy-ink);border-bottom:3px solid var(--gold-bright);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;height:58px}
+.top b{font:900 1.35rem/1 "Barlow",sans-serif}.top b span{color:var(--gold-bright)}
+.top a,.top button{color:var(--navy-ink);font:500 .92rem var(--body);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:6px}
+.wrap{max-width:900px;margin-inline:auto;padding-inline:16px}
+main{padding-block:22px 120px;display:grid;gap:20px}
+h1{font:700 2rem/1 var(--display);text-transform:uppercase;margin:0}
+h2{font:700 1.35rem/1.1 var(--display);text-transform:uppercase;margin:0}
 .muted{color:var(--muted);margin:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:grid;gap:16px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:10px 16px;font:600 .95rem var(--body);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:600px){.grid2{grid-template-columns:1fr}}
 .field{display:grid;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
 .field label{font-weight:600;font-size:.92rem}
 .field label small{font-weight:400;color:var(--muted)}
-input,select{font:400 1rem var(--body);padding:12px 14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%;min-width:0}
+input,select{font:400 1rem var(--body);padding:11px 13px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%;min-width:0}
 input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold-bright) 30%,transparent)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:6px;font:600 1rem/1.1 var(--body);border:2px solid transparent;cursor:pointer;text-decoration:none}
+.check{display:flex;gap:10px;align-items:center;font-weight:500}
+.check input{width:20px;height:20px;accent-color:var(--gold);flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:6px;font:600 1rem/1.1 var(--body);border:2px solid transparent;cursor:pointer;text-decoration:none}
 .btn-gold{background:var(--gold-bright);color:#16202E}
 .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-danger{background:transparent;color:var(--err);border-color:currentColor}
 .btn:disabled{opacity:.55;cursor:wait}
-.photo{display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:center}
-@media (max-width:520px){.photo{grid-template-columns:1fr}}
-.drop{aspect-ratio:1;max-width:100%;border:2px dashed var(--line);border-radius:10px;background:var(--tile);display:grid;place-items:center;overflow:hidden;cursor:pointer;color:#5A6271;text-align:center;font-size:.9rem;padding:8px}
-.drop img{width:100%;height:100%;object-fit:contain}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
 .status{padding:12px 14px;border-radius:8px;font-weight:500;border:1px solid}
 .status.ok{color:var(--ok);border-color:currentColor;background:color-mix(in srgb,var(--ok) 8%,transparent)}
 .status.err{color:var(--err);border-color:currentColor;background:color-mix(in srgb,var(--err) 8%,transparent)}
 .status.busy{color:var(--muted);border-color:var(--line)}
+.photo{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center}
+@media (max-width:520px){.photo{grid-template-columns:110px 1fr}}
+.drop{aspect-ratio:1;max-width:100%;border:2px dashed var(--line);border-radius:10px;background:var(--tile);display:grid;place-items:center;overflow:hidden;cursor:pointer;color:#5A6271;text-align:center;font-size:.85rem;padding:6px}
+.drop img{width:100%;height:100%;object-fit:contain}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.toolbar input{flex:1 1 200px}
+.toolbar select{flex:0 1 200px}
 .list{display:grid;gap:8px}
-.row{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:8px;border:1px solid var(--line);border-radius:8px}
-.row img{width:56px;height:56px;object-fit:contain;background:var(--tile);border-radius:6px}
-.row b{font:600 .95rem/1.2 var(--mono)}
-.row span{color:var(--muted);font-size:.88rem}
-.row button{font:600 .85rem var(--body);padding:8px 12px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--err);cursor:pointer}
-.row button.confirm{background:var(--err);color:#fff;border-color:var(--err)}
-.steps{margin:0;padding-left:20px;display:grid;gap:6px;color:var(--muted)}
-.steps b{color:var(--ink)}
-code{font-family:var(--mono);font-size:.88em;background:var(--bg);padding:1px 5px;border-radius:4px}
-details summary{cursor:pointer;font-weight:600}
-[hidden]{display:none!important}
+.row{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.row.changed{background:var(--changed)}
+.row img{width:64px;height:64px;object-fit:contain;background:var(--tile);border-radius:6px}
+.row .info{min-width:0;display:grid;gap:6px}
+.row .info b{font:600 .95rem/1.2 var(--mono)}
+.row .info span{color:var(--muted);font-size:.86rem;line-height:1.3}
+.quick{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.price{display:flex;align-items:center;gap:4px}
+.price input{width:110px;padding:8px 10px;font:500 .95rem var(--mono)}
+.price small{color:var(--muted)}
+.quick .check{font-size:.88rem}
+.row .btns{display:grid;gap:6px;justify-items:end}
+.row .btns .btn{padding:8px 12px;font-size:.88rem}
+.move{display:flex;gap:4px}
+.move button{width:34px;height:30px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.out-badge{display:inline-block;font:600 .72rem/1 var(--mono);color:var(--err);border:1px solid currentColor;border-radius:4px;padding:3px 5px;margin-left:6px;vertical-align:middle}
+@media (max-width:560px){.row{grid-template-columns:56px 1fr}.row img{width:56px;height:56px}.row .btns{grid-column:1/-1;display:flex;justify-content:flex-end;flex-wrap:wrap}}
+.savebar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--navy);color:var(--navy-ink);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 24px rgba(0,0,0,.2)}
+.savebar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.savebar .btn-ghost{color:var(--navy-ink);border-color:color-mix(in srgb,var(--navy-ink) 40%,transparent)}
+.hours{display:grid;gap:8px}
+.hrow{display:grid;grid-template-columns:110px 1fr 1fr auto;gap:8px;align-items:center}
+.hrow input[type=time]{padding:8px 10px}
+@media (max-width:520px){.hrow{grid-template-columns:90px 1fr 1fr}.hrow .check{grid-column:1/-1}}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap"><b>OK<span>SHOE</span> Admin</b><a href="./" target="_blank" rel="noopener">View website ↗</a></div></header>
+<header class="top"><div class="wrap"><b>OK<span>SHOE</span> Admin</b><span><a href="./" target="_blank" rel="noopener">View website ↗</a><button type="button" id="logout" hidden>Log out</button></span></div></header>
 
 <main class="wrap">
-  <div>
-    <h1>Manage buckles</h1>
-    <p class="muted">Add a new buckle or remove an old one. Changes appear on the website about one minute after you save.</p>
-  </div>
-
-  <!-- Step 1: log in -->
-  <form class="card" id="connect">
-    <div>
-      <h2>Log in</h2>
-      <p class="muted">Enter the admin password you were given.</p>
-    </div>
+  <form class="card" id="login-card">
+    <div><h1>Admin</h1><p class="muted">Enter the admin password.</p></div>
     <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password"></div>
-    <label class="check" for="remember" style="display:flex;gap:10px;align-items:center;font-weight:500"><input id="remember" type="checkbox" checked style="width:20px;height:20px;accent-color:var(--gold)">Keep me logged in on this device</label>
+    <label class="check" for="remember"><input id="remember" type="checkbox" checked>Keep me logged in on this device</label>
     <div><button class="btn btn-gold" id="login" type="submit">Log in</button></div>
-    <div class="status" id="connect-status" hidden></div>
+    <div class="status" id="login-status" hidden></div>
   </form>
 
-  <!-- Step 2: add a buckle -->
-  <section class="card" id="add" hidden>
-    <div>
-      <h2>Add a new buckle</h2>
-      <p class="muted">Take the photo on a plain light background, with the buckle in the middle.</p>
+  <div id="app" hidden>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" type="button" data-tab="buckles" aria-selected="true">Buckles</button>
+      <button class="tab" role="tab" type="button" data-tab="shop" aria-selected="false">Shop details</button>
+      <button class="tab" role="tab" type="button" data-tab="account" aria-selected="false">Password</button>
     </div>
-    <div class="photo">
-      <label class="drop" id="drop" for="photo"><span id="drop-text">Tap to choose a photo</span><img id="preview" alt="" hidden></label>
-      <div class="field"><label for="photo">Photo</label><input id="photo" type="file" accept="image/*"><p class="muted" style="font-size:.88rem">Large photos are resized automatically before upload.</p></div>
-    </div>
-    <div class="grid2">
-      <div class="field"><label for="group">Category</label><select id="group"></select></div>
-      <div class="field"><label for="code">Design code <small>(filled in for you)</small></label><input id="code" type="text" autocomplete="off"></div>
-      <div class="field"><label for="name">Name (English)</label><input id="name" type="text" placeholder="e.g. Flower ring buckle" autocomplete="off"></div>
-      <div class="field"><label for="name-hi">Name (Hindi) <small>(optional)</small></label><input id="name-hi" type="text" lang="hi" placeholder="जैसे: फूल वाला रिंग बकल" autocomplete="off"></div>
-      <div class="field"><label for="size">Size (mm)</label><input id="size" type="number" inputmode="numeric" min="5" max="80" step="1" value="20"></div>
-      <div class="field"><label for="finish">Finish</label><select id="finish"></select></div>
-    </div>
-    <div><button class="btn btn-gold" id="add-btn" type="button">Add buckle to website</button></div>
-    <div class="status" id="add-status" hidden></div>
-  </section>
 
-  <!-- Step 3: current list -->
-  <section class="card" id="manage" hidden>
-    <div style="display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap">
-      <div><h2>Buckles on the website</h2><p class="muted" id="count"></p></div>
-      <button class="btn btn-ghost" id="disconnect" type="button">Log out</button>
-    </div>
-    <div class="status" id="list-status" hidden></div>
-    <div class="list" id="list"></div>
-  </section>
+    <section id="tab-buckles" style="display:grid;gap:20px;margin-top:20px">
+      <div class="card" id="form-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <h2 id="form-title">Add a new buckle</h2>
+          <button class="btn btn-ghost" type="button" id="cancel-edit" hidden>Cancel editing</button>
+        </div>
+        <div class="photo">
+          <label class="drop" for="photo"><span id="drop-text">Tap to add a photo</span><img id="preview" alt="" hidden></label>
+          <div class="field"><label for="photo">Photo <small id="photo-hint">(plain light background works best)</small></label><input id="photo" type="file" accept="image/*"></div>
+        </div>
+        <div class="grid2">
+          <div class="field"><label for="f-group">Category</label><select id="f-group"></select></div>
+          <div class="field"><label for="f-code">Design code</label><input id="f-code" type="text" autocomplete="off"></div>
+          <div class="field"><label for="f-name">Name (English)</label><input id="f-name" type="text" autocomplete="off" placeholder="e.g. Flower ring buckle"></div>
+          <div class="field"><label for="f-name-hi">Name (Hindi) <small>(optional)</small></label><input id="f-name-hi" type="text" lang="hi" autocomplete="off" placeholder="जैसे: फूल वाला रिंग बकल"></div>
+          <div class="field"><label for="f-size">Size (mm)</label><input id="f-size" type="number" inputmode="numeric" min="1" max="199" value="20"></div>
+          <div class="field"><label for="f-finish">Finish</label><select id="f-finish"></select></div>
+          <div class="field"><label for="f-price">Price per piece (₹) <small>(empty = "Price on request")</small></label><input id="f-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 2.50"></div>
+          <div class="field" style="align-content:end"><label class="check" for="f-stock"><input id="f-stock" type="checkbox" checked>In stock</label></div>
+        </div>
+        <div class="actions"><button class="btn btn-gold" id="save-product" type="button">Add buckle to website</button></div>
+        <div class="status" id="form-status" hidden></div>
+      </div>
+
+      <div class="card">
+        <div><h2>Buckles on the website</h2><p class="muted" id="count"></p></div>
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search code or name" aria-label="Search buckles">
+          <select id="filter" aria-label="Category"></select>
+        </div>
+        <p class="muted" style="font-size:.9rem">Change prices or stock right here, then tap <b>Save changes</b> at the bottom.</p>
+        <div class="status" id="list-status" hidden></div>
+        <div class="list" id="list"></div>
+      </div>
+    </section>
+
+    <section id="tab-shop" hidden style="margin-top:20px">
+      <form class="card" id="shop-form">
+        <div><h2>Shop details</h2><p class="muted">These show on the website. Enquiries go to the WhatsApp number.</p></div>
+        <div class="grid2">
+          <div class="field"><label for="s-whatsapp">WhatsApp number <small>(91 + 10 digits)</small></label><input id="s-whatsapp" type="tel" inputmode="numeric" placeholder="919572712345"></div>
+          <div class="field"><label for="s-phone">Phone (as shown on the website)</label><input id="s-phone" type="text" placeholder="+91 95727 12345"></div>
+          <div class="field full"><label for="s-email">Email</label><input id="s-email" type="email"></div>
+          <div class="field full"><label for="s-address">Address</label><input id="s-address" type="text"></div>
+          <div class="field full"><label for="s-landmark">Landmark <small>(optional)</small></label><input id="s-landmark" type="text" placeholder="e.g. Behind the industrial area police chowki"></div>
+          <div class="field full"><label for="s-maps">Google Maps link <small>(optional)</small></label><input id="s-maps" type="url" placeholder="https://maps.app.goo.gl/…"></div>
+        </div>
+        <h2 style="font-size:1.1rem">Opening hours</h2>
+        <div class="hours" id="hours"></div>
+        <div class="actions"><button class="btn btn-gold" type="submit" id="save-shop">Save shop details</button></div>
+        <div class="status" id="shop-status" hidden></div>
+      </form>
+    </section>
+
+    <section id="tab-account" hidden style="margin-top:20px">
+      <form class="card" id="pw-form">
+        <div><h2>Change password</h2><p class="muted">Anyone with the password can change the website, so keep it private.</p></div>
+        <div class="grid2">
+          <div class="field"><label for="pw-new">New password</label><input id="pw-new" type="password" autocomplete="new-password" minlength="6"></div>
+          <div class="field"><label for="pw-again">Type it again</label><input id="pw-again" type="password" autocomplete="new-password"></div>
+        </div>
+        <div class="actions"><button class="btn btn-gold" type="submit" id="save-pw">Change password</button></div>
+        <div class="status" id="pw-status" hidden></div>
+      </form>
+    </section>
+  </div>
 </main>
+
+<div class="savebar" id="savebar" hidden><div class="wrap"><span id="savebar-text"></span><span class="actions"><button class="btn btn-ghost" type="button" id="discard">Undo</button><button class="btn btn-gold" type="button" id="save-quick">Save changes</button></span></div></div>
 
 <script>
 (function(){
-  // Talks to /api/admin (Vercel function). The GitHub key never reaches this page.
   const GROUPS={shoe:["Shoe buckles","SBM"],sandal:["Sandal buckles","SDB"],plastic:["Plastic buckles","PB"],deco:["Decorative buckles","DB"],ring:["Ring & loop buckles","RB"],special:["Special design buckles","SPB"]};
   const METAL={gold:"Gold",silver:"Silver",black:"Black",rose:"Rose Gold"}, PLASTIC={black:"Black",clear:"Clear",white:"White"};
+  const DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
   const $=id=>document.getElementById(id);
-  const esc=v=>String(v).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  let password="", products=[], photoBlob=null;
+  const esc=v=>String(v==null?"":v).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  let password="", cat={products:[],settings:{}}, photoBlob=null, editingId=null, quick={};
 
-  function show(el,cls,msg){el.hidden=false;el.className="status "+cls;el.textContent=msg}
+  function show(el,cls,msg){el.hidden=false;el.className="status "+cls;el.textContent=msg;if(cls==="ok")setTimeout(()=>{if(el.textContent===msg)el.hidden=true},6000)}
   const blobB64=blob=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(",")[1]);r.onerror=rej;r.readAsDataURL(blob)});
   async function api(action,extra={}){
     let r;
     try{r=await fetch("/api/admin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action,password,...extra})})}
     catch(e){throw new Error("No internet connection. Check it and try again.")}
     const data=await r.json().catch(()=>({}));
-    if(!r.ok){const e=new Error(data.error||"Something went wrong ("+r.status+"). Try again in a minute.");e.status=r.status;throw e}
+    if(!r.ok){const e=new Error(data.error||"Something went wrong. Try again in a minute.");e.status=r.status;throw e}
     return data;
   }
 
   // ---- Log in / out ----
   try{password=localStorage.getItem("okshoe-pass")||""}catch(e){}
-  $("connect").addEventListener("submit",async e=>{
+  async function start(){
+    cat=await api("list");
+    $("login-card").hidden=true;$("app").hidden=false;$("logout").hidden=false;
+    renderList();fillShop();suggestCode();
+  }
+  $("login-card").addEventListener("submit",async e=>{
     e.preventDefault();
     password=$("password").value;
-    if(!password){show($("connect-status"),"err","Type the password first.");return}
-    $("login").disabled=true;show($("connect-status"),"busy","Checking…");
+    if(!password) return show($("login-status"),"err","Type the password first.");
+    $("login").disabled=true;show($("login-status"),"busy","Checking…");
     try{
       await start();
-      try{ if($("remember").checked) localStorage.setItem("okshoe-pass",password); else localStorage.removeItem("okshoe-pass") }catch(e){}
-    }catch(err){show($("connect-status"),"err",err.message)}
+      try{ $("remember").checked?localStorage.setItem("okshoe-pass",password):localStorage.removeItem("okshoe-pass") }catch(e){}
+    }catch(err){show($("login-status"),"err",err.message)}
     finally{$("login").disabled=false}
   });
-  $("disconnect").addEventListener("click",()=>{try{localStorage.removeItem("okshoe-pass")}catch(e){}location.reload()});
+  $("logout").addEventListener("click",()=>{try{localStorage.removeItem("okshoe-pass")}catch(e){}location.reload()});
 
-  async function start(){
-    products=(await api("list")).products;
-    $("connect").hidden=true;$("add").hidden=false;$("manage").hidden=false;
-    renderList();suggestCode();
-  }
+  // ---- Tabs ----
+  document.querySelector(".tabs").addEventListener("click",e=>{
+    const t=e.target.closest("[data-tab]");if(!t)return;
+    document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b===t));
+    ["buckles","shop","account"].forEach(k=>$("tab-"+k).hidden=k!==t.dataset.tab);
+  });
 
-  // ---- Form ----
-  $("group").innerHTML=Object.entries(GROUPS).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join("");
-  function fillFinish(){
-    const opts=$("group").value==="plastic"?PLASTIC:METAL;
-    $("finish").innerHTML=Object.entries(opts).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+  // ---- Add / edit form ----
+  $("f-group").innerHTML=Object.entries(GROUPS).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join("");
+  function fillFinish(keep){
+    const opts=$("f-group").value==="plastic"?PLASTIC:METAL;
+    $("f-finish").innerHTML=Object.entries(opts).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+    if(keep&&opts[keep]) $("f-finish").value=keep;
   }
   function suggestCode(){
-    const pre=GROUPS[$("group").value][1];
-    const nums=products.filter(p=>p.code.startsWith(pre+"-")).map(p=>parseInt(p.code.split("-")[1],10)||0);
-    $("code").value=pre+"-"+String((nums.length?Math.max(...nums):0)+1).padStart(3,"0");
+    if(editingId) return;
+    const pre=GROUPS[$("f-group").value][1];
+    const nums=cat.products.filter(p=>p.code.startsWith(pre+"-")).map(p=>parseInt(p.code.split("-")[1],10)||0);
+    $("f-code").value=pre+"-"+String((nums.length?Math.max(...nums):0)+1).padStart(3,"0");
   }
-  $("group").addEventListener("change",()=>{fillFinish();suggestCode()});
+  $("f-group").addEventListener("change",()=>{fillFinish($("f-finish").value);suggestCode()});
   fillFinish();
 
   // Resize photo in the browser to max 800px, JPEG
@@ -186,46 +254,157 @@ details summary{cursor:pointer;font-weight:600}
       const ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,c.width,c.height);
       photoBlob=await new Promise(r=>c.toBlob(r,"image/jpeg",.88));
       $("preview").src=URL.createObjectURL(photoBlob);$("preview").hidden=false;$("drop-text").hidden=true;
-    }catch(err){photoBlob=null;show($("add-status"),"err","That file couldn't be opened as a photo. Choose a JPG or PNG image.")}
+    }catch(err){photoBlob=null;show($("form-status"),"err","That file couldn't be opened as a photo. Choose a JPG or PNG image.")}
   });
 
-  $("add-btn").addEventListener("click",async()=>{
-    const st=$("add-status"),btn=$("add-btn");
-    const code=$("code").value.trim().toUpperCase(),name=$("name").value.trim(),size=parseInt($("size").value,10);
-    if(!photoBlob) return show(st,"err","Choose a photo of the buckle.");
-    if(!/^[A-Z]+-\d+$/.test(code)) return show(st,"err","Design code should look like SBM-005.");
-    if(products.some(p=>p.code===code)) return show(st,"err",code+" is already on the website. Use a different code.");
-    if(!name) return show(st,"err","Type a name for the buckle in English.");
-    if(!(size>0)) return show(st,"err","Enter the size in mm.");
-    btn.disabled=true;show(st,"busy","Uploading photo and saving…");
+  function resetForm(){
+    editingId=null;photoBlob=null;
+    $("form-title").textContent="Add a new buckle";$("save-product").textContent="Add buckle to website";$("cancel-edit").hidden=true;
+    $("photo-hint").textContent="(plain light background works best)";
+    ["f-name","f-name-hi","f-price","photo"].forEach(id=>$(id).value="");$("f-size").value=20;$("f-stock").checked=true;
+    $("preview").hidden=true;$("drop-text").hidden=false;
+    suggestCode();
+  }
+  function editProduct(id){
+    const p=cat.products.find(x=>x.id===id);if(!p)return;
+    editingId=id;photoBlob=null;
+    $("f-group").value=p.group;fillFinish(p.finish);
+    $("f-code").value=p.code;$("f-name").value=p.name;$("f-name-hi").value=p.name_hi===p.name?"":(p.name_hi||"");
+    $("f-size").value=p.size;$("f-price").value=p.price==null?"":p.price;$("f-stock").checked=p.inStock!==false;
+    $("preview").src=p.image;$("preview").hidden=false;$("drop-text").hidden=true;$("photo").value="";
+    $("photo-hint").textContent="(choose one only to replace the photo)";
+    $("form-title").textContent="Edit "+p.code;$("save-product").textContent="Save changes";$("cancel-edit").hidden=false;
+    $("form-card").scrollIntoView({behavior:"smooth"});
+  }
+  $("cancel-edit").addEventListener("click",resetForm);
+
+  $("save-product").addEventListener("click",async()=>{
+    const st=$("form-status"),btn=$("save-product"),wasEditing=!!editingId;
+    const product={code:$("f-code").value.trim().toUpperCase(),group:$("f-group").value,name:$("f-name").value.trim(),name_hi:$("f-name-hi").value.trim(),
+      size:$("f-size").value,finish:$("f-finish").value,price:$("f-price").value,inStock:$("f-stock").checked};
+    if(!wasEditing&&!photoBlob) return show(st,"err","Add a photo of the buckle.");
+    if(!product.name) return show(st,"err","Type a name for the buckle in English.");
+    btn.disabled=true;show(st,"busy",photoBlob?"Uploading photo and saving…":"Saving…");
     try{
-      const product={code,group:$("group").value,name,name_hi:$("name-hi").value.trim(),size,finish:$("finish").value};
-      products=(await api("add",{product,image:await blobB64(photoBlob)})).products;
-      show(st,"ok",`${code} added. It will show on the website in about one minute.`);
-      ["name","name-hi","photo"].forEach(id=>$(id).value="");photoBlob=null;$("preview").hidden=true;$("drop-text").hidden=false;
-      renderList();suggestCode();
+      const image=photoBlob?await blobB64(photoBlob):undefined;
+      cat=wasEditing?await api("update",{id:editingId,product,image}):await api("add",{product,image});
+      show(st,"ok",product.code+(wasEditing?" updated.":" added.")+" The website shows it within about a minute.");
+      quick={};resetForm();renderList();
     }catch(err){show(st,"err",err.message)}
     finally{btn.disabled=false}
   });
 
-  // ---- List & remove ----
+  // ---- List with quick price / stock edits ----
+  $("filter").innerHTML=`<option value="">All categories</option>`+Object.entries(GROUPS).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join("");
+  $("search").addEventListener("input",renderList);$("filter").addEventListener("change",renderList);
   function renderList(){
-    $("count").textContent=products.length+" buckles";
-    $("list").innerHTML=products.map((p,i)=>`<div class="row"><img src="${esc(p.image)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><div><b>${esc(p.code)}</b><br><span>${esc(p.name)} · ${esc(p.size)} mm · ${(GROUPS[p.group]||["?"])[0]}</span></div><button type="button" data-code="${esc(p.code)}">Remove</button></div>`).join("");
+    const q=$("search").value.trim().toLowerCase(),g=$("filter").value;
+    $("count").textContent=cat.products.length+" buckles · "+cat.products.filter(p=>p.inStock===false).length+" out of stock";
+    const rows=cat.products.filter(p=>(!g||p.group===g)&&(!q||(p.code+" "+p.name).toLowerCase().includes(q)));
+    $("list").innerHTML=rows.length?rows.map(p=>{
+      const ch=quick[p.id]||{},price="price" in ch?ch.price:(p.price==null?"":p.price),stock="inStock" in ch?ch.inStock:p.inStock!==false;
+      return `<div class="row${quick[p.id]?" changed":""}" data-id="${esc(p.id)}">
+        <img src="${esc(p.image)}" alt="" loading="lazy">
+        <div class="info">
+          <div><b>${esc(p.code)}</b>${p.inStock===false?'<span class="out-badge">OUT OF STOCK</span>':""}<br><span>${esc(p.name)} · ${esc(p.size)} mm · ${esc(METAL[p.finish]||PLASTIC[p.finish]||p.finish)}</span></div>
+          <div class="quick">
+            <label class="price">₹<input type="number" inputmode="decimal" min="0" step="0.01" value="${esc(price)}" placeholder="on request" data-k="price" aria-label="Price for ${esc(p.code)}"><small>/pc</small></label>
+            <label class="check"><input type="checkbox" data-k="inStock" ${stock?"checked":""}>In stock</label>
+          </div>
+        </div>
+        <div class="btns">
+          <div class="move"><button type="button" data-act="up" aria-label="Move up">↑</button><button type="button" data-act="down" aria-label="Move down">↓</button></div>
+          <button class="btn btn-ghost" type="button" data-act="edit">Edit</button>
+          <button class="btn btn-danger" type="button" data-act="remove">Remove</button>
+        </div>
+      </div>`}).join(""):`<p class="muted">No buckles match.</p>`;
+    updateSavebar();
   }
+  function updateSavebar(){
+    const n=Object.keys(quick).length;
+    $("savebar").hidden=!n;$("savebar-text").textContent=n+" buckle"+(n>1?"s":"")+" changed";
+  }
+  function trackQuick(inp){
+    const row=inp.closest(".row"),id=row.dataset.id,p=cat.products.find(x=>x.id===id);
+    const ch=quick[id]||{};
+    if(inp.dataset.k==="price"){const v=inp.value===""?null:Number(inp.value);if(v===(p.price==null?null:p.price))delete ch.price;else ch.price=inp.value}
+    else{if(inp.checked===(p.inStock!==false))delete ch.inStock;else ch.inStock=inp.checked}
+    if(Object.keys(ch).length)quick[id]=ch;else delete quick[id];
+    row.classList.toggle("changed",!!quick[id]);updateSavebar();
+  }
+  $("list").addEventListener("input",e=>{const inp=e.target.closest("[data-k]");if(inp)trackQuick(inp)});
+  $("list").addEventListener("change",e=>{const inp=e.target.closest("[data-k]");if(inp)trackQuick(inp)});
+  $("discard").addEventListener("click",()=>{quick={};renderList()});
+  $("save-quick").addEventListener("click",async()=>{
+    const btn=$("save-quick"),st=$("list-status");
+    const changes=Object.entries(quick).map(([id,ch])=>({id,...ch}));
+    btn.disabled=true;
+    try{cat=await api("prices",{changes});quick={};renderList();show(st,"ok","Saved. The website updates within about a minute.")}
+    catch(err){show(st,"err",err.message)}
+    finally{btn.disabled=false}
+  });
   $("list").addEventListener("click",async e=>{
-    const b=e.target.closest("button[data-code]");if(!b)return;
-    if(!b.classList.contains("confirm")){b.classList.add("confirm");b.textContent="Tap again to remove";setTimeout(()=>{b.classList.remove("confirm");b.textContent="Remove"},4000);return}
-    const st=$("list-status"),code=b.dataset.code;
-    b.disabled=true;show(st,"busy","Removing "+code+"…");
-    try{
-      products=(await api("remove",{code})).products;
-      show(st,"ok",code+" removed. The website updates in about one minute.");
-      renderList();suggestCode();
-    }catch(err){show(st,"err",err.message);b.disabled=false}
+    const b=e.target.closest("[data-act]");if(!b)return;
+    const id=b.closest(".row").dataset.id,p=cat.products.find(x=>x.id===id),st=$("list-status");
+    if(b.dataset.act==="edit") return editProduct(id);
+    if(Object.keys(quick).length) return show(st,"err","Save or undo your price changes first.");
+    if(b.dataset.act==="remove"){
+      if(!b.classList.contains("armed")){b.classList.add("armed");b.textContent="Tap again";setTimeout(()=>{b.classList.remove("armed");b.textContent="Remove"},4000);return}
+      b.disabled=true;show(st,"busy","Removing "+p.code+"…");
+      try{cat=await api("remove",{id});renderList();suggestCode();show(st,"ok",p.code+" removed.")}
+      catch(err){show(st,"err",err.message);b.disabled=false}
+      return;
+    }
+    b.disabled=true;
+    try{cat=await api("move",{id,dir:b.dataset.act==="up"?-1:1});renderList()}
+    catch(err){show(st,"err",err.message);b.disabled=false}
   });
 
-  if(password){$("password").value=password;start().catch(err=>{show($("connect-status"),"err",err.status===401?"Your password was changed. Log in again.":err.message);if(err.status===401){try{localStorage.removeItem("okshoe-pass")}catch(e){};$("password").value=""}})}
+  // ---- Shop details ----
+  function fillShop(){
+    const s=cat.settings||{};
+    $("s-whatsapp").value=s.whatsapp||"";$("s-phone").value=s.phone||"";$("s-email").value=s.email||"";
+    $("s-address").value=s.address||"";$("s-landmark").value=s.landmark||"";$("s-maps").value=s.mapsUrl||"";
+    const h=s.hours||[];
+    $("hours").innerHTML=DAYS.map((d,i)=>{const v=h[i];return `<div class="hrow"><b>${d}</b>
+      <input type="time" value="${v?v[0]:"09:30"}" aria-label="${d} opens" ${v?"":"disabled"}>
+      <input type="time" value="${v?v[1]:"19:00"}" aria-label="${d} closes" ${v?"":"disabled"}>
+      <label class="check"><input type="checkbox" ${v?"":"checked"}>Closed</label></div>`}).join("");
+  }
+  $("hours").addEventListener("change",e=>{
+    if(e.target.type!=="checkbox")return;
+    e.target.closest(".hrow").querySelectorAll("input[type=time]").forEach(t=>t.disabled=e.target.checked);
+  });
+  $("shop-form").addEventListener("submit",async e=>{
+    e.preventDefault();
+    const st=$("shop-status"),btn=$("save-shop");
+    const hours=[...document.querySelectorAll(".hrow")].map(r=>{const t=r.querySelectorAll("input[type=time]");return r.querySelector("input[type=checkbox]").checked?null:[t[0].value,t[1].value]});
+    const settings={whatsapp:$("s-whatsapp").value,phone:$("s-phone").value,email:$("s-email").value,address:$("s-address").value,landmark:$("s-landmark").value,mapsUrl:$("s-maps").value,hours};
+    btn.disabled=true;show(st,"busy","Saving…");
+    try{cat=await api("settings",{settings});fillShop();show(st,"ok","Shop details saved. The website updates within about a minute.")}
+    catch(err){show(st,"err",err.message)}
+    finally{btn.disabled=false}
+  });
+
+  // ---- Password ----
+  $("pw-form").addEventListener("submit",async e=>{
+    e.preventDefault();
+    const st=$("pw-status"),np=$("pw-new").value;
+    if(np.length<6) return show(st,"err","Use at least 6 characters.");
+    if(np!==$("pw-again").value) return show(st,"err","The two passwords don't match.");
+    $("save-pw").disabled=true;show(st,"busy","Changing password…");
+    try{
+      await api("password",{newPassword:np});
+      password=np;try{if(localStorage.getItem("okshoe-pass"))localStorage.setItem("okshoe-pass",np)}catch(e){}
+      $("pw-new").value=$("pw-again").value="";show(st,"ok","Password changed. Use the new password next time you log in.");
+    }catch(err){show(st,"err",err.message)}
+    finally{$("save-pw").disabled=false}
+  });
+
+  if(password){$("password").value=password;start().catch(err=>{
+    show($("login-status"),"err",err.status===401?"The password has changed. Log in again.":err.message);
+    if(err.status===401){try{localStorage.removeItem("okshoe-pass")}catch(e){}$("password").value=""}
+  })}
 })();
 </script>
 </body>
