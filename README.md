@@ -11,13 +11,24 @@ A one-page website for a manufacturer and wholesaler of **buckles for shoes and 
 
 ## Adding or removing buckles (no coding)
 
-Open **`admin.html`** on the live site (`https://okshoe-material.vercel.app/admin.html`).
+Open **https://okshoe-material.vercel.app/admin.html** and log in with the admin password.
 
-1. **One-time setup on each phone or computer:** create a GitHub *fine-grained token* limited to this repository with **Contents: Read and write**, and paste it into the admin page. The page explains each step.
-2. **Add a buckle:** choose a photo, category, name, size and finish. The design code is suggested automatically (e.g. `SBM-005`). Tap **Add buckle to website**.
-3. **Remove a buckle:** tap **Remove** next to it, then tap again to confirm.
+- **Add a buckle:** choose a photo, category, name, size and finish. The design code is suggested automatically (e.g. `SBM-005`). Tap **Add buckle to website**.
+- **Remove a buckle:** tap **Remove**, then tap again to confirm.
 
-The admin page saves the photo to `images/` and updates `products.json` in this repo. Vercel redeploys the site within a minute. Visitors never see the admin page, and nobody can change anything without the access key.
+The website updates within a minute. Visitors never see the admin page.
+
+### How it works
+
+`admin.html` sends changes to `api/admin.js`, a Vercel serverless function. The function checks the password, then saves the photo to `images/` and updates `products.json` in this repo through the GitHub API. Vercel redeploys on every commit. The GitHub key lives only in Vercel's settings and never reaches the browser.
+
+Vercel → Project → Settings → **Environment Variables**:
+
+| Name | Value |
+|---|---|
+| `ADMIN_PASSWORD` | the shopkeeper's password (change it any time, then redeploy) |
+| `GITHUB_TOKEN` | fine-grained token, this repo only, **Contents: Read and write** |
+| `GITHUB_OWNER`, `GITHUB_REPO` | optional; set these if the repo is transferred to another account |
 
 ## Editing by hand
 

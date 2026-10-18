@@ -76,26 +76,17 @@ details summary{cursor:pointer;font-weight:600}
     <p class="muted">Add a new buckle or remove an old one. Changes appear on the website about one minute after you save.</p>
   </div>
 
-  <!-- Step 1: connect (one time per phone/computer) -->
-  <section class="card" id="connect">
+  <!-- Step 1: log in -->
+  <form class="card" id="connect">
     <div>
-      <h2>Connect this device</h2>
-      <p class="muted">You only do this once on each phone or computer. The access key stays on this device.</p>
+      <h2>Log in</h2>
+      <p class="muted">Enter the admin password you were given.</p>
     </div>
-    <details>
-      <summary>How to get an access key</summary>
-      <ol class="steps">
-        <li>Sign in to GitHub as the website owner and open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">New fine-grained token</a>.</li>
-        <li>Name it <b>OKSHOE admin</b> and set an expiry date (for example 1 year).</li>
-        <li>Under <b>Repository access</b>, choose <b>Only select repositories</b> and pick <code>buckle-website</code>.</li>
-        <li>Under <b>Permissions → Repository permissions</b>, set <b>Contents</b> to <b>Read and write</b>.</li>
-        <li>Click <b>Generate token</b>, copy it and paste it below.</li>
-      </ol>
-    </details>
-    <div class="field"><label for="token">Access key</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_…"></div>
-    <div><button class="btn btn-gold" id="save-token" type="button">Connect</button></div>
+    <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password"></div>
+    <label class="check" for="remember" style="display:flex;gap:10px;align-items:center;font-weight:500"><input id="remember" type="checkbox" checked style="width:20px;height:20px;accent-color:var(--gold)">Keep me logged in on this device</label>
+    <div><button class="btn btn-gold" id="login" type="submit">Log in</button></div>
     <div class="status" id="connect-status" hidden></div>
-  </section>
+  </form>
 
   <!-- Step 2: add a buckle -->
   <section class="card" id="add" hidden>
@@ -123,7 +114,7 @@ details summary{cursor:pointer;font-weight:600}
   <section class="card" id="manage" hidden>
     <div style="display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap">
       <div><h2>Buckles on the website</h2><p class="muted" id="count"></p></div>
-      <button class="btn btn-ghost" id="disconnect" type="button">Disconnect this device</button>
+      <button class="btn btn-ghost" id="disconnect" type="button">Log out</button>
     </div>
     <div class="status" id="list-status" hidden></div>
     <div class="list" id="list"></div>
@@ -132,53 +123,41 @@ details summary{cursor:pointer;font-weight:600}
 
 <script>
 (function(){
-  // ---- Repository settings ----
-  const OWNER="itzabhi2103", REPO="buckle-website", BRANCH="main", DATA="products.json";
+  // Talks to /api/admin (Vercel function). The GitHub key never reaches this page.
   const GROUPS={shoe:["Shoe buckles","SBM"],sandal:["Sandal buckles","SDB"],plastic:["Plastic buckles","PB"],deco:["Decorative buckles","DB"],ring:["Ring & loop buckles","RB"],special:["Special design buckles","SPB"]};
   const METAL={gold:"Gold",silver:"Silver",black:"Black",rose:"Rose Gold"}, PLASTIC={black:"Black",clear:"Clear",white:"White"};
-  const API=`https://api.github.com/repos/${OWNER}/${REPO}/contents/`;
   const $=id=>document.getElementById(id);
-  let token="", products=[], dataSha="", photoBlob=null;
+  const esc=v=>String(v).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  let password="", products=[], photoBlob=null;
 
-  // ---- Small helpers ----
   function show(el,cls,msg){el.hidden=false;el.className="status "+cls;el.textContent=msg}
-  const b64utf8=s=>{const bytes=new TextEncoder().encode(s);let bin="";bytes.forEach(b=>bin+=String.fromCharCode(b));return btoa(bin)};
-  const utf8b64=b=>new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\n/g,"")),c=>c.charCodeAt(0)));
   const blobB64=blob=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(",")[1]);r.onerror=rej;r.readAsDataURL(blob)});
-  async function gh(path,opts={}){
-    const r=await fetch(API+path+(opts.method?"":`?ref=${BRANCH}&t=${Date.now()}`),{...opts,headers:{"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28",...(opts.body?{"Content-Type":"application/json"}:{})}});
-    if(!r.ok){
-      const msg=r.status===401?"The access key is wrong or has expired. Disconnect and paste a new key."
-        :r.status===403||r.status===404?"This access key can't change the website. Check it has Contents: Read and write on buckle-website."
-        :r.status===409?"Someone else saved at the same moment. Reload this page and try again."
-        :"GitHub returned error "+r.status+". Try again in a minute.";
-      throw new Error(msg);
-    }
-    return r.status===204?null:r.json();
-  }
-  async function loadProducts(){
-    const f=await gh(DATA);
-    dataSha=f.sha;products=JSON.parse(utf8b64(f.content));
-  }
-  async function saveProducts(message){
-    const body={message,content:b64utf8(JSON.stringify(products,null,2)+"\n"),sha:dataSha,branch:BRANCH};
-    const r=await gh(DATA,{method:"PUT",body:JSON.stringify(body)});
-    dataSha=r.content.sha;
+  async function api(action,extra={}){
+    let r;
+    try{r=await fetch("/api/admin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action,password,...extra})})}
+    catch(e){throw new Error("No internet connection. Check it and try again.")}
+    const data=await r.json().catch(()=>({}));
+    if(!r.ok){const e=new Error(data.error||"Something went wrong ("+r.status+"). Try again in a minute.");e.status=r.status;throw e}
+    return data;
   }
 
-  // ---- Connect ----
-  try{token=localStorage.getItem("okshoe-token")||""}catch(e){}
-  $("save-token").addEventListener("click",async()=>{
-    token=$("token").value.trim();
-    if(!token){show($("connect-status"),"err","Paste the access key first.");return}
-    show($("connect-status"),"busy","Checking the key…");
-    try{await start();try{localStorage.setItem("okshoe-token",token)}catch(e){}}
-    catch(err){show($("connect-status"),"err",err.message)}
+  // ---- Log in / out ----
+  try{password=localStorage.getItem("okshoe-pass")||""}catch(e){}
+  $("connect").addEventListener("submit",async e=>{
+    e.preventDefault();
+    password=$("password").value;
+    if(!password){show($("connect-status"),"err","Type the password first.");return}
+    $("login").disabled=true;show($("connect-status"),"busy","Checking…");
+    try{
+      await start();
+      try{ if($("remember").checked) localStorage.setItem("okshoe-pass",password); else localStorage.removeItem("okshoe-pass") }catch(e){}
+    }catch(err){show($("connect-status"),"err",err.message)}
+    finally{$("login").disabled=false}
   });
-  $("disconnect").addEventListener("click",()=>{try{localStorage.removeItem("okshoe-token")}catch(e){}location.reload()});
+  $("disconnect").addEventListener("click",()=>{try{localStorage.removeItem("okshoe-pass")}catch(e){}location.reload()});
 
   async function start(){
-    await loadProducts();
+    products=(await api("list")).products;
     $("connect").hidden=true;$("add").hidden=false;$("manage").hidden=false;
     renderList();suggestCode();
   }
@@ -218,15 +197,10 @@ details summary{cursor:pointer;font-weight:600}
     if(products.some(p=>p.code===code)) return show(st,"err",code+" is already on the website. Use a different code.");
     if(!name) return show(st,"err","Type a name for the buckle in English.");
     if(!(size>0)) return show(st,"err","Enter the size in mm.");
-    btn.disabled=true;
+    btn.disabled=true;show(st,"busy","Uploading photo and saving…");
     try{
-      const image="images/"+code.toLowerCase()+".jpg";
-      show(st,"busy","Uploading photo…");
-      await gh(image,{method:"PUT",body:JSON.stringify({message:`Add photo for ${code}`,content:await blobB64(photoBlob),branch:BRANCH})});
-      show(st,"busy","Adding to catalogue…");
-      await loadProducts();
-      products.push({code,group:$("group").value,name,name_hi:$("name-hi").value.trim()||name,size,finish:$("finish").value,image});
-      await saveProducts(`Add buckle ${code}`);
+      const product={code,group:$("group").value,name,name_hi:$("name-hi").value.trim(),size,finish:$("finish").value};
+      products=(await api("add",{product,image:await blobB64(photoBlob)})).products;
       show(st,"ok",`${code} added. It will show on the website in about one minute.`);
       ["name","name-hi","photo"].forEach(id=>$(id).value="");photoBlob=null;$("preview").hidden=true;$("drop-text").hidden=false;
       renderList();suggestCode();
@@ -237,25 +211,21 @@ details summary{cursor:pointer;font-weight:600}
   // ---- List & remove ----
   function renderList(){
     $("count").textContent=products.length+" buckles";
-    const raw=`https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/`;
-    $("list").innerHTML=products.map((p,i)=>`<div class="row"><img src="${raw+p.image}" alt="" loading="lazy"><div><b>${p.code}</b><br><span>${p.name} · ${p.size} mm · ${(GROUPS[p.group]||["?"])[0]}</span></div><button type="button" data-i="${i}">Remove</button></div>`).join("");
+    $("list").innerHTML=products.map((p,i)=>`<div class="row"><img src="${esc(p.image)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><div><b>${esc(p.code)}</b><br><span>${esc(p.name)} · ${esc(p.size)} mm · ${(GROUPS[p.group]||["?"])[0]}</span></div><button type="button" data-code="${esc(p.code)}">Remove</button></div>`).join("");
   }
   $("list").addEventListener("click",async e=>{
-    const b=e.target.closest("button[data-i]");if(!b)return;
+    const b=e.target.closest("button[data-code]");if(!b)return;
     if(!b.classList.contains("confirm")){b.classList.add("confirm");b.textContent="Tap again to remove";setTimeout(()=>{b.classList.remove("confirm");b.textContent="Remove"},4000);return}
-    const st=$("list-status"),p=products[+b.dataset.i];
-    b.disabled=true;show(st,"busy","Removing "+p.code+"…");
+    const st=$("list-status"),code=b.dataset.code;
+    b.disabled=true;show(st,"busy","Removing "+code+"…");
     try{
-      await loadProducts();
-      products=products.filter(x=>x.code!==p.code);
-      await saveProducts(`Remove buckle ${p.code}`);
-      try{const f=await gh(p.image);await gh(p.image,{method:"DELETE",body:JSON.stringify({message:`Remove photo for ${p.code}`,sha:f.sha,branch:BRANCH})})}catch(e){}
-      show(st,"ok",p.code+" removed. The website updates in about one minute.");
+      products=(await api("remove",{code})).products;
+      show(st,"ok",code+" removed. The website updates in about one minute.");
       renderList();suggestCode();
     }catch(err){show(st,"err",err.message);b.disabled=false}
   });
 
-  if(token){$("token").value=token;start().catch(err=>show($("connect-status"),"err",err.message))}
+  if(password){$("password").value=password;start().catch(err=>{show($("connect-status"),"err",err.status===401?"Your password was changed. Log in again.":err.message);if(err.status===401){try{localStorage.removeItem("okshoe-pass")}catch(e){};$("password").value=""}})}
 })();
 </script>
 </body>
