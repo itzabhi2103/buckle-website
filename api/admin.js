@@ -2,7 +2,9 @@
 const { readCatalog, writeCatalog, saveImage, deleteImage, checkPassword, setPassword } = require("./_store");
 
 const GROUPS = ["shoe", "sandal", "plastic", "deco", "ring", "special", "velcro", "chain", "coloured"];
-const FINISHES = ["gold", "silver", "black", "rose", "clear", "white", "red", "blue", "green", "pink", "brown", "beige", "multi"];
+const METAL = ["gold", "silver", "black", "rose"];
+const GROUP_FINISHES = { plastic: ["black", "clear", "white"], velcro: ["black", "white", "beige", "brown"], coloured: ["red", "blue", "green", "pink", "brown", "black", "white", "multi"] };
+const finishesFor = g => GROUP_FINISHES[g] || METAL;
 const fail = (res, status, error) => res.status(status).json({ error });
 const text = (v, max) => String(v == null ? "" : v).trim().slice(0, max);
 const isPhoto = s => typeof s === "string" && s.length > 100 && s.length < 3_000_000 && /^[A-Za-z0-9+/]+=*$/.test(s);
@@ -16,7 +18,7 @@ function cleanProduct(p) {
   const price = p.price === "" || p.price == null ? null : Math.round(Number(p.price) * 100) / 100;
   if (!/^[A-Z]{1,5}-\d{1,4}$/.test(code)) return [null, "Design code should look like SBM-005."];
   if (!GROUPS.includes(p.group)) return [null, "Choose a category."];
-  if (!FINISHES.includes(p.finish)) return [null, "Choose a finish."];
+  if (!finishesFor(p.group).includes(p.finish)) return [null, "Choose a finish that fits this category."];
   if (!name) return [null, "Type a name for the buckle in English."];
   if (!(size > 0 && size < 200)) return [null, "Enter the size in mm."];
   if (price !== null && !(price >= 0 && price < 100000)) return [null, "Enter the price as a number, like 2.50, or leave it empty."];

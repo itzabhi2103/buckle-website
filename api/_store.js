@@ -4,7 +4,7 @@ const crypto = require("crypto");
 const { put, head, list, del, BlobNotFoundError } = require("@vercel/blob");
 const seedProducts = require("../products.json");
 
-const CATALOG = "data/catalog.json";
+const CATALOG_PREFIX = "data/catalog-";
 const AUTH_PREFIX = "private/auth-";
 
 const DEFAULT_SETTINGS = {
@@ -25,22 +25,35 @@ function seedCatalog() {
   };
 }
 
-// Fresh read of the catalogue (falls back to the built-in list before the first save)
+// Each save writes a new file (data/catalog-<time>-<random>.json), so a read can never
+// get a cached older copy. The newest file is the live catalogue; old ones are cleaned up.
+const LEGACY = "data/catalog.json";
+
+async function catalogVersions() {
+  const { blobs } = await list({ prefix: CATALOG_PREFIX, limit: 1000 });
+  return blobs.sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+}
+
 async function readCatalog() {
-  let meta;
-  try { meta = await head(CATALOG); }
-  catch (e) { if (e instanceof BlobNotFoundError) return seedCatalog(); throw e; }
-  const r = await fetch(meta.url + "?v=" + new Date(meta.uploadedAt).getTime(), { cache: "no-store" });
+  const versions = await catalogVersions();
+  let url = versions.length ? versions[0].url : null;
+  if (!url) {
+    try { const m = await head(LEGACY); url = m.url + "?v=" + new Date(m.uploadedAt).getTime(); }
+    catch (e) { if (e instanceof BlobNotFoundError) return seedCatalog(); throw e; }
+  }
+  const r = await fetch(url, { cache: "no-store" });
   if (!r.ok) throw new Error("Couldn't read the catalogue (" + r.status + ")");
   const data = await r.json();
   return { products: data.products || [], settings: { ...DEFAULT_SETTINGS, ...(data.settings || {}) } };
 }
 
 async function writeCatalog(catalog) {
-  await put(CATALOG, JSON.stringify(catalog), {
-    access: "public", addRandomSuffix: false, allowOverwrite: true,
-    contentType: "application/json", cacheControlMaxAge: 60,
+  await put(`${CATALOG_PREFIX}${Date.now()}.json`, JSON.stringify(catalog), {
+    access: "public", addRandomSuffix: true, contentType: "application/json", cacheControlMaxAge: 31536000,
   });
+  // keep the 5 newest versions as a safety net, delete the rest
+  const old = (await catalogVersions()).slice(5).map(b => b.url);
+  try { if (old.length) await del(old); await del(LEGACY).catch(() => {}); } catch (e) { /* cleanup can wait */ }
 }
 
 async function saveImage(code, base64) {
