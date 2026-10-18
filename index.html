@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Stride & Sole Footwear: sports shoes, formal shoes, juttis, chappals and school shoes for the whole family.">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Stride &amp; Sole Footwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Baloo+2:wght@600;800&family=Mukta:wght@400;500;600&display=swap">
+<style>
+/* Layout: shoebox-label system. Kraft cards with stamped style numbers on a forest-green/paper ground; one wide display face. Hindi uses Baloo 2 + Mukta. */
+:root{
+  --paper:#F3F2EC; --surface:#FFFFFF; --ink:#16231B; --muted:#5B6A60;
+  --forest:#1F4A33; --forest-ink:#F3F2EC; --kraft:#CDAE7F; --kraft-deep:#9C7A48;
+  --line:#D9D8CF; --lace:#E8B33A;
+  --display:"Archivo","Baloo 2",ui-sans-serif,system-ui,sans-serif;
+  --body:"Work Sans","Mukta",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono","Mukta",ui-monospace,Menlo,Consolas,monospace;
+  --wrap:1120px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#111813; --surface:#18221B; --ink:#E9EAE3; --muted:#9AA79E;
+  --forest:#2C6447; --forest-ink:#F3F2EC; --kraft:#B8955F; --kraft-deep:#D8B886;
+  --line:#2A372E; --lace:#F0C04F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111813; --surface:#18221B; --ink:#E9EAE3; --muted:#9AA79E;
+  --forest:#2C6447; --forest-ink:#F3F2EC; --kraft:#B8955F; --kraft-deep:#D8B886;
+  --line:#2A372E; --lace:#F0C04F; color-scheme:dark}
+:root:lang(hi){
+  --display:"Baloo 2","Archivo",ui-sans-serif,system-ui,sans-serif;
+  --body:"Mukta","Work Sans",ui-sans-serif,system-ui,sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--paper);color:var(--ink);font:400 1rem/1.6 var(--body)}
+:lang(hi) body{font-size:1.06rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lace);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-stretch:125%;line-height:1.05;margin:0;text-wrap:balance}
+:lang(hi) h1,:lang(hi) h2,:lang(hi) h3{line-height:1.25}
+h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800;letter-spacing:-.01em}
+.eyebrow{font:600 .75rem/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--kraft-deep)}
+:lang(hi) .eyebrow{letter-spacing:.02em;font-size:.85rem}
+section{padding-block:72px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:36px}
+.sec-head p{max-width:46ch;color:var(--muted);margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:999px;font:600 .95rem/1.1 var(--body);text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn-primary{background:var(--lace);color:#16231B}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{background:color-mix(in srgb,currentColor 10%,transparent)}
+
+/* Festive strip */
+.strip{background:var(--lace);color:#16231B;font-weight:600;font-size:.9rem;text-align:center;padding:9px 16px}
+.strip a{text-decoration:underline;text-underline-offset:3px;margin-left:6px}
+
+/* Header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px;position:relative}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:900 1.1rem/1 "Archivo",sans-serif;font-stretch:125%;letter-spacing:-.01em;white-space:nowrap}
+.logo-mark{width:34px;height:34px;border-radius:8px;background:var(--forest);display:grid;place-items:center;flex:none}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-weight:500;font-size:.95rem}
+.nav ul a{text-decoration:none;color:var(--muted)}
+.nav ul a:hover{color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang{height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .9rem/1 "Mukta","Work Sans",sans-serif;cursor:pointer;white-space:nowrap}
+.lang:hover{border-color:var(--forest)}
+.menu-btn{display:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;place-items:center}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:18px;height:2px;background:currentColor;border-radius:2px;position:relative;transition:transform .2s}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+.menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+header.open .menu-btn span{background:transparent}
+header.open .menu-btn span::before{transform:translateY(6px) rotate(45deg)}
+header.open .menu-btn span::after{transform:translateY(-6px) rotate(-45deg)}
+@media (max-width:900px){
+  .menu-btn{display:grid}
+  .nav .nav-cta{display:none}
+  .nav ul{display:none;position:absolute;left:-20px;right:-20px;top:100%;flex-direction:column;gap:0;padding:8px 20px 16px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+  header.open .nav ul{display:flex}
+  .nav ul a{display:block;padding:14px 0;font-size:1.05rem;color:var(--ink);border-bottom:1px solid var(--line)}
+  .nav ul li:last-child a{border-bottom:0}
+}
+
+/* Hero */
+.hero{background:var(--forest);color:var(--forest-ink);padding-block:64px 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5.2vw,4.2rem);font-weight:900;letter-spacing:-.02em}
+:lang(hi) .hero h1{letter-spacing:0;font-weight:800}
+.hero h1 em{font-style:normal;color:var(--lace)}
+.hero p.lede{font-size:1.15rem;max-width:46ch;opacity:.88;margin:22px 0 30px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:28px;margin-top:40px;padding-block:22px 40px;border-top:1px solid color-mix(in srgb,var(--forest-ink) 25%,transparent);font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+.hero-meta b{display:block;font:800 1.6rem/1.1 "Archivo",sans-serif;font-stretch:125%;letter-spacing:0;text-transform:none;color:var(--lace)}
+.hero-art{position:relative;min-width:0}
+.hero-art svg{width:100%;height:auto;display:block}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-art{max-width:420px}}
+
+/* Categories */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;text-decoration:none;display:flex;flex-direction:column;gap:12px;transition:transform .2s,border-color .2s}
+.cat:hover{transform:translateY(-3px);border-color:var(--kraft)}
+.cat svg{width:100%;max-width:220px;height:auto}
+.cat h3{font-size:1.2rem;font-weight:800}
+.cat span{color:var(--muted);font-size:.9rem}
+
+/* Shoebox product cards */
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.products{grid-template-columns:repeat(2,1fr)}}
+.box{background:var(--kraft);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:10px;color:#16231B}
+.box-art{background:color-mix(in srgb,#fff 35%,var(--kraft));border-radius:6px;aspect-ratio:16/10;max-width:100%;display:grid;place-items:center;padding:18px}
+.box-art svg{width:88%;height:auto}
+.label{background:#FBFAF5;border-radius:4px;padding:14px 16px;display:grid;gap:8px;font-family:var(--mono);font-size:.75rem;color:#16231B;flex:1;align-content:start}
+.label-row{display:flex;justify-content:space-between;gap:12px;letter-spacing:.06em;text-transform:uppercase;color:#5B6A60}
+.label h3{font-family:var(--display);font-size:1.15rem;font-weight:800;color:#16231B;text-transform:none;letter-spacing:0}
+.label .price{font:800 1.25rem/1 "Archivo",sans-serif;color:#16231B;letter-spacing:0;text-transform:none;font-variant-numeric:tabular-nums;white-space:nowrap}
+.label .mrp{font:400 .75rem/1 var(--mono);text-decoration:line-through;color:#5B6A60;margin-right:6px}
+.sizes{display:flex;flex-wrap:wrap;gap:4px}
+.sizes button{font:inherit;border:1px solid #CFCBBE;border-radius:3px;padding:2px 6px;background:transparent;color:inherit;cursor:pointer;font-variant-numeric:tabular-nums}
+.sizes button:hover{border-color:#1F4A33}
+.sizes button.out{opacity:.35;text-decoration:line-through}
+.ask-btn{margin-top:4px;justify-content:center;width:100%;background:var(--forest);color:var(--forest-ink);padding:11px 16px;font-size:.9rem}
+.ask-btn:hover{filter:brightness(1.12)}
+
+/* Size guide */
+.size-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
+@media (max-width:860px){.size-wrap{grid-template-columns:1fr}}
+.finder{background:var(--forest);color:var(--forest-ink);border-radius:16px;padding:28px;display:grid;gap:16px}
+.finder label{font-weight:600}
+.finder .row{display:flex;gap:10px;flex-wrap:wrap}
+.finder input{flex:1 1 140px;min-width:0;font:600 1.4rem/1 "JetBrains Mono",monospace;padding:12px 14px;border-radius:10px;border:2px solid transparent;background:#FBFAF5;color:#16231B}
+.finder input:focus{outline:none;border-color:var(--lace)}
+.finder select{font:500 1rem var(--body);padding:12px;border-radius:10px;border:0;background:#FBFAF5;color:#16231B}
+.result{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.result div{background:color-mix(in srgb,var(--forest-ink) 10%,transparent);border-radius:10px;padding:12px;text-align:center;font:600 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.result b{display:block;font:900 1.8rem/1.1 "Archivo",sans-serif;font-stretch:125%;letter-spacing:0;color:var(--lace);margin-top:4px;font-variant-numeric:tabular-nums}
+.finder small{opacity:.85;line-height:1.5}
+.table-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font:600 .72rem/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+tr.hit td{background:color-mix(in srgb,var(--lace) 22%,transparent);font-weight:600}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink)}
+.svc{padding:28px 24px 8px 0;display:grid;gap:10px;align-content:start}
+.svc h3{font-size:1.25rem;font-weight:800}
+.svc p{margin:0;color:var(--muted)}
+.svc .tag{font:600 .72rem/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--kraft-deep)}
+@media (max-width:760px){.services{grid-template-columns:1fr}.svc{border-bottom:1px solid var(--line);padding-bottom:24px}}
+
+/* Availability enquiry */
+.enq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start}
+@media (max-width:860px){.enq-grid{grid-template-columns:1fr}}
+.steps{display:grid;gap:18px;margin:24px 0 0;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;color:var(--muted)}
+.steps li::before{counter-increment:s;content:counter(s);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--kraft);color:#16231B;font:700 .9rem/1 "JetBrains Mono",monospace}
+.steps b{color:var(--ink);display:block}
+.enq{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;display:grid;gap:18px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-weight:600;font-size:.9rem}
+.field label small{font-weight:400;color:var(--muted)}
+.field input,.field select,.field textarea{font:400 1rem var(--body);padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+.field textarea{resize:vertical;min-height:84px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--forest);box-shadow:0 0 0 3px color-mix(in srgb,var(--forest) 25%,transparent)}
+.preview{background:var(--paper);border:1px dashed var(--line);border-radius:10px;padding:14px 16px;font:400 .9rem/1.6 var(--body);white-space:pre-wrap;color:var(--muted);overflow-wrap:anywhere}
+.enq-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn-wa{background:#1F7A4D;color:#fff}
+.btn-wa:hover{filter:brightness(1.1)}
+.enq-actions .note{font-size:.85rem;color:var(--muted);flex-basis:100%}
+
+/* Visit */
+.visit{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media (max-width:860px){.visit-grid{grid-template-columns:1fr}}
+.contact-list{display:grid;gap:18px;margin-top:24px}
+.contact-item{display:grid;gap:4px}
+.contact-item .k{font:600 .72rem/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.contact-item .v{font-size:1.1rem;font-weight:500;user-select:all}
+.contact-item .sub{font-size:.9rem;color:var(--muted)}
+.copy{font:600 .8rem/1 var(--body);border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 10px;border-radius:999px;cursor:pointer;margin-left:8px;vertical-align:middle}
+.hours th,.hours td{padding:10px 0}
+.hours td:last-child,.hours th:last-child{text-align:right}
+.hours tr.today td{font-weight:700}
+.open-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font:600 .85rem/1.2 var(--body);background:color-mix(in srgb,currentColor 12%,transparent)}
+.open-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.open-pill.is-open{color:#2E8B57}.open-pill.is-closed{color:#C0503A}
+.pay{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.pay span{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.85rem;font-weight:500;background:var(--paper)}
+.pay span.upi{border-color:var(--forest);font-weight:600}
+
+/* Mobile action bar */
+.mbar{display:none}
+@media (max-width:760px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(0,0,0,.06)}
+  .mbar .btn{justify-content:center;padding:13px 10px}
+  body{padding-bottom:76px}
+}
+
+/* Phones */
+@media (max-width:560px){
+  section{padding-block:52px}
+  .wrap{padding-inline:16px}
+  .nav ul{left:-16px;right:-16px;padding-inline:16px}
+  .logo{font-size:1rem}
+  .lang{padding:0 10px}
+  .strip{font-size:.82rem}
+  .hero{padding-top:40px}
+  .hero p.lede{font-size:1.05rem}
+  .hero .ctas .btn{flex:1 1 100%;justify-content:center}
+  .hero-art{max-width:300px;margin-inline:auto}
+  .hero-meta{gap:18px 28px;margin-top:28px}
+  .sec-head{margin-bottom:24px}
+  .cats{grid-template-columns:repeat(2,1fr);gap:12px}
+  .cat{padding:14px;gap:8px}
+  .cat h3{font-size:1rem}
+  .cat span{font-size:.8rem;line-height:1.35}
+  .products{grid-template-columns:1fr}
+  .sizes{gap:6px}
+  .sizes button{min-width:40px;min-height:40px;padding:6px 10px;font-size:.85rem}
+  .finder,.enq{padding:20px}
+  .result b{font-size:1.5rem}
+  .fields{grid-template-columns:1fr}
+  .enq-actions .btn{flex:1 1 100%;justify-content:center}
+  .contact-item .v{font-size:1.02rem}
+  .copy{padding:8px 12px}
+}
+@media (hover:none){.cat:hover{transform:none}}
+
+footer{padding-block:36px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sneaker" viewBox="0 0 200 100">
+      <path d="M12 82 L12 46 Q13 36 24 36 L44 38 Q57 47 72 43 L92 24 Q100 18 106 28 L122 50 Q150 57 176 62 Q192 66 190 82 Z" fill="var(--upper)"/>
+      <path d="M8 80 H192 Q195 92 184 93 H16 Q5 93 8 80 Z" fill="var(--sole)"/>
+      <path d="M8 84 H192" stroke="var(--trim)" stroke-width="2.5"/>
+      <path d="M96 34 L108 40 M101 41 L114 47 M107 48 L120 53" stroke="var(--trim)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M30 60 Q70 72 120 62" stroke="var(--trim)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="oxford" viewBox="0 0 200 100">
+      <path d="M14 80 L15 58 Q17 48 30 50 L62 54 Q82 44 104 47 Q142 54 172 63 Q193 70 190 82 L14 82 Z" fill="var(--upper)"/>
+      <path d="M10 80 H192 Q194 88 186 89 H44 V94 H14 Q9 94 10 88 Z" fill="var(--sole)"/>
+      <path d="M78 50 Q96 58 128 56" stroke="var(--trim)" stroke-width="2" fill="none"/>
+      <path d="M150 60 Q154 70 150 80" stroke="var(--trim)" stroke-width="2" fill="none" stroke-dasharray="3 3"/>
+    </symbol>
+    <symbol id="sandal" viewBox="0 0 200 100">
+      <path d="M8 76 Q100 68 192 74 Q196 86 184 88 H18 Q6 88 8 76 Z" fill="var(--sole)"/>
+      <path d="M40 74 Q60 40 96 44 Q118 48 120 72" stroke="var(--upper)" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <path d="M128 72 Q140 50 168 58 Q180 64 178 72" stroke="var(--upper)" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <path d="M20 74 Q14 52 30 46" stroke="var(--trim)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="jutti" viewBox="0 0 200 100">
+      <path d="M12 82 L14 62 Q18 54 34 56 Q70 60 110 56 Q148 52 172 58 Q190 56 196 40 Q200 58 190 72 Q186 80 182 82 Z" fill="var(--upper)"/>
+      <path d="M10 80 H186 Q188 88 180 89 H18 Q8 89 10 80 Z" fill="var(--sole)"/>
+      <path d="M60 64 Q110 74 160 64" stroke="var(--trim)" stroke-width="3" fill="none" stroke-dasharray="1 6" stroke-linecap="round"/>
+      <circle cx="120" cy="66" r="4" fill="var(--trim)"/><circle cx="104" cy="67" r="3" fill="var(--trim)"/><circle cx="136" cy="65" r="3" fill="var(--trim)"/>
+    </symbol>
+    <symbol id="belly" viewBox="0 0 200 100">
+      <path d="M14 80 Q12 62 30 62 Q60 68 92 62 Q140 56 176 64 Q194 70 190 82 L14 82 Z" fill="var(--upper)"/>
+      <path d="M10 80 H192 Q193 87 186 88 H16 Q9 88 10 80 Z" fill="var(--sole)"/>
+      <path d="M118 60 l-10 -7 v14 z M118 60 l10 -7 v14 z" fill="var(--trim)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="strip"><span data-t="strip">Festive &amp; wedding collection is in store: juttis, mojaris and party wear.</span><a href="#new" data-t="stripLink">See what's new</a></div>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="#home" aria-label="Stride &amp; Sole home">
+      <span class="logo-mark"><svg width="24" height="14" style="--upper:#E8B33A;--sole:#F3F2EC;--trim:#1F4A33"><use href="#sneaker"/></svg></span>
+      Stride &amp; Sole
+    </a>
+    <ul id="menu">
+      <li><a href="#shop" data-t="navShop">Shop</a></li>
+      <li><a href="#new" data-t="navNew">New In</a></li>
+      <li><a href="#size" data-t="navSize">Size Guide</a></li>
+      <li><a href="#enquire" data-t="navEnq">Check Availability</a></li>
+      <li><a href="#visit" data-t="navVisit">Visit</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang" id="lang" type="button" lang="hi" aria-label="हिंदी में देखें">हिंदी</button>
+      <a class="btn btn-primary nav-cta" href="#enquire" style="padding:10px 16px" data-t="navCta">Enquire</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="mbar" aria-label="Quick actions">
+  <a class="btn btn-primary" href="#enquire" data-t="barStock">Check stock</a>
+  <a class="btn btn-ghost" href="tel:+919876543210" data-t="barCall">Call shop</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow" style="color:var(--lace)" data-t="heroEyebrow">Family footwear store · Since 2009</p>
+        <h1 style="margin-top:16px" data-t="heroH1">Shoes fitted <em>by hand</em>, not by guesswork.</h1>
+        <p class="lede" data-t="heroLede">Sports shoes, office shoes, juttis, chappals and school shoes for the whole family. Walk in, get your feet measured for free, and try on as many pairs as you like.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#shop" data-t="heroBrowse">Browse the shop</a>
+          <a class="btn btn-ghost" href="#enquire" data-t="heroAsk">Check if your size is in stock</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 200 110" style="--upper:#E8B33A;--sole:#F3F2EC;--trim:#1F4A33"><use href="#sneaker" y="6"/></svg>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <div><b>1,200+</b><span data-t="m1">Pairs in stock</span></div>
+      <div><b>UK 1–12</b><span data-t="m2">Kids to adults</span></div>
+      <div><b>7 days</b><span data-t="m3">Easy size exchange</span></div>
+      <div><b>UPI</b><span data-t="m4">GPay · PhonePe · Paytm</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow" data-t="catEyebrow">Shop by category</p><h2 style="margin-top:10px" data-t="catH2">What are you shopping for?</h2></div>
+      <p data-t="catP">Every category is in store now. Call or WhatsApp and we'll keep your size aside for 24 hours.</p>
+    </div>
+    <div class="cats">
+      <a class="cat" href="#new"><svg viewBox="0 0 200 100" style="--upper:var(--forest);--sole:var(--kraft);--trim:var(--paper)"><use href="#sneaker"/></svg><h3 data-t="c1">Sports &amp; Casual</h3><span data-t="c1s">Running, walking &amp; gym shoes</span></a>
+      <a class="cat" href="#new"><svg viewBox="0 0 200 100" style="--upper:#5A2E1F;--sole:#1B1B1B;--trim:var(--kraft)"><use href="#oxford"/></svg><h3 data-t="c2">Formal &amp; Office</h3><span data-t="c2s">Derbies, oxfords &amp; loafers</span></a>
+      <a class="cat" href="#new"><svg viewBox="0 0 200 100" style="--upper:#8E1F2F;--sole:#3A2A1A;--trim:#E8B33A"><use href="#jutti"/></svg><h3 data-t="c3">Ethnic &amp; Wedding</h3><span data-t="c3s">Juttis, mojaris &amp; Kolhapuris</span></a>
+      <a class="cat" href="#new"><svg viewBox="0 0 200 100" style="--upper:#C76B7E;--sole:#E9E4D8;--trim:#8E1F2F"><use href="#belly"/></svg><h3 data-t="c4">Ladies</h3><span data-t="c4s">Bellies, heels &amp; sandals</span></a>
+      <a class="cat" href="#new"><svg viewBox="0 0 200 100" style="--upper:var(--kraft-deep);--sole:var(--ink);--trim:var(--lace)"><use href="#sandal"/></svg><h3 data-t="c5">Chappals &amp; Slippers</h3><span data-t="c5s">Daily wear &amp; floaters</span></a>
+      <a class="cat" href="#new"><svg viewBox="0 0 200 100" style="--upper:#151515;--sole:#151515;--trim:#5B6A60"><use href="#oxford"/></svg><h3 data-t="c6">Kids &amp; School</h3><span data-t="c6s">Black school shoes &amp; PT shoes</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="new" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow" data-t="newEyebrow">New in store</p><h2 style="margin-top:10px" data-t="newH2">Fresh stock this week</h2></div>
+      <p data-t="newP">Tap a size or "Check availability" to ask us about any pair. Struck-through sizes are sold out, but we can usually order them in within a week.</p>
+    </div>
+    <div class="products" id="products"></div>
+  </div>
+</section>
+
+<section id="size" style="background:var(--surface);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow" data-t="sizeEyebrow">Size guide</p><h2 style="margin-top:10px" data-t="sizeH2">Find your size at home</h2></div>
+      <p data-t="sizeP">Indian shoe sizes are the same as UK sizes. Stand on a sheet of paper, mark your heel and longest toe, and measure the gap in centimetres.</p>
+    </div>
+    <div class="size-wrap">
+      <form class="finder" id="finder" autocomplete="off">
+        <label for="foot" data-t="footLabel">Foot length (cm)</label>
+        <div class="row">
+          <input id="foot" type="number" inputmode="decimal" min="10" max="32" step="0.1" value="26.0" aria-describedby="foot-note">
+          <select id="fit" aria-label="Who is it for">
+            <option value="men" data-t="optMen">Men</option>
+            <option value="women" data-t="optWomen">Women</option>
+            <option value="kids" data-t="optKids">Kids</option>
+          </select>
+        </div>
+        <div class="result" aria-live="polite">
+          <div>UK / India<b id="r-uk">8</b></div>
+          <div>EU<b id="r-eu">42</b></div>
+          <div>US<b id="r-us">9</b></div>
+        </div>
+        <small id="foot-note" data-t="footNote">Measure in the evening, when feet are at their largest. Between two sizes? Pick the larger one. We'll confirm the fit in store for free.</small>
+      </form>
+      <div class="table-scroll">
+        <table id="chart"><thead><tr><th data-t="thFoot">Foot (cm)</th><th>UK / India</th><th>EU</th><th>US</th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow" data-t="svcEyebrow">In-store services</p><h2 style="margin-top:10px" data-t="svcH2">More than a shoe rack</h2></div>
+    </div>
+    <div class="services">
+      <div class="svc"><span class="tag" data-t="s1t">Free</span><h3 data-t="s1h">Foot measurement</h3><p data-t="s1p">We measure length and width on a proper foot gauge, so kids and adults get the right fit.</p></div>
+      <div class="svc"><span class="tag" data-t="s2t">7 days</span><h3 data-t="s2h">Size exchange</h3><p data-t="s2p">Wrong size? Bring the pair back unworn with the box and bill within 7 days and swap it.</p></div>
+      <div class="svc"><span class="tag" data-t="s3t">From ₹99</span><h3 data-t="s3h">Polish &amp; repair</h3><p data-t="s3p">Sole stitching, heel fixing and a full polish for leather shoes, ready in 2–3 days.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="enquire" style="background:var(--surface);border-top:1px solid var(--line)">
+  <div class="wrap enq-grid">
+    <div>
+      <p class="eyebrow" data-t="enqEyebrow">Check availability</p>
+      <h2 style="margin-top:10px" data-t="enqH2">Is your pair in stock?</h2>
+      <p style="color:var(--muted);max-width:42ch" data-t="enqP">Ask before you come in. You don't need an account and you don't need to sign up. Your enquiry goes straight to the shop on WhatsApp.</p>
+      <ol class="steps">
+        <li><span data-t="st1"><b>Pick the shoe and size</b>Choose from our list, or describe any other shoe you're looking for.</span></li>
+        <li><span data-t="st2"><b>Send it on WhatsApp</b>Your message is ready to go. Just tap send.</span></li>
+        <li><span data-t="st3"><b>We reply with stock</b>Usually within an hour during shop hours. We'll keep your pair aside for 24 hours.</span></li>
+      </ol>
+    </div>
+    <form class="enq" id="enq" autocomplete="off" novalidate>
+      <div class="fields">
+        <div class="field full">
+          <label for="e-product" data-t="fShoe">Shoe</label>
+          <select id="e-product"></select>
+        </div>
+        <div class="field full" id="e-other-wrap" hidden>
+          <label for="e-other" data-t="fOther">Which shoe are you looking for?</label>
+          <input id="e-other" type="text">
+        </div>
+        <div class="field">
+          <label for="e-size" data-t="fSize">Size (UK / India)</label>
+          <select id="e-size"></select>
+        </div>
+        <div class="field">
+          <label for="e-name" data-t="fName">Your name <small>(optional)</small></label>
+          <input id="e-name" type="text">
+        </div>
+        <div class="field full">
+          <label for="e-msg" data-t="fMsg">Anything else? <small>(optional)</small></label>
+          <textarea id="e-msg"></textarea>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin:0 0 8px" data-t="fPreview">Your message</p>
+        <div class="preview" id="e-preview" aria-live="polite"></div>
+      </div>
+      <div class="enq-actions">
+        <a class="btn btn-wa" id="e-wa" href="#" target="_blank" rel="noopener" data-t="fSend">Send enquiry on WhatsApp</a>
+        <button class="btn btn-ghost" type="button" id="e-copy" data-t="fCopy">Copy message</button>
+        <span class="note" data-t="fNote">No WhatsApp? Call or SMS <span style="user-select:all">+91 98765 43210</span> and read out the message above.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <p class="eyebrow" data-t="visEyebrow">Visit us</p>
+      <h2 style="margin-top:10px" data-t="visH2">Come try them on</h2>
+      <p style="margin-top:12px"><span class="open-pill" id="open-pill">…</span></p>
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="k" data-t="kAddr">Address</span>
+          <span class="v">Shop No. 12, Main Bazaar Road, Your City – 400001</span>
+          <span class="sub" data-t="landmark">Landmark: opposite the bus stand, next to the State Bank ATM</span>
+          <a href="https://maps.google.com/?q=Main+Bazaar+Road" target="_blank" rel="noopener" style="font-size:.9rem;color:var(--muted)" data-t="maps">Get directions on Google Maps ↗</a>
+        </div>
+        <div class="contact-item"><span class="k" data-t="kPhone">Phone / WhatsApp</span><span><span class="v" id="phone">+91 98765 43210</span><button class="copy" type="button" data-copy="phone" data-t="copy">Copy</button></span></div>
+        <div class="contact-item"><span class="k" data-t="kEmail">Email</span><span><span class="v" id="email">hello@strideandsole.in</span><button class="copy" type="button" data-copy="email" data-t="copy2">Copy</button></span></div>
+      </div>
+    </div>
+    <div>
+      <table class="hours" id="hours"><thead><tr><th data-t="thDay">Day</th><th data-t="thHours">Hours</th></tr></thead><tbody></tbody></table>
+      <p style="color:var(--muted);font-size:.9rem;margin-top:16px" data-t="festNote">Open on Diwali, Eid and Christmas eve with extended hours. Closed on festival days. Call to check.</p>
+      <p class="k eyebrow" style="margin:24px 0 0" data-t="payH">We accept</p>
+      <div class="pay"><span class="upi">UPI</span><span>Google Pay</span><span>PhonePe</span><span>Paytm</span><span data-t="payCards">Debit / Credit cards</span><span data-t="payCash">Cash</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Stride &amp; Sole Footwear</span>
+    <span data-t="foot">Prices include GST · MRP shown on every box</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---- Shop settings: edit these ----
+  const WHATSAPP="919876543210"; // shop's WhatsApp number: country code + number, no spaces
+  const SHOP="Stride & Sole";
+  const products=[
+    {name:"Trail Runner 2",style:"SS-2041",cat:"sports",price:1799,mrp:2299,shape:"sneaker",c:["#1F4A33","#F3F2EC","#E8B33A"],sizes:[6,7,8,9,10,11],out:[11]},
+    {name:"Office Derby",style:"SS-1180",cat:"formal",price:2499,shape:"oxford",c:["#3B2116","#151515","#CDAE7F"],sizes:[6,7,8,9,10],out:[6]},
+    {name:"Wedding Mojari",style:"SS-3302",cat:"ethnic",price:1499,shape:"jutti",c:["#8E1F2F","#3A2A1A","#E8B33A"],sizes:[6,7,8,9,10],out:[]},
+    {name:"Kolhapuri Chappal",style:"SS-3115",cat:"ethnic",price:899,shape:"sandal",c:["#9C6A3A","#5A3A1F","#C0503A"],sizes:[5,6,7,8,9,10],out:[10]},
+    {name:"Comfort Bellies",style:"SS-4021",cat:"ladies",price:749,mrp:999,shape:"belly",c:["#C76B7E","#E9E4D8","#8E1F2F"],sizes:[3,4,5,6,7,8],out:[3]},
+    {name:"School Star",style:"SS-0305",cat:"kids",price:649,shape:"oxford",c:["#151515","#151515","#5B6A60"],sizes:[1,2,3,4,5,6],out:[1]}
+  ];
+  const hours=[[10.5,21.5],[10.5,21.5],[10.5,21.5],[10.5,21.5],[10.5,21.5],[10.5,22],[11,21]]; // Mon..Sun, 24h; null = closed
+
+  // ---- Hindi text (English is read from the page itself) ----
+  const HI={
+    strip:"त्योहार और शादी का नया कलेक्शन आ गया है: जूती, मोजरी और पार्टी वियर।",stripLink:"नया स्टॉक देखें",
+    navShop:"दुकान",navNew:"नया स्टॉक",navSize:"साइज़ गाइड",navEnq:"स्टॉक पूछें",navVisit:"पता",navCta:"पूछताछ",
+    barStock:"स्टॉक पूछें",barCall:"कॉल करें",
+    heroEyebrow:"परिवार की जूतों की दुकान · 2009 से",
+    heroH1:"हर पैर का <em>सही नाप</em>, हर कदम आराम से।",
+    heroLede:"स्पोर्ट्स शूज़, ऑफिस शूज़, जूती, चप्पल और स्कूल शूज़, पूरे परिवार के लिए। दुकान पर आइए, मुफ़्त में पैर का नाप लीजिए, और जितनी जोड़ियाँ चाहें पहनकर देखिए।",
+    heroBrowse:"सामान देखें",heroAsk:"अपना साइज़ स्टॉक में है? पूछें",
+    m1:"जोड़ियाँ स्टॉक में",m2:"बच्चों से बड़ों तक",m3:"आसान साइज़ बदली",m4:"GPay · PhonePe · Paytm",
+    catEyebrow:"श्रेणी के अनुसार",catH2:"आपको क्या चाहिए?",catP:"सभी श्रेणियाँ दुकान में उपलब्ध हैं। कॉल या WhatsApp करें, हम आपका साइज़ 24 घंटे के लिए रख देंगे।",
+    c1:"स्पोर्ट्स और कैज़ुअल",c1s:"रनिंग, वॉकिंग और जिम शूज़",c2:"फ़ॉर्मल और ऑफिस",c2s:"डर्बी, ऑक्सफ़र्ड और लोफ़र",c3:"एथनिक और शादी",c3s:"जूती, मोजरी और कोल्हापुरी",
+    c4:"लेडीज़",c4s:"बेलीज़, हील्स और सैंडल",c5:"चप्पल और स्लीपर",c5s:"रोज़ाना पहनने के लिए",c6:"बच्चे और स्कूल",c6s:"काले स्कूल शूज़ और PT शूज़",
+    newEyebrow:"नया स्टॉक",newH2:"इस हफ़्ते का नया माल",newP:"किसी भी जोड़ी के बारे में पूछने के लिए साइज़ या \"स्टॉक पूछें\" दबाएँ। कटे हुए साइज़ ख़त्म हैं, पर हम आमतौर पर एक हफ़्ते में मँगा देते हैं।",
+    sizeEyebrow:"साइज़ गाइड",sizeH2:"घर बैठे अपना साइज़ जानें",sizeP:"भारतीय जूतों का साइज़ UK साइज़ जैसा ही होता है। काग़ज़ पर खड़े होकर एड़ी और सबसे लंबी उँगली पर निशान लगाएँ, और दूरी सेंटीमीटर में नापें।",
+    footLabel:"पैर की लंबाई (सेमी)",optMen:"पुरुष",optWomen:"महिला",optKids:"बच्चे",
+    footNote:"शाम को नापें, तब पैर सबसे बड़े होते हैं। दो साइज़ के बीच हों तो बड़ा वाला लें। दुकान पर हम मुफ़्त में नाप पक्का कर देंगे।",thFoot:"पैर (सेमी)",
+    svcEyebrow:"दुकान पर सेवाएँ",svcH2:"सिर्फ़ जूते नहीं, सही सलाह भी",
+    s1t:"मुफ़्त",s1h:"पैर का नाप",s1p:"हम सही गेज से लंबाई और चौड़ाई नापते हैं, ताकि बच्चों और बड़ों को सही फ़िट मिले।",
+    s2t:"7 दिन",s2h:"साइज़ बदली",s2p:"साइज़ ग़लत निकला? बिना पहने, डिब्बे और बिल के साथ 7 दिन में वापस लाइए और बदल लीजिए।",
+    s3t:"₹99 से",s3h:"पॉलिश और मरम्मत",s3p:"सोल की सिलाई, एड़ी ठीक करना और चमड़े के जूतों की पूरी पॉलिश, 2–3 दिन में तैयार।",
+    enqEyebrow:"स्टॉक पूछें",enqH2:"आपकी जोड़ी स्टॉक में है?",enqP:"आने से पहले पूछ लें। कोई अकाउंट या रजिस्ट्रेशन नहीं चाहिए। आपका सवाल सीधे WhatsApp पर दुकान तक पहुँचता है।",
+    st1:"<b>जूता और साइज़ चुनें</b>हमारी सूची से चुनें, या कोई और जूता लिखकर बताएँ।",st2:"<b>WhatsApp पर भेजें</b>मैसेज तैयार है, बस भेजें दबाएँ।",st3:"<b>हम स्टॉक बताएँगे</b>दुकान के समय में आमतौर पर एक घंटे में जवाब। आपकी जोड़ी 24 घंटे के लिए रख देंगे।",
+    fShoe:"जूता",fOther:"आप कौन-सा जूता ढूँढ रहे हैं?",fSize:"साइज़ (UK / India)",fName:"आपका नाम <small>(ज़रूरी नहीं)</small>",fMsg:"और कुछ? <small>(ज़रूरी नहीं)</small>",
+    fPreview:"आपका मैसेज",fSend:"WhatsApp पर पूछें",fCopy:"मैसेज कॉपी करें",fNote:"WhatsApp नहीं है? <span style=\"user-select:all\">+91 98765 43210</span> पर कॉल या SMS करें और ऊपर वाला मैसेज बताएँ।",
+    visEyebrow:"हमसे मिलें",visH2:"आइए, पहनकर देखिए",kAddr:"पता",landmark:"पहचान: बस स्टैंड के सामने, स्टेट बैंक ATM के पास",maps:"Google Maps पर रास्ता देखें ↗",
+    kPhone:"फ़ोन / WhatsApp",kEmail:"ईमेल",copy:"कॉपी",copy2:"कॉपी",thDay:"दिन",thHours:"समय",
+    festNote:"दिवाली, ईद और क्रिसमस से पहले देर तक खुला। त्योहार के दिन बंद। पक्का करने के लिए कॉल करें।",
+    payH:"भुगतान",payCards:"डेबिट / क्रेडिट कार्ड",payCash:"नकद",foot:"सभी दाम GST सहित · हर डिब्बे पर MRP"
+  };
+  const EN={};
+  document.querySelectorAll("[data-t]").forEach(el=>EN[el.dataset.t]=el.innerHTML);
+
+  let lang="en";
+  try{ if(localStorage.getItem("lang")==="hi") lang="hi" }catch(e){}
+  const t=(en,hi)=>lang==="hi"?hi:en;
+
+  const CAT={sports:["Sports","स्पोर्ट्स"],formal:["Formal","फ़ॉर्मल"],ethnic:["Ethnic","एथनिक"],ladies:["Ladies","लेडीज़"],kids:["Kids","बच्चे"]};
+  const inr=n=>"₹"+n.toLocaleString("en-IN");
+  const DAYS=[["Monday","सोमवार"],["Tuesday","मंगलवार"],["Wednesday","बुधवार"],["Thursday","गुरुवार"],["Friday","शुक्रवार"],["Saturday","शनिवार"],["Sunday","रविवार"]];
+  const fmt=h=>{const hh=Math.floor(h),mm=Math.round((h-hh)*60),ap=hh>=12?"pm":"am";return (hh%12||12)+(mm?":"+String(mm).padStart(2,"0"):"")+" "+ap};
+
+  // ---- Products ----
+  function renderProducts(){
+    document.getElementById("products").innerHTML=products.map((p,pi)=>`
+    <article class="box">
+      <div class="box-art"><svg viewBox="0 0 200 100" style="--upper:${p.c[0]};--sole:${p.c[1]};--trim:${p.c[2]}" role="img" aria-label="${p.name}"><use href="#${p.shape}"/></svg></div>
+      <div class="label">
+        <div class="label-row"><span>${t("Style","स्टाइल")} ${p.style}</span><span>${t(...CAT[p.cat])}</span></div>
+        <div class="label-row" style="align-items:baseline"><h3>${p.name}</h3><span class="price">${p.mrp?`<span class="mrp">${inr(p.mrp)}</span>`:""}${inr(p.price)}</span></div>
+        <div class="label-row"><span>${t("UK / India sizes","UK / India साइज़")}</span></div>
+        <div class="sizes">${p.sizes.map(s=>`<button type="button" class="${p.out.includes(s)?"out":""}" data-p="${pi}" data-s="${s}" aria-label="${t("Ask about","पूछें")} ${p.name} UK ${s}">${s}</button>`).join("")}</div>
+        <a class="btn ask-btn" href="#enquire" data-p="${pi}">${t("Check availability","स्टॉक पूछें")}</a>
+      </div>
+    </article>`).join("");
+  }
+
+  // ---- Availability enquiry (no account needed; opens WhatsApp with a ready message) ----
+  const eP=document.getElementById("e-product"),eS=document.getElementById("e-size"),eO=document.getElementById("e-other"),
+        eOW=document.getElementById("e-other-wrap"),eN=document.getElementById("e-name"),eM=document.getElementById("e-msg"),
+        ePrev=document.getElementById("e-preview"),eWa=document.getElementById("e-wa");
+  function fillProducts(){
+    const v=eP.value;
+    eP.innerHTML=products.map((p,i)=>`<option value="${i}">${p.name} (${p.style}) · ${inr(p.price)}</option>`).join("")+`<option value="other">${t("Something else","कोई और जूता")}</option>`;
+    if(v) eP.value=v;
+    eO.placeholder=t("e.g. Black formal shoes, brand or colour","जैसे: काले फ़ॉर्मल जूते, ब्रांड या रंग");
+    eN.placeholder=t("Name","नाम");
+    eM.placeholder=t("Colour, width, when you plan to visit…","रंग, चौड़ाई, कब आएँगे…");
+  }
+  function fillSizes(keep){
+    const p=products[eP.value],list=p?p.sizes:[1,2,3,4,5,6,7,8,9,10,11,12];
+    const cur=keep!=null?String(keep):eS.value;
+    eS.innerHTML=`<option value="">${t("Not sure, help me choose","पता नहीं, मदद चाहिए")}</option>`+list.map(s=>`<option value="${s}">UK ${s}${p&&p.out.includes(s)?t(" (sold out, can order)"," (ख़त्म, मँगा सकते हैं)"):""}</option>`).join("");
+    if(list.map(String).includes(cur)) eS.value=cur;
+  }
+  function compose(){
+    const p=products[eP.value],other=eP.value==="other";
+    eOW.hidden=!other;
+    const lines=[t(`Hi ${SHOP}, is this available?`,`नमस्ते ${SHOP}, क्या यह उपलब्ध है?`),""];
+    lines.push(t("Shoe: ","जूता: ")+(other?(eO.value.trim()||t("(describe the shoe)","(जूते के बारे में लिखें)")):`${p.name} (${t("Style","स्टाइल")} ${p.style}, ${inr(p.price)})`));
+    lines.push(t("Size: ","साइज़: ")+(eS.value?"UK "+eS.value:t("Not sure, please help me choose","पता नहीं, मदद करें")));
+    if(eM.value.trim()) lines.push(t("Note: ","नोट: ")+eM.value.trim());
+    if(eN.value.trim()) lines.push("","– "+eN.value.trim());
+    const text=lines.join("\n");
+    ePrev.textContent=text;
+    eWa.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(text);
+    return text;
+  }
+  eP.addEventListener("change",()=>{fillSizes();compose()});
+  [eS,eO,eN,eM].forEach(el=>el.addEventListener("input",compose));
+  eS.addEventListener("change",compose);
+  document.getElementById("enq").addEventListener("submit",e=>e.preventDefault());
+  document.getElementById("products").addEventListener("click",e=>{
+    const b=e.target.closest("[data-p]");if(!b) return;
+    e.preventDefault();
+    eP.value=b.dataset.p;fillSizes(b.dataset.s||"");compose();
+    document.getElementById("enquire").scrollIntoView({behavior:"smooth"});
+    setTimeout(()=>eS.focus({preventScroll:true}),400);
+  });
+
+  // ---- Size chart (foot length in cm → UK/India, EU, US) ----
+  const charts={
+    men:[[23.7,5,39,6],[24.5,6,40,7],[25.4,7,41,8],[26.2,8,42,9],[27.1,9,43,10],[27.9,10,44,11],[28.8,11,45,12],[29.6,12,46,13]],
+    women:[[22.0,3,36,5],[22.9,4,37,6],[23.7,5,38,7],[24.5,6,39,8],[25.4,7,40,9],[26.2,8,41,10]],
+    kids:[[16.5,"9C",27,10],[17.4,"10C",28,11],[18.2,"11C",29,12],[19.1,"12C",30,13],[19.9,"13C",32,1],[20.7,1,33,2],[21.6,2,34,3],[22.4,3,35,4]]
+  };
+  const foot=document.getElementById("foot"),fit=document.getElementById("fit"),tbody=document.querySelector("#chart tbody");
+  function updateSize(){
+    const rows=charts[fit.value],v=parseFloat(foot.value);
+    let hit=isNaN(v)?null:(rows.find(r=>r[0]>=v-0.2)||rows[rows.length-1]);
+    tbody.innerHTML=rows.map(r=>`<tr class="${r===hit?"hit":""}"><td>${r[0].toFixed(1)}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("");
+    document.getElementById("r-uk").textContent=hit?hit[1]:"–";
+    document.getElementById("r-eu").textContent=hit?hit[2]:"–";
+    document.getElementById("r-us").textContent=hit?hit[3]:"–";
+  }
+  foot.addEventListener("input",updateSize);fit.addEventListener("change",updateSize);
+  document.getElementById("finder").addEventListener("submit",e=>e.preventDefault());
+
+  // ---- Opening hours ----
+  function renderHours(){
+    const now=new Date(),di=(now.getDay()+6)%7;
+    document.querySelector("#hours tbody").innerHTML=hours.map((d,i)=>`<tr class="${i===di?"today":""}"><td>${t(...DAYS[i])}${i===di?t(" (today)"," (आज)"):""}</td><td>${d?fmt(d[0])+" – "+fmt(d[1]):t("Closed","बंद")}</td></tr>`).join("");
+    const h=now.getHours()+now.getMinutes()/60,td=hours[di],pill=document.getElementById("open-pill");
+    const open=td&&h>=td[0]&&h<td[1];
+    let next="";
+    if(!open){
+      if(td&&h<td[0]) next=t("opens "+fmt(td[0])+" today","आज "+fmt(td[0])+" बजे खुलेगी");
+      else{for(let k=1;k<=7;k++){const n=hours[(di+k)%7];if(n){next=k===1?t("opens "+fmt(n[0])+" tomorrow","कल "+fmt(n[0])+" बजे खुलेगी"):t("opens "+DAYS[(di+k)%7][0]+" "+fmt(n[0]),DAYS[(di+k)%7][1]+" "+fmt(n[0])+" बजे खुलेगी");break}}}
+    }
+    pill.textContent=open?t("Open now · closes "+fmt(td[1]),"अभी खुली है · "+fmt(td[1])+" तक"):t("Closed now · ","अभी बंद है · ")+next;
+    pill.className="open-pill "+(open?"is-open":"is-closed");
+    document.getElementById("yr").textContent=now.getFullYear();
+  }
+
+  // ---- Language switch ----
+  const langBtn=document.getElementById("lang");
+  function applyLang(){
+    document.documentElement.lang=lang;
+    document.querySelectorAll("[data-t]").forEach(el=>{const k=el.dataset.t;el.innerHTML=lang==="hi"&&HI[k]!=null?HI[k]:EN[k]});
+    langBtn.textContent=lang==="hi"?"English":"हिंदी";
+    langBtn.lang=lang==="hi"?"en":"hi";
+    langBtn.setAttribute("aria-label",lang==="hi"?"View in English":"हिंदी में देखें");
+    renderProducts();fillProducts();fillSizes();compose();updateSize();renderHours();
+  }
+  langBtn.addEventListener("click",()=>{lang=lang==="hi"?"en":"hi";try{localStorage.setItem("lang",lang)}catch(e){}applyLang()});
+
+  // ---- Mobile menu ----
+  const hdr=document.querySelector("header.top"),mb=document.getElementById("menu-btn");
+  const setMenu=o=>{hdr.classList.toggle("open",o);mb.setAttribute("aria-expanded",o);mb.setAttribute("aria-label",o?"Close menu":"Open menu")};
+  mb.addEventListener("click",()=>setMenu(!hdr.classList.contains("open")));
+  document.getElementById("menu").addEventListener("click",e=>{if(e.target.closest("a")) setMenu(false)});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape") setMenu(false)});
+
+  // ---- Copy buttons ----
+  function sel(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+  function copyText(btn,text,el){
+    const label=btn.textContent;
+    const done=()=>{btn.textContent=t("Copied","कॉपी हो गया");setTimeout(()=>btn.textContent=label,1500)};
+    try{navigator.clipboard.writeText(text).then(done,()=>sel(el))}catch(err){sel(el)}
+  }
+  document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",()=>{const el=document.getElementById(b.dataset.copy);copyText(b,el.textContent,el)}));
+  document.getElementById("e-copy").addEventListener("click",function(){copyText(this,compose(),ePrev)});
+
+  eP.value="0";
+  fillProducts();fillSizes(8);
+  applyLang();
+})();
+</script>
+</body>
+</html>
