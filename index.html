@@ -387,7 +387,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
       </ul>
     </div>
     <form class="enq" id="enq" autocomplete="off" novalidate>
-      <div class="picked" id="e-picked"><img id="e-img" src="images/sbm-001.jpg" alt=""><div><b id="e-code"></b><span id="e-name"></span></div></div>
+      <div class="picked" id="e-picked"><img id="e-img" src="" alt=""><div><b id="e-code"></b><span id="e-name"></span></div></div>
       <div class="fields">
         <div class="field full"><label for="e-item" data-t="fItem">Buckle</label><select id="e-item"></select></div>
         <div class="field full" id="e-desc-wrap" hidden><label for="e-desc" data-t="fDesc">Describe the buckle you need</label><input id="e-desc" type="text"></div>
@@ -463,33 +463,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     shoe:["Shoe buckles","शू बकल","metal"], sandal:["Sandal buckles","सैंडल बकल","metal"], plastic:["Plastic buckles","प्लास्टिक बकल","plastic"],
     deco:["Decorative buckles","डेकोरेटिव बकल","metal"], ring:["Ring & loop buckles","रिंग और लूप बकल","metal"], special:["Special design buckles","स्पेशल डिज़ाइन बकल","metal"]
   };
-  // code, group, name [en, hi], size (mm), finish shown in photo
-  const items=[
-    ["SBM-001","shoe",["Pin buckle","पिन बकल"],20,"silver"],
-    ["SBM-002","shoe",["Pin buckle","पिन बकल"],25,"gold"],
-    ["SBM-003","shoe",["Heavy pin buckle","हैवी पिन बकल"],30,"black"],
-    ["SBM-004","shoe",["D-shape pin buckle","डी-शेप पिन बकल"],25,"gold"],
-    ["SDB-001","sandal",["Pin buckle","पिन बकल"],15,"silver"],
-    ["SDB-002","sandal",["Rounded pin buckle","गोल पिन बकल"],18,"gold"],
-    ["SDB-003","sandal",["Pin buckle","पिन बकल"],20,"rose"],
-    ["SDB-004","sandal",["Slider buckle","स्लाइडर बकल"],22,"black"],
-    ["PB-001","plastic",["Side-release buckle","साइड-रिलीज़ बकल"],20,"black"],
-    ["PB-002","plastic",["Side-release buckle","साइड-रिलीज़ बकल"],25,"clear"],
-    ["PB-003","plastic",["Slider","स्लाइडर"],30,"black"],
-    ["PB-004","plastic",["Strap loop","स्ट्रैप लूप"],20,"white"],
-    ["DB-001","deco",["Rhinestone ring buckle","नग वाला रिंग बकल"],20,"gold"],
-    ["DB-002","deco",["Rhinestone square buckle","नग वाला चौकोर बकल"],25,"gold"],
-    ["DB-003","deco",["Butterfly buckle","तितली बकल"],22,"gold"],
-    ["DB-004","deco",["Pearl ring buckle","मोती वाला रिंग बकल"],25,"gold"],
-    ["RB-001","ring",["D-ring","डी-रिंग"],15,"silver"],
-    ["RB-002","ring",["D-ring","डी-रिंग"],20,"gold"],
-    ["RB-003","ring",["Rectangle loop","चौकोर लूप"],25,"silver"],
-    ["RB-004","ring",["Oval loop","ओवल लूप"],30,"silver"],
-    ["SPB-001","special",["Chain buckle","चेन बकल"],25,"gold"],
-    ["SPB-002","special",["Enamel frame buckle","मीनाकारी फ़्रेम बकल"],25,"black"],
-    ["SPB-003","special",["Double ring","डबल रिंग"],30,"gold"],
-    ["SPB-004","special",["Engraved square buckle","नक्काशी वाला चौकोर बकल"],25,"gold"]
-  ].map(([code,group,name,size,fin])=>({code,group,name,size,fin,img:"images/"+code.toLowerCase().replace(/-(\d+)$/,(m,n)=>"-"+n.padStart(3,"0"))+".jpg"}));
+  // Buckles are loaded from products.json (edited through admin.html)
+  let items=[];
   const SIZES=[10,12,15,18,20,22,25,30,35,40];
   const hours=[[9.5,19],[9.5,19],[9.5,19],[9.5,19],[9.5,19],[9.5,19],null]; // Mon..Sun, 24h; null = closed
 
@@ -576,14 +551,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     if(fins.includes(cf)) eF.value=cf;
   }
   function compose(){
-    const it=items[eI.value],other=eI.value==="other";
+    const it=items[eI.value],other=eI.value==="other"||!it;
     eDW.hidden=!other;
     $("e-picked").hidden=other;
     if(it){$("e-img").src=it.img;$("e-code").textContent=it.code;$("e-name").textContent=L(it.name)+" · "+L(GROUPS[it.group]);}
     const q=Math.max(0,Math.round(+eQ.value||0)),gross=eU.value==="gross";
     const qtyTxt=q?(gross?`${num(q)} ${t("gross","ग्रोस")} (${num(q*144)} ${t("pcs","पीस")})`:`${num(q)} ${t("pcs","पीस")} (${t("about","लगभग")} ${num(Math.ceil(q/144))} ${t("gross","ग्रोस")})`):t("To be decided","बाद में बताएँगे");
     const lines=[t(`Hello ${BIZ}, I'd like a price quote.`,`नमस्ते ${BIZ}, मुझे रेट चाहिए।`),""];
-    lines.push(t("Buckle: ","बकल: ")+(other?(eD.value.trim()||t("(will send photo)","(फ़ोटो भेजूँगा)")):`${it.code} – ${L(it.name)} (${L(GROUPS[it.group])})`));
+    lines.push(t("Buckle: ","बकल: ")+(other?(eD.value.trim()||t("(will send photo)","(फ़ोटो भेजूँगा)")):`${it&&it.code} – ${it&&L(it.name)} (${L(GROUPS[it.group])})`));
     lines.push(t("Size: ","साइज़: ")+(eW.value?eW.value+" mm":t("Not sure","पता नहीं")));
     lines.push(t("Finish: ","फ़िनिश: ")+(eF.value?L(FIN[eF.value]):t("Please suggest","सुझाएँ")));
     lines.push(t("Quantity: ","मात्रा: ")+qtyTxt);
@@ -672,7 +647,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 
   eI.value="0";
   applyLang();
-  fillOptions(true);compose();
+  fetch("products.json?v="+Date.now()).then(r=>{if(!r.ok)throw r;return r.json()}).then(list=>{
+    items=list.map(p=>({code:p.code,group:p.group,name:[p.name,p.name_hi||p.name],size:p.size,fin:p.finish,img:p.image}));
+    eI.value="0";applyLang();fillOptions(true);compose();
+  }).catch(()=>{$("groups").innerHTML=`<p style="color:var(--muted)">${t("The catalogue didn't load. Check your internet connection and refresh the page.","कैटलॉग लोड नहीं हुआ। इंटरनेट जाँचें और पेज रीफ़्रेश करें।")}</p>`});
 })();
 </script>
 </body>

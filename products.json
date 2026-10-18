@@ -1,0 +1,218 @@
+[
+  {
+    "code": "SBM-001",
+    "group": "shoe",
+    "name": "Pin buckle",
+    "name_hi": "पिन बकल",
+    "size": 20,
+    "finish": "silver",
+    "image": "images/sbm-001.jpg"
+  },
+  {
+    "code": "SBM-002",
+    "group": "shoe",
+    "name": "Pin buckle",
+    "name_hi": "पिन बकल",
+    "size": 25,
+    "finish": "gold",
+    "image": "images/sbm-002.jpg"
+  },
+  {
+    "code": "SBM-003",
+    "group": "shoe",
+    "name": "Heavy pin buckle",
+    "name_hi": "हैवी पिन बकल",
+    "size": 30,
+    "finish": "black",
+    "image": "images/sbm-003.jpg"
+  },
+  {
+    "code": "SBM-004",
+    "group": "shoe",
+    "name": "D-shape pin buckle",
+    "name_hi": "डी-शेप पिन बकल",
+    "size": 25,
+    "finish": "gold",
+    "image": "images/sbm-004.jpg"
+  },
+  {
+    "code": "SDB-001",
+    "group": "sandal",
+    "name": "Pin buckle",
+    "name_hi": "पिन बकल",
+    "size": 15,
+    "finish": "silver",
+    "image": "images/sdb-001.jpg"
+  },
+  {
+    "code": "SDB-002",
+    "group": "sandal",
+    "name": "Rounded pin buckle",
+    "name_hi": "गोल पिन बकल",
+    "size": 18,
+    "finish": "gold",
+    "image": "images/sdb-002.jpg"
+  },
+  {
+    "code": "SDB-003",
+    "group": "sandal",
+    "name": "Pin buckle",
+    "name_hi": "पिन बकल",
+    "size": 20,
+    "finish": "rose",
+    "image": "images/sdb-003.jpg"
+  },
+  {
+    "code": "SDB-004",
+    "group": "sandal",
+    "name": "Slider buckle",
+    "name_hi": "स्लाइडर बकल",
+    "size": 22,
+    "finish": "black",
+    "image": "images/sdb-004.jpg"
+  },
+  {
+    "code": "PB-001",
+    "group": "plastic",
+    "name": "Side-release buckle",
+    "name_hi": "साइड-रिलीज़ बकल",
+    "size": 20,
+    "finish": "black",
+    "image": "images/pb-001.jpg"
+  },
+  {
+    "code": "PB-002",
+    "group": "plastic",
+    "name": "Side-release buckle",
+    "name_hi": "साइड-रिलीज़ बकल",
+    "size": 25,
+    "finish": "clear",
+    "image": "images/pb-002.jpg"
+  },
+  {
+    "code": "PB-003",
+    "group": "plastic",
+    "name": "Slider",
+    "name_hi": "स्लाइडर",
+    "size": 30,
+    "finish": "black",
+    "image": "images/pb-003.jpg"
+  },
+  {
+    "code": "PB-004",
+    "group": "plastic",
+    "name": "Strap loop",
+    "name_hi": "स्ट्रैप लूप",
+    "size": 20,
+    "finish": "white",
+    "image": "images/pb-004.jpg"
+  },
+  {
+    "code": "DB-001",
+    "group": "deco",
+    "name": "Rhinestone ring buckle",
+    "name_hi": "नग वाला रिंग बकल",
+    "size": 20,
+    "finish": "gold",
+    "image": "images/db-001.jpg"
+  },
+  {
+    "code": "DB-002",
+    "group": "deco",
+    "name": "Rhinestone square buckle",
+    "name_hi": "नग वाला चौकोर बकल",
+    "size": 25,
+    "finish": "gold",
+    "image": "images/db-002.jpg"
+  },
+  {
+    "code": "DB-003",
+    "group": "deco",
+    "name": "Butterfly buckle",
+    "name_hi": "तितली बकल",
+    "size": 22,
+    "finish": "gold",
+    "image": "images/db-003.jpg"
+  },
+  {
+    "code": "DB-004",
+    "group": "deco",
+    "name": "Pearl ring buckle",
+    "name_hi": "मोती वाला रिंग बकल",
+    "size": 25,
+    "finish": "gold",
+    "image": "images/db-004.jpg"
+  },
+  {
+    "code": "RB-001",
+    "group": "ring",
+    "name": "D-ring",
+    "name_hi": "डी-रिंग",
+    "size": 15,
+    "finish": "silver",
+    "image": "images/rb-001.jpg"
+  },
+  {
+    "code": "RB-002",
+    "group": "ring",
+    "name": "D-ring",
+    "name_hi": "डी-रिंग",
+    "size": 20,
+    "finish": "gold",
+    "image": "images/rb-002.jpg"
+  },
+  {
+    "code": "RB-003",
+    "group": "ring",
+    "name": "Rectangle loop",
+    "name_hi": "चौकोर लूप",
+    "size": 25,
+    "finish": "silver",
+    "image": "images/rb-003.jpg"
+  },
+  {
+    "code": "RB-004",
+    "group": "ring",
+    "name": "Oval loop",
+    "name_hi": "ओवल लूप",
+    "size": 30,
+    "finish": "silver",
+    "image": "images/rb-004.jpg"
+  },
+  {
+    "code": "SPB-001",
+    "group": "special",
+    "name": "Chain buckle",
+    "name_hi": "चेन बकल",
+    "size": 25,
+    "finish": "gold",
+    "image": "images/spb-001.jpg"
+  },
+  {
+    "code": "SPB-002",
+    "group": "special",
+    "name": "Enamel frame buckle",
+    "name_hi": "मीनाकारी फ़्रेम बकल",
+    "size": 25,
+    "finish": "black",
+    "image": "images/spb-002.jpg"
+  },
+  {
+    "code": "SPB-003",
+    "group": "special",
+    "name": "Double ring",
+    "name_hi": "डबल रिंग",
+    "size": 30,
+    "finish": "gold",
+    "image": "images/spb-003.jpg"
+  },
+  {
+    "code": "SPB-004",
+    "group": "special",
+    "name": "Engraved square buckle",
+    "name_hi": "नक्काशी वाला चौकोर बकल",
+    "size": 25,
+    "finish": "gold",
+    "image": "images/spb-004.jpg"
+  }
+]

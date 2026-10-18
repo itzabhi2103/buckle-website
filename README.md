@@ -9,12 +9,21 @@ A one-page website for a manufacturer and wholesaler of **buckles for shoes and 
 - **Quote enquiry with no sign-up:** buyers choose a buckle, width, finish and quantity (gross or pieces), and WhatsApp opens with the message already written.
 - **Contact:** factory address with a landmark, live open/closed hours, GSTIN, payment terms (UPI, NEFT/RTGS, cheque) and dispatch options.
 
-## Editing
+## Adding or removing buckles (no coding)
 
-Everything is in `index.html`. Near the top of the `<script>` you'll find:
+Open **`admin.html`** on the live site (e.g. `https://itzabhi2103.github.io/buckle-website/admin.html`).
+
+1. **One-time setup on each phone or computer:** create a GitHub *fine-grained token* limited to this repository with **Contents: Read and write**, and paste it into the admin page. The page explains each step.
+2. **Add a buckle:** choose a photo, category, name, size and finish. The design code is suggested automatically (e.g. `SBM-005`). Tap **Add buckle to website**.
+3. **Remove a buckle:** tap **Remove** next to it, then tap again to confirm.
+
+The admin page saves the photo to `images/` and updates `products.json` in this repo. GitHub Pages republishes the site in about a minute. Visitors never see the admin page, and nobody can change anything without the access key.
+
+## Editing by hand
+
+Buckles are listed in `products.json`. Everything else is in `index.html`. Near the top of its `<script>` you'll find:
 
 - `WHATSAPP`: the WhatsApp number (country code + number, no spaces)
-- `items`: code, group, name (English, Hindi), size in mm, finish. The photo file is `images/<code>.jpg`
 - `FIN` / `GROUPS`: finish and group names
 - `hours`: Monday to Sunday in 24-hour time (`null` = closed)
 - `HI`: the Hindi translations

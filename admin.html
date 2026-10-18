@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>OKSHOE Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&family=Hind:wght@400;500;600&display=swap">
+<style>
+/* Admin: same navy/gold tokens as the public site; one-column working form. */
+:root{
+  --bg:#F4F2EE; --surface:#FFFFFF; --ink:#16202E; --muted:#5A6271; --line:#DAD6CE;
+  --navy:#1B2B45; --navy-ink:#F2EEE6; --gold:#9A7428; --gold-bright:#D2A84E; --tile:#F1ECE4;
+  --ok:#1F7A4D; --err:#B4432F;
+  --display:"Barlow Condensed",ui-sans-serif,system-ui,sans-serif;
+  --body:"Barlow","Hind",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0F1520; --surface:#161E2B; --ink:#E8EAEE; --muted:#9CA4B2; --line:#283244;
+  --navy:#1A2A44; --gold:#DDB45E; --ok:#3FAE77; --err:#E07A63; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 var(--body)}
+:focus-visible{outline:3px solid var(--gold-bright);outline-offset:2px;border-radius:4px}
+.top{background:var(--navy);color:var(--navy-ink);border-bottom:3px solid var(--gold-bright)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;height:60px}
+.top b{font:900 1.4rem/1 "Barlow",sans-serif}.top b span{color:var(--gold-bright)}
+.top a{color:var(--navy-ink);font-size:.92rem}
+.wrap{max-width:860px;margin-inline:auto;padding-inline:16px}
+main{padding-block:28px 60px;display:grid;gap:24px}
+h1{font:700 2.1rem/1 var(--display);text-transform:uppercase;margin:0}
+h2{font:700 1.4rem/1.1 var(--display);text-transform:uppercase;margin:0 0 4px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:16px}
+.muted{color:var(--muted);margin:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:600px){.grid2{grid-template-columns:1fr}}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-weight:600;font-size:.92rem}
+.field label small{font-weight:400;color:var(--muted)}
+input,select{font:400 1rem var(--body);padding:12px 14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%;min-width:0}
+input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold-bright) 30%,transparent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:6px;font:600 1rem/1.1 var(--body);border:2px solid transparent;cursor:pointer;text-decoration:none}
+.btn-gold{background:var(--gold-bright);color:#16202E}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn:disabled{opacity:.55;cursor:wait}
+.photo{display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:center}
+@media (max-width:520px){.photo{grid-template-columns:1fr}}
+.drop{aspect-ratio:1;max-width:100%;border:2px dashed var(--line);border-radius:10px;background:var(--tile);display:grid;place-items:center;overflow:hidden;cursor:pointer;color:#5A6271;text-align:center;font-size:.9rem;padding:8px}
+.drop img{width:100%;height:100%;object-fit:contain}
+.status{padding:12px 14px;border-radius:8px;font-weight:500;border:1px solid}
+.status.ok{color:var(--ok);border-color:currentColor;background:color-mix(in srgb,var(--ok) 8%,transparent)}
+.status.err{color:var(--err);border-color:currentColor;background:color-mix(in srgb,var(--err) 8%,transparent)}
+.status.busy{color:var(--muted);border-color:var(--line)}
+.list{display:grid;gap:8px}
+.row{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:8px;border:1px solid var(--line);border-radius:8px}
+.row img{width:56px;height:56px;object-fit:contain;background:var(--tile);border-radius:6px}
+.row b{font:600 .95rem/1.2 var(--mono)}
+.row span{color:var(--muted);font-size:.88rem}
+.row button{font:600 .85rem var(--body);padding:8px 12px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--err);cursor:pointer}
+.row button.confirm{background:var(--err);color:#fff;border-color:var(--err)}
+.steps{margin:0;padding-left:20px;display:grid;gap:6px;color:var(--muted)}
+.steps b{color:var(--ink)}
+code{font-family:var(--mono);font-size:.88em;background:var(--bg);padding:1px 5px;border-radius:4px}
+details summary{cursor:pointer;font-weight:600}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><b>OK<span>SHOE</span> Admin</b><a href="./" target="_blank" rel="noopener">View website ↗</a></div></header>
+
+<main class="wrap">
+  <div>
+    <h1>Manage buckles</h1>
+    <p class="muted">Add a new buckle or remove an old one. Changes appear on the website about one minute after you save.</p>
+  </div>
+
+  <!-- Step 1: connect (one time per phone/computer) -->
+  <section class="card" id="connect">
+    <div>
+      <h2>Connect this device</h2>
+      <p class="muted">You only do this once on each phone or computer. The access key stays on this device.</p>
+    </div>
+    <details>
+      <summary>How to get an access key</summary>
+      <ol class="steps">
+        <li>Sign in to GitHub as the website owner and open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">New fine-grained token</a>.</li>
+        <li>Name it <b>OKSHOE admin</b> and set an expiry date (for example 1 year).</li>
+        <li>Under <b>Repository access</b>, choose <b>Only select repositories</b> and pick <code>buckle-website</code>.</li>
+        <li>Under <b>Permissions → Repository permissions</b>, set <b>Contents</b> to <b>Read and write</b>.</li>
+        <li>Click <b>Generate token</b>, copy it and paste it below.</li>
+      </ol>
+    </details>
+    <div class="field"><label for="token">Access key</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_…"></div>
+    <div><button class="btn btn-gold" id="save-token" type="button">Connect</button></div>
+    <div class="status" id="connect-status" hidden></div>
+  </section>
+
+  <!-- Step 2: add a buckle -->
+  <section class="card" id="add" hidden>
+    <div>
+      <h2>Add a new buckle</h2>
+      <p class="muted">Take the photo on a plain light background, with the buckle in the middle.</p>
+    </div>
+    <div class="photo">
+      <label class="drop" id="drop" for="photo"><span id="drop-text">Tap to choose a photo</span><img id="preview" alt="" hidden></label>
+      <div class="field"><label for="photo">Photo</label><input id="photo" type="file" accept="image/*"><p class="muted" style="font-size:.88rem">Large photos are resized automatically before upload.</p></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label for="group">Category</label><select id="group"></select></div>
+      <div class="field"><label for="code">Design code <small>(filled in for you)</small></label><input id="code" type="text" autocomplete="off"></div>
+      <div class="field"><label for="name">Name (English)</label><input id="name" type="text" placeholder="e.g. Flower ring buckle" autocomplete="off"></div>
+      <div class="field"><label for="name-hi">Name (Hindi) <small>(optional)</small></label><input id="name-hi" type="text" lang="hi" placeholder="जैसे: फूल वाला रिंग बकल" autocomplete="off"></div>
+      <div class="field"><label for="size">Size (mm)</label><input id="size" type="number" inputmode="numeric" min="5" max="80" step="1" value="20"></div>
+      <div class="field"><label for="finish">Finish</label><select id="finish"></select></div>
+    </div>
+    <div><button class="btn btn-gold" id="add-btn" type="button">Add buckle to website</button></div>
+    <div class="status" id="add-status" hidden></div>
+  </section>
+
+  <!-- Step 3: current list -->
+  <section class="card" id="manage" hidden>
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap">
+      <div><h2>Buckles on the website</h2><p class="muted" id="count"></p></div>
+      <button class="btn btn-ghost" id="disconnect" type="button">Disconnect this device</button>
+    </div>
+    <div class="status" id="list-status" hidden></div>
+    <div class="list" id="list"></div>
+  </section>
+</main>
+
+<script>
+(function(){
+  // ---- Repository settings ----
+  const OWNER="itzabhi2103", REPO="buckle-website", BRANCH="main", DATA="products.json";
+  const GROUPS={shoe:["Shoe buckles","SBM"],sandal:["Sandal buckles","SDB"],plastic:["Plastic buckles","PB"],deco:["Decorative buckles","DB"],ring:["Ring & loop buckles","RB"],special:["Special design buckles","SPB"]};
+  const METAL={gold:"Gold",silver:"Silver",black:"Black",rose:"Rose Gold"}, PLASTIC={black:"Black",clear:"Clear",white:"White"};
+  const API=`https://api.github.com/repos/${OWNER}/${REPO}/contents/`;
+  const $=id=>document.getElementById(id);
+  let token="", products=[], dataSha="", photoBlob=null;
+
+  // ---- Small helpers ----
+  function show(el,cls,msg){el.hidden=false;el.className="status "+cls;el.textContent=msg}
+  const b64utf8=s=>{const bytes=new TextEncoder().encode(s);let bin="";bytes.forEach(b=>bin+=String.fromCharCode(b));return btoa(bin)};
+  const utf8b64=b=>new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\n/g,"")),c=>c.charCodeAt(0)));
+  const blobB64=blob=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(",")[1]);r.onerror=rej;r.readAsDataURL(blob)});
+  async function gh(path,opts={}){
+    const r=await fetch(API+path+(opts.method?"":`?ref=${BRANCH}&t=${Date.now()}`),{...opts,headers:{"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28",...(opts.body?{"Content-Type":"application/json"}:{})}});
+    if(!r.ok){
+      const msg=r.status===401?"The access key is wrong or has expired. Disconnect and paste a new key."
+        :r.status===403||r.status===404?"This access key can't change the website. Check it has Contents: Read and write on buckle-website."
+        :r.status===409?"Someone else saved at the same moment. Reload this page and try again."
+        :"GitHub returned error "+r.status+". Try again in a minute.";
+      throw new Error(msg);
+    }
+    return r.status===204?null:r.json();
+  }
+  async function loadProducts(){
+    const f=await gh(DATA);
+    dataSha=f.sha;products=JSON.parse(utf8b64(f.content));
+  }
+  async function saveProducts(message){
+    const body={message,content:b64utf8(JSON.stringify(products,null,2)+"\n"),sha:dataSha,branch:BRANCH};
+    const r=await gh(DATA,{method:"PUT",body:JSON.stringify(body)});
+    dataSha=r.content.sha;
+  }
+
+  // ---- Connect ----
+  try{token=localStorage.getItem("okshoe-token")||""}catch(e){}
+  $("save-token").addEventListener("click",async()=>{
+    token=$("token").value.trim();
+    if(!token){show($("connect-status"),"err","Paste the access key first.");return}
+    show($("connect-status"),"busy","Checking the key…");
+    try{await start();try{localStorage.setItem("okshoe-token",token)}catch(e){}}
+    catch(err){show($("connect-status"),"err",err.message)}
+  });
+  $("disconnect").addEventListener("click",()=>{try{localStorage.removeItem("okshoe-token")}catch(e){}location.reload()});
+
+  async function start(){
+    await loadProducts();
+    $("connect").hidden=true;$("add").hidden=false;$("manage").hidden=false;
+    renderList();suggestCode();
+  }
+
+  // ---- Form ----
+  $("group").innerHTML=Object.entries(GROUPS).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join("");
+  function fillFinish(){
+    const opts=$("group").value==="plastic"?PLASTIC:METAL;
+    $("finish").innerHTML=Object.entries(opts).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+  }
+  function suggestCode(){
+    const pre=GROUPS[$("group").value][1];
+    const nums=products.filter(p=>p.code.startsWith(pre+"-")).map(p=>parseInt(p.code.split("-")[1],10)||0);
+    $("code").value=pre+"-"+String((nums.length?Math.max(...nums):0)+1).padStart(3,"0");
+  }
+  $("group").addEventListener("change",()=>{fillFinish();suggestCode()});
+  fillFinish();
+
+  // Resize photo in the browser to max 800px, JPEG
+  $("photo").addEventListener("change",async e=>{
+    const f=e.target.files[0];if(!f)return;
+    try{
+      const img=await createImageBitmap(f);
+      const k=Math.min(1,800/Math.max(img.width,img.height));
+      const c=document.createElement("canvas");c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);
+      const ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,c.width,c.height);
+      photoBlob=await new Promise(r=>c.toBlob(r,"image/jpeg",.88));
+      $("preview").src=URL.createObjectURL(photoBlob);$("preview").hidden=false;$("drop-text").hidden=true;
+    }catch(err){photoBlob=null;show($("add-status"),"err","That file couldn't be opened as a photo. Choose a JPG or PNG image.")}
+  });
+
+  $("add-btn").addEventListener("click",async()=>{
+    const st=$("add-status"),btn=$("add-btn");
+    const code=$("code").value.trim().toUpperCase(),name=$("name").value.trim(),size=parseInt($("size").value,10);
+    if(!photoBlob) return show(st,"err","Choose a photo of the buckle.");
+    if(!/^[A-Z]+-\d+$/.test(code)) return show(st,"err","Design code should look like SBM-005.");
+    if(products.some(p=>p.code===code)) return show(st,"err",code+" is already on the website. Use a different code.");
+    if(!name) return show(st,"err","Type a name for the buckle in English.");
+    if(!(size>0)) return show(st,"err","Enter the size in mm.");
+    btn.disabled=true;
+    try{
+      const image="images/"+code.toLowerCase()+".jpg";
+      show(st,"busy","Uploading photo…");
+      await gh(image,{method:"PUT",body:JSON.stringify({message:`Add photo for ${code}`,content:await blobB64(photoBlob),branch:BRANCH})});
+      show(st,"busy","Adding to catalogue…");
+      await loadProducts();
+      products.push({code,group:$("group").value,name,name_hi:$("name-hi").value.trim()||name,size,finish:$("finish").value,image});
+      await saveProducts(`Add buckle ${code}`);
+      show(st,"ok",`${code} added. It will show on the website in about one minute.`);
+      ["name","name-hi","photo"].forEach(id=>$(id).value="");photoBlob=null;$("preview").hidden=true;$("drop-text").hidden=false;
+      renderList();suggestCode();
+    }catch(err){show(st,"err",err.message)}
+    finally{btn.disabled=false}
+  });
+
+  // ---- List & remove ----
+  function renderList(){
+    $("count").textContent=products.length+" buckles";
+    const raw=`https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/`;
+    $("list").innerHTML=products.map((p,i)=>`<div class="row"><img src="${raw+p.image}" alt="" loading="lazy"><div><b>${p.code}</b><br><span>${p.name} · ${p.size} mm · ${(GROUPS[p.group]||["?"])[0]}</span></div><button type="button" data-i="${i}">Remove</button></div>`).join("");
+  }
+  $("list").addEventListener("click",async e=>{
+    const b=e.target.closest("button[data-i]");if(!b)return;
+    if(!b.classList.contains("confirm")){b.classList.add("confirm");b.textContent="Tap again to remove";setTimeout(()=>{b.classList.remove("confirm");b.textContent="Remove"},4000);return}
+    const st=$("list-status"),p=products[+b.dataset.i];
+    b.disabled=true;show(st,"busy","Removing "+p.code+"…");
+    try{
+      await loadProducts();
+      products=products.filter(x=>x.code!==p.code);
+      await saveProducts(`Remove buckle ${p.code}`);
+      try{const f=await gh(p.image);await gh(p.image,{method:"DELETE",body:JSON.stringify({message:`Remove photo for ${p.code}`,sha:f.sha,branch:BRANCH})})}catch(e){}
+      show(st,"ok",p.code+" removed. The website updates in about one minute.");
+      renderList();suggestCode();
+    }catch(err){show(st,"err",err.message);b.disabled=false}
+  });
+
+  if(token){$("token").value=token;start().catch(err=>show($("connect-status"),"err",err.message))}
+})();
+</script>
+</body>
+</html>
